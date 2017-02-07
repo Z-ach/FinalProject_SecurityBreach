@@ -9,7 +9,7 @@ package edu.cpp.cs.cs141.prog_final.grid;
  */
 public class Grid {
 	
-	private int[][] board;
+	private Object[][] board;
 	
 	
 	public Grid() {
@@ -20,11 +20,11 @@ public class Grid {
 		
 	}
 	
-	private void assign(){
+	private void assign(int[][] position, Object obj){
 		
 	}
 	
-	public int[][] getBoard(){
+	public Object[][] getBoard(){
 		return board;
 	}
 

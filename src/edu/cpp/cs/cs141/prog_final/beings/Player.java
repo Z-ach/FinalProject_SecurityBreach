@@ -3,9 +3,9 @@ package edu.cpp.cs.cs141.prog_final.beings;
 public class Player {
 	
 	
-	public static int lives = 3;
+	private static int lives = 3;
 	
-	public static int bullet = 1;
+	private static int bullet = 1;
 	
 	
 
@@ -23,6 +23,10 @@ public class Player {
 	
 	public void walk(){
 		
+	}
+	
+	public int getBullets(){
+		return bullet;
 	}
 	
 	public int getLives(){

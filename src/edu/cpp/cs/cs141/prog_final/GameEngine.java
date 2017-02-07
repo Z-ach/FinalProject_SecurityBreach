@@ -26,12 +26,30 @@ public class GameEngine {
 		
 	}
 	
-	public void moveNinja(){
+	public void movePlayer(int direction){
+		
+	}
+	
+	public void restartPlayer(){
+		
+	}
+	
+	public void moveNinja(Ninja n){
 		
 	}
 	
 	public Item checkForItem(){
 		return null;
 	}
+	
+	public boolean isValidMove(){
+		return false;
+	}
+	
+	public boolean continueGame(){
+		return false;
+	}
+	
+	
 
 }
