@@ -3,9 +3,9 @@ package edu.cpp.cs.cs141.prog_final.beings;
 public class Player {
 	
 	
-	public static int Lives = 3;
+	public static int lives = 3;
 	
-	public static int Bullet = 1;
+	public static int bullet = 1;
 	
 	
 
@@ -27,11 +27,11 @@ public class Player {
 	
 	public int getLives(){
 		
-		return Lives;
+		return lives;
 	}
 	
 	public boolean alive(){
-		if(Lives > 0){
+		if(lives > 0){
 			return true;
 		}
 		else{
