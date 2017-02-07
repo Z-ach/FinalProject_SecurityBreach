@@ -18,4 +18,8 @@ public abstract class LivingBeing {
 	public int[][] getPosition() {
 		return position;
 	}
+	
+	public void move(int direction){
+		
+	}
 }
