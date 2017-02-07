@@ -4,6 +4,9 @@ public abstract class LivingBeing {
 
 	private int[][] position;
 	
+	/**
+	 * 
+	 */
 	public LivingBeing(int[][] position) {
 		
 	}
