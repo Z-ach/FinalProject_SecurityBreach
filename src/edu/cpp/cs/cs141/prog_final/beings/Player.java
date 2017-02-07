@@ -1,16 +1,13 @@
 package edu.cpp.cs.cs141.prog_final.beings;
 
-public class Player {
+public class Player extends LivingBeing{
 	
 	
 	private static int lives = 3;
-	
-	private static int bullet = 1;
-	
-	
+	private static int bullet = 1;	
 
-	public Player() {
-		// TODO Auto-generated constructor stub
+	public Player(int[][] position) {
+		super(position);
 	}
 	
 	public void shoot(){
@@ -26,6 +23,7 @@ public class Player {
 	}
 	
 	public int getBullets(){
+		
 		return bullet;
 	}
 	
