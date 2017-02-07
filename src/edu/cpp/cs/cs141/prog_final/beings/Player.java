@@ -18,10 +18,6 @@ public class Player extends LivingBeing{
 		
 	}
 	
-	public void walk(){
-		
-	}
-	
 	public int getBullets(){
 		
 		return bullet;
