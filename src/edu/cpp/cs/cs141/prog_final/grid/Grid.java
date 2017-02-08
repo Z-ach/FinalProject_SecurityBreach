@@ -81,7 +81,7 @@ public class Grid {
 	 * @param obj
 	 *            the object to insert into the board
 	 */
-	private void assign(int[][] position, Object obj) {
+	private void assign(int x, int y, Object obj) {
 
 	}
 
