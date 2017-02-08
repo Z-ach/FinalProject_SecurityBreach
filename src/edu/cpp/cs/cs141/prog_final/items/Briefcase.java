@@ -29,19 +29,20 @@
 package edu.cpp.cs.cs141.prog_final.items;
 
 /**
- * This class represents the briefcase used in the game. This class will also inherit any attribute 
- * from the Item superclass. The goal of the game is to retrieve the briefcase from one of the nine 
- * rooms in the 9x9 grid. Once the player reaches the room with the  briefcase, he or she wins.
+ * This class represents the briefcase used in the game. This class will also
+ * inherit any attribute from the {@link Item} superclass. The goal of the game
+ * is to retrieve the briefcase from one of the nine rooms in the 9x9 grid. Once
+ * the player reaches the room with the briefcase, he or she wins.
  * 
  * @author We Showed Up
  * 
  */
 
-public class Briefcase extends Item{
-
+public class Briefcase extends Item {
 
 	/**
-	 * This constructor will show the actual position of the briefcase in the array.
+	 * This constructor will show the actual position of the briefcase in the
+	 * array.
 	 */
 	public Briefcase(int[] position) {
 		super(position);
