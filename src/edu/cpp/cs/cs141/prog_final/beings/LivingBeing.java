@@ -10,14 +10,7 @@ public abstract class LivingBeing {
 	 * 
 	 */
 	private int[][] position;
-<<<<<<< HEAD
 
-=======
-	
-	/**
-	 * 
-	 */
->>>>>>> branch 'master' of https://github.com/Z-ach/FinalProject_SecurityBreach
 	public LivingBeing(int[][] position) {
 
 	}

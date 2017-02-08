@@ -1,6 +1,6 @@
 /**
  * CS 141: Intro to Programming and Problem Solving
- * Professor: Edwin Rodríguez
+ * Professor: Edwin RodrÃ­guez
  *
  * Final Group Project (Security Breach)
  *

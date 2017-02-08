@@ -5,8 +5,6 @@ public class Player extends LivingBeing{
 	
 	private static int lives = 3;
 	private static int bullet = 1;	
-
-	public Player() {
 		
 	public Player(int[][] position) {
 		super(position);
