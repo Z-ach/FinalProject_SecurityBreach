@@ -2,7 +2,7 @@ package edu.cpp.cs.cs141.prog_final.beings;
 
 /**
  * This is the ninja subclass. It has methods which represents attributes of
- * the nija.  It inherites properties from the living being super class.
+ * the ninja.  It inherites properties from the living being super class.
  */
 public class Ninja extends LivingBeing{
 
