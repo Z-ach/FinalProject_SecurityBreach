@@ -35,7 +35,8 @@ import java.util.ArrayList;
  * The grid holds all the objects and position of those objects within the game.
  */
 public class Grid {
-
+	private static int DIMENSION = 9;
+	private boolean[][] light;
 	/**
 	 * This field represents the building that the player starts in. This is a
 	 * two dimensional array that holds objects, and will hold
@@ -43,6 +44,7 @@ public class Grid {
 	 * {@link edu.cpp.cs.cs141.prog_final.items.Item}s. The board will hold the
 	 * position of all entities in the game.
 	 */
+
 	private Object[][] board;
 
 	/**
@@ -67,8 +69,19 @@ public class Grid {
 	 * the board full of null at first. The board will then be modified by other
 	 * methods in this class.
 	 */
-	private void generateBoard() {
-
+	private void generateBoards() {
+		for (int row1 = 0; row1 < DIMENSION; row1++) {
+			for (int col1 = 0; col1 < DIMENSION; col1++) {
+				board[row1][col1] = "null"; // as of right now, it is null until
+											// we store stuff inside the
+											// arraylist.
+			}
+		}
+		for (int row2 = 0; row2 < DIMENSION; row2++) {
+			for (int col2 = 0; col2 < DIMENSION; col2++) {
+				light[row2][col2] = false;
+			}
+		}
 	}
 
 	/**
