@@ -1,6 +1,6 @@
 /**
  * CS 141: Intro to Programming and Problem Solving
- * Professor: Edwin Rodríguez
+ * Professor: Edwin Rodrï¿½guez
  *
  * Final Group Project (Security Breach)
  *
@@ -28,7 +28,7 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
-/*
+/**
  * This class represents the briefcase used in the game. This class will also inherit any attribute 
  * from the Item superclass. The goal of the game is to retrieve the briefcase from one of the nine 
  * rooms in the 9x9 grid. Once the player reaches the room with the  briefcase, he or she wins.
@@ -40,7 +40,7 @@ package edu.cpp.cs.cs141.prog_final.items;
 public class Briefcase extends Item{
 
 
-	/*
+	/**
 	 * This constructor will show the actual position of the briefcase in the array.
 	 */
 	public Briefcase(int[] position) {
