@@ -1,18 +1,15 @@
 package edu.cpp.cs.cs141.prog_final.beings;
 
 /**
- * This is the ninja subclass. It is charge of all the attributes that a 
- * player would need. It has methods that deal with different attributes
- * and a constructor that spawns and creates a ninja based on a location 
- * on the grid. It inherites properties from the living being super class.
+ * This is the ninja subclass. It has methods which represents attributes of
+ * the nija.  It inherites properties from the living being super class.
  */
 public class Ninja extends LivingBeing{
 
 	/**
-	 * This is the constructor for the ninja subclass. Its parameter is
+	 * This is the constructor and its parameter is
 	 * is a postion on the grid. When the constructor is called, it will
-	 * take in the parameter of the postion and created the ninja on that
-	 * position on the grid. The constructor essentially spawns the ninja 
+	 * create the ninja on that position. The constructor creates a ninja
 	 * when it is called on.
 	 */
 	public Ninja(int[][] position) {

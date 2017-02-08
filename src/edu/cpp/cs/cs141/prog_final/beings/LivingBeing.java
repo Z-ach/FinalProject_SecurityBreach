@@ -12,9 +12,9 @@ public abstract class LivingBeing {
 	/**
 	 * This is the constructor for the LivingBeing astract class. Its parameter is
 	 * is a postion on the grid. When the constructor is called, it will
-	 * take in the parameter of the postion and created the living being on that
-	 * position on the grid. The constructor essentially spawns the lving being 
-	 * when it is called on.
+	 * take in the parameter of the postion and create the living being.
+	 * The living being can either be a ninja or player.
+	 *
 	 */
 	public LivingBeing(int[][] position) {
 		
