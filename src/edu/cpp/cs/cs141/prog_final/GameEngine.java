@@ -96,8 +96,8 @@ public class GameEngine {
 	 * the game would be able to run based on the user input taken from
 	 * {@link edu.cpp.cs.cs141.prog_final.ui.UserInterface}
 	 */
-	public GameEngine() {
-
+	public GameEngine(UserInterface ui) {
+		this.ui = ui;
 	}
 
 	/**
