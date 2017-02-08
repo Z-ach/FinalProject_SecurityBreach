@@ -39,7 +39,8 @@ public class GameEngine {
 	private Ninja[] ninjas;
 	/**
 	 * This is the field will be instantiated in the constructor of the game
-	 * engine. The purpose of this is to allow the engine and user interface to
+	 * engine. It is an array of the class ninja. {@link edu.cpp.cs.cs141.Ninja}
+	 * The purpose of this is to allow the engine and user interface to
 	 * communicate. Communicating in this case means passing methods back and
 	 * forth. Therefore, it would allow the player to make decisions and game to
 	 * run at the same time.
