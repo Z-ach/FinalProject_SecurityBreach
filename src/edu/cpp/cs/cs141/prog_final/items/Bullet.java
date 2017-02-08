@@ -1,6 +1,6 @@
 /**
  * CS 141: Intro to Programming and Problem Solving
- * Professor: Edwin Rodríguez
+ * Professor: Edwin Rodrï¿½guez
  *
  * Final Group Project (Security Breach)
  *
@@ -28,7 +28,7 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
-/*
+/**
  * This class will represent the bullet used in the game. This classs will also inherit all
  * attributes from the Item superclass. The bullet will go in the directionthe player commands 
  * it to. The bullet will travel in throughout one column or row. If the bullet strikes a 
@@ -38,7 +38,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  */
 public class Bullet extends Item{
 
-	/*
+	/**
 	 * This constructor will represent the actual position of the bullet in the array.
 	 */
 	public Bullet(int[] position) {

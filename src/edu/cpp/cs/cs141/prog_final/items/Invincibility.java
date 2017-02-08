@@ -1,6 +1,6 @@
 /**
  * CS 141: Intro to Programming and Problem Solving
- * Professor: Edwin Rodríguez
+ * Professor: Edwin Rodrï¿½guez
  *
  * Final Group Project (Security Breach)
  *
@@ -28,7 +28,7 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
-/*
+/**
  * This class represents the Invincibilty item in the game. This class will also inherit all attributes
  * from the Item superclass. The Invicibility item will grant the player a shield that will protect 
  * him or herself from the ninja-assassin's stabbing for five turns.
@@ -37,7 +37,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  */
 public class Invincibility extends Item{
 
-	/*
+	/**
 	 * This constructor will represent the actual position of the Invincibility drop in the array. 
 	 */
 	public Invincibility(int[] position) {

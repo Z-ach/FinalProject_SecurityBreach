@@ -1,6 +1,6 @@
 /**
  * CS 141: Intro to Programming and Problem Solving
- * Professor: Edwin Rodríguez
+ * Professor: Edwin Rodrï¿½guez
  *
  * Final Group Project (Security Breach)
  *
@@ -35,13 +35,13 @@ package edu.cpp.cs.cs141.prog_final.items;
  */
 public abstract class Item {
 
-	/*
+	/**
 	 * This field will represent and hold the position of any of the 
 	 * items in the array. (Radar, Bullet, Invincibility, Briefcase) 
 	 */
 	private int[] position;
 	
-	/*
+	/**
 	 * This constructor will show the actual position of any of the
 	 * items used in the game. It will be located on a (x,y) coordinate 
 	 * on the 9x9 grid. 
