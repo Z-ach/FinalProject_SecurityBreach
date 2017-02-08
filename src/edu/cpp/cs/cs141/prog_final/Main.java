@@ -27,10 +27,23 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+/**
+ * This is the main class. It is the first thing that is run in the program, and
+ * the only thing it is designed to do in this code is start the game engine.
+ */
 public class Main {
 
+	/**
+	 * This method creates an instance of the
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object and uses it to
+	 * start the program by calling the method
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run()}.
+	 * 
+	 * @param args
+	 *            the command line arguments to pass in
+	 */
 	public static void main(String[] args) {
-		
+
 	}
 
 }
