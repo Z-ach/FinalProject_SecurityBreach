@@ -29,16 +29,19 @@
 package edu.cpp.cs.cs141.prog_final.items;
 
 /**
- * This class represents the radar used in the game. This class will also inherit all attributes from the
- * Item superclass. The radar drop will allow the player to instantly see which room the briefcase is located.
- * This is helpful, so the player will not need to look at all nine rooms to see where the briefcase is. 
+ * This class represents the radar used in the game. This class will also
+ * inherit all attributes from the {@link Item} superclass. The radar drop will
+ * allow the player to instantly see which room the briefcase is located. This
+ * is helpful, so the player will not need to look at all nine rooms to see
+ * where the briefcase is.
  */
-public class Radar extends Item{
+public class Radar extends Item {
 
 	/**
-	 * This constructor will represent the actual position of the radar drop in the array.
+	 * This constructor will represent the actual position of the radar drop in
+	 * the array.
 	 */
-	
+
 	public Radar(int[] position) {
 		super(position);
 	}

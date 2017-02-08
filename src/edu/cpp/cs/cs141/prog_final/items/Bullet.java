@@ -29,17 +29,19 @@
 package edu.cpp.cs.cs141.prog_final.items;
 
 /**
- * This class will represent the bullet used in the game. This classs will also inherit all
- * attributes from the Item superclass. The bullet will go in the directionthe player commands 
- * it to. The bullet will travel in throughout one column or row. If the bullet strikes a 
- * ninja-assassin(s), it will die. 
+ * This class will represent the bullet used in the game. This class will also
+ * inherit all attributes from the {@link Item} superclass. The bullet will go
+ * in the direction the player commands it to. The bullet will travel in
+ * throughout one column or row. If the bullet strikes a ninja-assassin(s), it
+ * will die.
  * 
  * @author We Showed Up
  */
-public class Bullet extends Item{
+public class Bullet extends Item {
 
 	/**
-	 * This constructor will represent the actual position of the bullet in the array.
+	 * This constructor will represent the actual position of the bullet in the
+	 * array.
 	 */
 	public Bullet(int[] position) {
 		super(position);
