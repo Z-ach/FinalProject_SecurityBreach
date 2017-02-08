@@ -17,8 +17,8 @@ public class Ninja extends LivingBeing {
 	 * @param position
 	 *            the position on the grid to create the ninja.
 	 */
-	public Ninja(int[] position) {
-		super(position);
+	public Ninja(int x, int y) {
+		super(x, y);
 	}
 
 }

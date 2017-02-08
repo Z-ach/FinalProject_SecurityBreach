@@ -33,8 +33,8 @@ public class Player extends LivingBeing {
 	 * @param position
 	 *            the location of where to spawn the player
 	 */
-	public Player(int[] position) {
-		super(position);
+	public Player(int x, int y) {
+		super(x, y);
 	}
 
 	/**

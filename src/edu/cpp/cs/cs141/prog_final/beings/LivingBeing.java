@@ -15,7 +15,8 @@ public abstract class LivingBeing {
 	 * initially set by the constructors of the subclasses, and then will be
 	 * managed in this class.
 	 */
-	private int[] position;
+	private int x, y;
+	//TODO change javadoc
 
 	/**
 	 * This is the constructor for the {@link LivingBeing} abstract class. It's
@@ -26,8 +27,9 @@ public abstract class LivingBeing {
 	 * 
 	 * @param position the position on the grid to create the {@link LivingBeing}
 	 */
-	public LivingBeing(int[] position) {
-
+	public LivingBeing(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 	/**
@@ -37,8 +39,14 @@ public abstract class LivingBeing {
 	 * 
 	 * @return the position of the {@link LivingBeing}
 	 */
-	public int[] getPosition() {
-		return position;
+	//TODO JAVADOCS CHANGE
+	public int getPositionX() {
+		return x;
+	}
+	
+	//TODO JAVADOCS
+	public int getPositionY(){
+		return y;
 	}
 
 	/**
