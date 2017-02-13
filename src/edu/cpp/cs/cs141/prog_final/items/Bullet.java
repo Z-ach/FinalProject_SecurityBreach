@@ -28,6 +28,8 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
+import java.io.Serializable;
+
 /**
  * This class will represent the bullet used in the game. This class will also
  * inherit all attributes from the {@link Item} superclass. The bullet will go
@@ -37,7 +39,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  * 
  * @author We Showed Up
  */
-public class Bullet extends Item {
+public class Bullet extends Item implements Serializable{
 
 	/**
 	 * This constructor will represent the actual position of the bullet in the

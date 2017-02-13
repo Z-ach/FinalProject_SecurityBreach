@@ -27,6 +27,7 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -34,8 +35,8 @@ import java.util.ArrayList;
  * is represented as a two dimensional array which is stored in {@link #board}.
  * The grid holds all the objects and position of those objects within the game.
  */
-public class Grid {
-	private static int DIMENSION = 9;
+public class Grid implements Serializable{
+	private final int DIMENSION = 9;
 	private boolean[][] light;
 	/**
 	 * This field represents the building that the player starts in. This is a

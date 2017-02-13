@@ -1,12 +1,14 @@
 package edu.cpp.cs.cs141.prog_final.beings;
 
+import java.io.Serializable;
+
 /**
  * This is the LivingBeing class. This class is a super class and an abstract
  * class. It passes on attributes to the {@link Player} and {@link Ninja}
  * subclasses. No instances can be made from this class, therefore the
  * subclasses inherit this classes methods.
  */
-public abstract class LivingBeing {
+public abstract class LivingBeing implements Serializable{
 
 	/**
 	 * This field represents an array of integers that represent the spy's

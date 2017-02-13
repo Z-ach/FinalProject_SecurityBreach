@@ -1,12 +1,14 @@
 package edu.cpp.cs.cs141.prog_final.beings;
 
+import java.io.Serializable;
+
 /**
  * This is the player subclass. It is charge of all the attributes that a player
  * would need. It has methods that deal with different attributes and a
  * constructor that spawns and creates a player based on a location on the grid.
  * It inherits properties from the living being super class.
  */
-public class Player extends LivingBeing {
+public class Player extends LivingBeing implements Serializable{
 
 	/**
 	 * This field represents the amount of lives that the player has. The player

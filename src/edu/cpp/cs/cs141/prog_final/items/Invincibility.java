@@ -28,6 +28,8 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
+import java.io.Serializable;
+
 /**
  * This class represents the Invincibilty item in the game. This class will also
  * inherit all attributes from the {@link Item} superclass. The Invicibility item will
@@ -36,7 +38,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  * 
  * @author We Showed Up
  */
-public class Invincibility extends Item {
+public class Invincibility extends Item implements Serializable{
 
 	/**
 	 * This constructor will represent the actual position of the Invincibility

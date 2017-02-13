@@ -27,6 +27,7 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -36,7 +37,7 @@ import java.util.Scanner;
  * move, shoot, or debug, save or exit the game, status of powerups and bullets,
  * and the end result of the game is displayed.
  */
-public class UserInterface {
+public class UserInterface implements Serializable{
 
 	/**
 	 * This field represents the {@link java.util.Scanner} object that creates

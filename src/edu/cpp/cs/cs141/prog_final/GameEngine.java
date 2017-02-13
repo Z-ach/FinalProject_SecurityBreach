@@ -27,6 +27,7 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
@@ -39,7 +40,7 @@ import edu.cpp.cs.cs141.prog_final.items.Item;
  * keeps track of the instances of the game with methods to check for items,
  * run, or restart the game.
  */
-public class GameEngine {
+public class GameEngine implements Serializable{
 	
 	/**
 	 * This field of Random allows the object "rand" created from the imported

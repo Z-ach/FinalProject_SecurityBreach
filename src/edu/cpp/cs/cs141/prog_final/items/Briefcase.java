@@ -28,6 +28,8 @@
 
 package edu.cpp.cs.cs141.prog_final.items;
 
+import java.io.Serializable;
+
 /**
  * This class represents the briefcase used in the game. This class will also
  * inherit any attribute from the {@link Item} superclass. The goal of the game
@@ -38,7 +40,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  * 
  */
 
-public class Briefcase extends Item {
+public class Briefcase extends Item implements Serializable{
 
 	/**
 	 * This constructor will show the actual position of the briefcase in the

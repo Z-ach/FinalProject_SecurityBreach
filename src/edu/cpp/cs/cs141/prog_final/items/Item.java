@@ -26,6 +26,9 @@
  * 
  */
 package edu.cpp.cs.cs141.prog_final.items;
+
+import java.io.Serializable;
+
 /**
  * This class represents the items used in the game. The item class is a superclass 
  * that all the other item subclasses will inherit. (Radar, bullet, invincibility, briefcase)
@@ -33,7 +36,7 @@ package edu.cpp.cs.cs141.prog_final.items;
  * @author We Showed Up
  *
  */
-public abstract class Item {
+public abstract class Item implements Serializable{
 
 	/**
 	 * This field will represent and hold the position of any of the 
