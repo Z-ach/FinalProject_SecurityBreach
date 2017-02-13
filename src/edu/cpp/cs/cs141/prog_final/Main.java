@@ -27,8 +27,6 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
-import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
-
 /**
  * This is the main class. It is the first thing that is run in the program, and
  * the only thing it is designed to do in this code is start the game engine.

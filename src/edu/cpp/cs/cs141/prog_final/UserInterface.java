@@ -25,7 +25,7 @@
  * Zachary Kaufman, Michael Jason Yan
  * 
  */
-package edu.cpp.cs.cs141.prog_final.ui;
+package edu.cpp.cs.cs141.prog_final;
 
 import java.util.Scanner;
 

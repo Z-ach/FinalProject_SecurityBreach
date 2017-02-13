@@ -35,7 +35,7 @@ package edu.cpp.cs.cs141.prog_final.io;
 
 import java.io.PrintWriter;
 
-import edu.cpp.cs.cs141.prog_final.grid.Grid;
+import edu.cpp.cs.cs141.prog_final.Grid;
 
 /**
  * This class is designed to save the state of the game to a file. The state of
@@ -47,7 +47,7 @@ public class SaveGame {
 
 	/**
 	 * This field represents the what the current state of the game will be
-	 * parsed into. The {@link edu.cpp.cs.cs141.prog_final.grid.Grid} holds the
+	 * parsed into. The {@link edu.cpp.cs.cs141.prog_final.Grid} holds the
 	 * state of the game, so it will be parsed into this field.
 	 */
 	private int[][] boardState;

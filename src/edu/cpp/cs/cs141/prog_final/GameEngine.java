@@ -31,9 +31,7 @@ import java.util.Random;
 
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
-import edu.cpp.cs.cs141.prog_final.grid.Grid;
 import edu.cpp.cs.cs141.prog_final.items.Item;
-import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This class runs the game based on what the player inputs. It incorporates the
@@ -53,7 +51,7 @@ public class GameEngine {
 	
 	/**
 	 * This field initializes a grid from the Grid.java class
-	 * {@link edu.cpp.cs.cs141.Grid} and calls the new object grid. This is used
+	 * {@link edu.cpp.cs.cs141.prog_final.Grid} and calls the new object grid. This is used
 	 * to call create the board from calling the method that makes the 9 by 9
 	 * grid of objects.
 	 */
@@ -94,7 +92,7 @@ public class GameEngine {
 	 * instances of the new objects but does not use them. Therefore, when the
 	 * Main method calls this, it creates a new object to represent the engine,
 	 * the game would be able to run based on the user input taken from
-	 * {@link edu.cpp.cs.cs141.prog_final.ui.UserInterface}
+	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface}
 	 */
 	public GameEngine(UserInterface ui) {
 		this.ui = ui;
@@ -115,7 +113,7 @@ public class GameEngine {
 	/**
 	 * This method is used to move the player. It will be called from the game
 	 * loop, and the arguments will be based on input from the UI
-	 * {@link edu.cpp.cs.cs141.UserInterface} and will move the player object in
+	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface} and will move the player object in
 	 * the direction the player desires. This method can be used to move an
 	 * integer of spaces in the array, but will be set to 1 as the game is
 	 * further developed.
