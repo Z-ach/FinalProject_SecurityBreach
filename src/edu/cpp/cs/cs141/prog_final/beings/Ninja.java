@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class Ninja extends LivingBeing implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9162275870812989861L;
+
+	/**
 	 * This is the constructor for the ninja subclass. Its parameter is is a
 	 * position on the grid. When the constructor is called, it will take in the
 	 * parameter of the position and created the ninja on that position on the

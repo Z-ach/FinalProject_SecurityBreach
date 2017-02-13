@@ -40,6 +40,11 @@ import java.util.Scanner;
 public class UserInterface implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7625972601335457659L;
+	
+	/**
 	 * This field represents the {@link java.util.Scanner} object that creates
 	 * the scanner that will take the user input to play the game and to print
 	 * each of the objects within the game to the user.

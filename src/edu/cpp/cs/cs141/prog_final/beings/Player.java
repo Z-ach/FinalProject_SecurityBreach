@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class Player extends LivingBeing implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8275985798947223662L;
+
+	/**
 	 * This field represents the amount of lives that the player has. The player
 	 * starts off with three lives, so this value is initially {@code 3}. If the
 	 * player loses all 3 lives, the game is over, and the player has lost the

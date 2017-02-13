@@ -42,6 +42,11 @@ import java.io.Serializable;
 public class Bullet extends Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4799395912248890301L;
+
+	/**
 	 * This constructor will represent the actual position of the bullet in the
 	 * array.
 	 */

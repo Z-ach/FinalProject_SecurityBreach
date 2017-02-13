@@ -43,6 +43,11 @@ import java.io.Serializable;
 public class Briefcase extends Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1791771493188864616L;
+
+	/**
 	 * This constructor will show the actual position of the briefcase in the
 	 * array.
 	 */

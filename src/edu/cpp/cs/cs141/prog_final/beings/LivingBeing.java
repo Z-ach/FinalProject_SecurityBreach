@@ -11,6 +11,11 @@ import java.io.Serializable;
 public abstract class LivingBeing implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2923290159600843630L;
+	
+	/**
 	 * This field represents an array of integers that represent the spy's
 	 * location in the building. The 0th index in the array represents the row,
 	 * and the 1st index in the array represents the column. This will be

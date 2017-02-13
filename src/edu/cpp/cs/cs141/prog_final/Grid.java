@@ -36,6 +36,11 @@ import java.util.ArrayList;
  * The grid holds all the objects and position of those objects within the game.
  */
 public class Grid implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7922732579776384853L;
+	
 	private final int DIMENSION = 9;
 	private boolean[][] light;
 	/**

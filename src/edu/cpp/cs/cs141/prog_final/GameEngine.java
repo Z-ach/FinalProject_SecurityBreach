@@ -43,6 +43,11 @@ import edu.cpp.cs.cs141.prog_final.items.Item;
 public class GameEngine implements Serializable{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 98574817743469133L;
+
+	/**
 	 * This field of Random allows the object "rand" created from the imported
 	 * java utility {@link java.util.Random} to randomize and move the positions
 	 * of objects within the grid. The object "rand" will move the ninja with

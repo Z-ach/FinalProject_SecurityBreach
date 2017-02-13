@@ -41,6 +41,11 @@ import java.io.Serializable;
 public class Invincibility extends Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1545837670490087076L;
+
+	/**
 	 * This constructor will represent the actual position of the Invincibility
 	 * drop in the array.
 	 */

@@ -40,6 +40,11 @@ import java.io.Serializable;
 public class Radar extends Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1599480865943053691L;
+
+	/**
 	 * This constructor will represent the actual position of the radar drop in
 	 * the array.
 	 */

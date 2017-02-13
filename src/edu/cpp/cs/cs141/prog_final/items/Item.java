@@ -39,6 +39,11 @@ import java.io.Serializable;
 public abstract class Item implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5052440763064610297L;
+	
+	/**
 	 * This field will represent and hold the position of any of the 
 	 * items in the array. (Radar, Bullet, Invincibility, Briefcase) 
 	 */
