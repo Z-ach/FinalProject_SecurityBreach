@@ -41,7 +41,7 @@ public class Grid implements Serializable {
 	 */
 	private static final long serialVersionUID = 7922732579776384853L;
 
-	private final int DIMENSION = 9;
+	public final int DIMENSION = 9;
 
 	private boolean[][] light;
 	/**
@@ -55,30 +55,20 @@ public class Grid implements Serializable {
 	private char[][] board;
 
 	/**
-	 * This field represents the location of the rooms in the building. This
-	 * field will be used when generating the board to obtain the locations that
-	 * will be initialized to prevent the player from entering. One of these
-	 * rooms will contain the briefcase.
-	 */
-	private ArrayList<int[][]> rooms;
-	// rooms:
-	// room x: = (1 + 3*i)
-	// room y: = (1 + 3*j)
-
-	/**
 	 * Constructor for the {@link Grid} class. This will generate the board by
 	 * calling {@link Grid#generateBoard()}. The board will then be accessed by
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}.
 	 */
 	public Grid() {
-		rooms = new ArrayList<int[][]>();
 		generateBoards();
 	}
 
 	/**
-	 * This method will generate the board using a nested for loop. It will make
-	 * the board full of null at first. The board will then be modified by other
-	 * methods in this class.
+	 * This method will generate two boards using a nested for loop. It will
+	 * make the first board full of boolean light with the values of false. The
+	 * second board will be created to hold empty spaces and also the permanent
+	 * locations of the rooms. The letter 'R' represents the rooms that are in
+	 * the middle of every 9 squares.
 	 */
 	private void generateBoards() {
 		for (int row1 = 0; row1 < DIMENSION; row1++) {
@@ -130,5 +120,7 @@ public class Grid implements Serializable {
 	public char[][] getBoard() {
 		return board;
 	}
-
+	public void assign(int x, int y, char object){
+		board[x][y] = object;
+	}
 }

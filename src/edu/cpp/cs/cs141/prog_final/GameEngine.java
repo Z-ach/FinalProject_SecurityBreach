@@ -27,6 +27,7 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.awt.Dimension;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -40,8 +41,8 @@ import edu.cpp.cs.cs141.prog_final.items.Item;
  * keeps track of the instances of the game with methods to check for items,
  * run, or restart the game.
  */
-public class GameEngine implements Serializable{
-	
+public class GameEngine implements Serializable {
+
 	/**
 	 * 
 	 */
@@ -54,15 +55,15 @@ public class GameEngine implements Serializable{
 	 * equal chance of moving in each direction.
 	 */
 	private Random rand;
-	
+
 	/**
 	 * This field initializes a grid from the Grid.java class
-	 * {@link edu.cpp.cs.cs141.prog_final.Grid} and calls the new object grid. This is used
-	 * to call create the board from calling the method that makes the 9 by 9
-	 * grid of objects.
+	 * {@link edu.cpp.cs.cs141.prog_final.Grid} and calls the new object grid.
+	 * This is used to call create the board from calling the method that makes
+	 * the 9 by 9 grid of objects.
 	 */
 	private Grid grid;
-	
+
 	/**
 	 * This field is an array of ninjas which will hold the ninjas and randomly
 	 * distribute them onto the grid from here. It would make more sense for the
@@ -71,7 +72,7 @@ public class GameEngine implements Serializable{
 	 * calling it.
 	 */
 	private Ninja[] ninjas;
-	
+
 	/**
 	 * This is the field will be instantiated in the constructor of the game
 	 * engine. It is an array of the class ninja. {@link edu.cpp.cs.cs141.Ninja}
@@ -81,7 +82,7 @@ public class GameEngine implements Serializable{
 	 * run at the same time.
 	 */
 	private UserInterface ui;
-	
+
 	/**
 	 * This field is the player object from the player
 	 * {@link edu.cpp.cs.cs141.Player} class. This means the player is being
@@ -113,16 +114,16 @@ public class GameEngine implements Serializable{
 	 * be checked in the later method.
 	 */
 	public void run() {
-		
+
 	}
 
 	/**
 	 * This method is used to move the player. It will be called from the game
 	 * loop, and the arguments will be based on input from the UI
-	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface} and will move the player object in
-	 * the direction the player desires. This method can be used to move an
-	 * integer of spaces in the array, but will be set to 1 as the game is
-	 * further developed.
+	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface} and will move the
+	 * player object in the direction the player desires. This method can be
+	 * used to move an integer of spaces in the array, but will be set to 1 as
+	 * the game is further developed.
 	 */
 	public void movePlayer(int direction) {
 
@@ -189,5 +190,40 @@ public class GameEngine implements Serializable{
 	public boolean continueGame() {
 		return false;
 	}
+
+	public void assignObject() {
+		int check = rand.nextInt(9);
+		switch (check) {
+		case 0:
+			grid.assign(1, 1, 'B');
+			break;
+		case 1:
+			grid.assign(1, 4, 'B');
+			break;
+		case 2:
+			grid.assign(1, 7, 'B');
+			break;
+		case 3:
+			grid.assign(4, 1, 'B');
+			break;
+		case 4:
+			grid.assign(4, 4, 'B');
+			break;
+		case 5:
+			grid.assign(4, 7, 'B');
+			break;
+		case 6:
+			grid.assign(7, 1, 'B');
+			break;
+		case 7:
+			grid.assign(7, 4, 'B');
+			break;
+		case 8:
+			grid.assign(7, 7, 'B');
+			break;
+		}
+		
+	}
+	
 
 }
