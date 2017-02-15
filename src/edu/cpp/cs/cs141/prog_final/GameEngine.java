@@ -27,14 +27,16 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
-import java.awt.Dimension;
 import java.io.Serializable;
 import java.util.Random;
 
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.items.Bullet;
+import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 import edu.cpp.cs.cs141.prog_final.items.Item;
+import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
  * This class runs the game based on what the player inputs. It incorporates the
@@ -56,6 +58,15 @@ public class GameEngine implements Serializable {
 	 * equal chance of moving in each direction.
 	 */
 	private Random rand;
+	
+	/**
+	 * 
+	 */
+	private Radar radar;
+	
+	private Invincibility invinc;
+	
+	private Bullet bullet;
 
 	/**
 	 * This field initializes a grid from the Grid.java class
@@ -120,8 +131,10 @@ public class GameEngine implements Serializable {
 	 */
 	public void run() {
 		assignBriefcase();
+		assignRadar();
 		grid.debugMode(true, briefcase);
 		ui.printGrid(grid.getBoard(), grid.getLight());
+		
 	}
 
 	/**
@@ -246,5 +259,35 @@ public class GameEngine implements Serializable {
 			int b = rand.nextInt(9);
 
 		}
+	}
+	
+	public void assignRadar(){
+		boolean valid = false;
+		
+		while(!valid){
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			
+			if (grid.getBoard()[x][y] == ' '){
+				grid.assign(x, y, 'r');
+				radar = new Radar(x,y);
+				valid = true;
+			}
+			
+				
+		}
+		
+		
+			
+		
+		
+	}
+	
+	public void assignBullet(){
+		
+	}
+	
+	public void assignInvincibility(){
+		
 	}
 }
