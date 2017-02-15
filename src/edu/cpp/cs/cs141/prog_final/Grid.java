@@ -42,6 +42,7 @@ public class Grid implements Serializable{
 	private static final long serialVersionUID = 7922732579776384853L;
 	
 	private final int DIMENSION = 9;
+	
 	private boolean[][] light;
 	/**
 	 * This field represents the building that the player starts in. This is a
@@ -67,7 +68,8 @@ public class Grid implements Serializable{
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}.
 	 */
 	public Grid() {
-
+		rooms = new ArrayList<int[][]>();
+		generateBoards();
 	}
 
 	/**
@@ -89,6 +91,14 @@ public class Grid implements Serializable{
 			}
 		}
 	}
+	
+	public void debugMode(boolean enable){
+		for(int row = 0; row < DIMENSION; row++){
+			for(int column = 0; column < DIMENSION; column++){
+				light[row][column] = enable;
+			}
+		}
+	}
 
 	/**
 	 * This method takes the object passed in as an argument and places them in
@@ -101,7 +111,7 @@ public class Grid implements Serializable{
 	 *            the object to insert into the board
 	 */
 	private void assign(int x, int y, Object obj) {
-
+		board[x][y] = obj;
 	}
 
 	/**
