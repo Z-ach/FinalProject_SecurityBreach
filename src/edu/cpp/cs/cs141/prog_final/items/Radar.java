@@ -49,8 +49,8 @@ public class Radar extends Item implements Serializable{
 	 * the array.
 	 */
 
-	public Radar(int[] position) {
-		super(position);
+	public Radar(int x, int y) {
+		super(x, y);
 	}
 
 }

@@ -30,6 +30,8 @@ package edu.cpp.cs.cs141.prog_final;
 import java.io.Serializable;
 import java.util.Scanner;
 
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+
 /**
  * The UserInterface class represents the game interactions with the player
  * throughout the game. The user is greeted with instructions, the grid is
