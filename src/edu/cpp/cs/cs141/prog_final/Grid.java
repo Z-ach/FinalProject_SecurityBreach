@@ -71,6 +71,8 @@ public class Grid implements Serializable {
 	 * the middle of every 9 squares.
 	 */
 	private void generateBoards() {
+		board = new char[DIMENSION][DIMENSION];
+		light = new boolean[DIMENSION][DIMENSION];
 		for (int row1 = 0; row1 < DIMENSION; row1++) {
 			for (int col1 = 0; col1 < DIMENSION; col1++) {
 				if (board[row1][col1] == board[1][1]) {
@@ -122,5 +124,9 @@ public class Grid implements Serializable {
 	}
 	public void assign(int x, int y, char object){
 		board[x][y] = object;
+	}
+	
+	public boolean[][] getLight(){
+		return light;
 	}
 }

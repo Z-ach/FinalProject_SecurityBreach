@@ -103,6 +103,7 @@ public class GameEngine implements Serializable {
 	 */
 	public GameEngine(UserInterface ui) {
 		this.ui = ui;
+		grid = new Grid();
 	}
 
 	/**
@@ -114,7 +115,8 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-
+		grid.debugMode(true);
+		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
 	/**
