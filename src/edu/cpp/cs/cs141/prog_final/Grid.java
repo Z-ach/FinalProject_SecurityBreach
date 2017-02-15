@@ -75,27 +75,7 @@ public class Grid implements Serializable {
 		light = new boolean[DIMENSION][DIMENSION];
 		for (int row1 = 0; row1 < DIMENSION; row1++) {
 			for (int col1 = 0; col1 < DIMENSION; col1++) {
-				if (board[row1][col1] == board[1][1]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[1][4]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[1][7]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[4][1]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[4][4]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[4][7]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[7][1]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[7][4]) {
-					board[row1][col1] = 'R';
-				} else if (board[row1][col1] == board[7][7]) {
-					board[row1][col1] = 'R';
-				} else {
-					board[row1][col1] = ' ';
-				}
+				board[row1][col1] = ' ';
 			}
 		}
 		for (int row2 = 0; row2 < DIMENSION; row2++) {
@@ -103,6 +83,24 @@ public class Grid implements Serializable {
 				light[row2][col2] = false;
 			}
 		}
+		board[1][1] = 'R';
+		board[1][4] = 'R';
+		board[1][7] = 'R';
+		board[4][1] = 'R';
+		board[4][4] = 'R';
+		board[4][7] = 'R';
+		board[7][1] = 'R';
+		board[7][4] = 'R';
+		board[7][7] = 'R';
+		light[1][1] = true;
+		light[1][4] = true;
+		light[1][7] = true;
+		light[4][1] = true;
+		light[4][4] = true;
+		light[4][7] = true;
+		light[7][1] = true;
+		light[7][4] = true;
+		light[7][7] = true;
 	}
 
 	public void debugMode(boolean enable) {
@@ -122,11 +120,12 @@ public class Grid implements Serializable {
 	public char[][] getBoard() {
 		return board;
 	}
-	public void assign(int x, int y, char object){
+
+	public void assign(int x, int y, char object) {
 		board[x][y] = object;
 	}
-	
-	public boolean[][] getLight(){
+
+	public boolean[][] getLight() {
 		return light;
 	}
 }

@@ -115,7 +115,7 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-		grid.debugMode(true);
+		//grid.debugMode(true);
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
