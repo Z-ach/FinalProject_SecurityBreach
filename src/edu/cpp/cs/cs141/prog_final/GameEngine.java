@@ -134,9 +134,8 @@ public class GameEngine implements Serializable {
 		assignRadar();
 		assignBullet();
 		assignInvincibility();
-		grid.debugMode(true, briefcase);
-		ui.printGrid(grid.getBoard(), grid.getLight());
-		
+		grid.debugMode(false, briefcase);
+		ui.printGrid(grid.getBoard(), grid.getLight());		
 	}
 
 	/**

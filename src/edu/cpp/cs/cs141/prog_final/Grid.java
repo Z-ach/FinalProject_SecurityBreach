@@ -113,8 +113,22 @@ public class Grid implements Serializable {
 		}
 		if(enable)
 			assign(bCase.getX(), bCase.getY(), 'B');
-		else
+		else{
 			assign(bCase.getX(), bCase.getY(), 'R');
+			roomLighting();
+		}
+	}
+	
+	public void roomLighting(){
+		light[1][1] = true;
+		light[1][4] = true;
+		light[1][7] = true;
+		light[4][1] = true;
+		light[4][4] = true;
+		light[4][7] = true;
+		light[7][1] = true;
+		light[7][4] = true;
+		light[7][7] = true;
 	}
 
 	/**
