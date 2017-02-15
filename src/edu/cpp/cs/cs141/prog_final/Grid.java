@@ -35,14 +35,14 @@ import java.util.ArrayList;
  * is represented as a two dimensional array which is stored in {@link #board}.
  * The grid holds all the objects and position of those objects within the game.
  */
-public class Grid implements Serializable{
+public class Grid implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7922732579776384853L;
-	
+
 	private final int DIMENSION = 9;
-	
+
 	private boolean[][] light;
 	/**
 	 * This field represents the building that the player starts in. This is a
@@ -83,9 +83,27 @@ public class Grid implements Serializable{
 	private void generateBoards() {
 		for (int row1 = 0; row1 < DIMENSION; row1++) {
 			for (int col1 = 0; col1 < DIMENSION; col1++) {
-				board[row1][col1] = ' '; // as of right now, it is null until
-											// we store stuff inside the
-											// arraylist.
+				if (board[row1][col1] == board[1][1]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[1][4]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[1][7]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[4][1]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[4][4]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[4][7]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[7][1]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[7][4]) {
+					board[row1][col1] = 'R';
+				} else if (board[row1][col1] == board[7][7]) {
+					board[row1][col1] = 'R';
+				} else {
+					board[row1][col1] = ' ';
+				}
 			}
 		}
 		for (int row2 = 0; row2 < DIMENSION; row2++) {
@@ -94,27 +112,13 @@ public class Grid implements Serializable{
 			}
 		}
 	}
-	
-	public void debugMode(boolean enable){
-		for(int row = 0; row < DIMENSION; row++){
-			for(int column = 0; column < DIMENSION; column++){
+
+	public void debugMode(boolean enable) {
+		for (int row = 0; row < DIMENSION; row++) {
+			for (int column = 0; column < DIMENSION; column++) {
 				light[row][column] = enable;
 			}
 		}
-	}
-
-	/**
-	 * This method takes the object passed in as an argument and places them in
-	 * the location in the board based on what position is passed in as an
-	 * argument.
-	 * 
-	 * @param position
-	 *            the location to insert the object
-	 * @param obj
-	 *            the object to insert into the board
-	 */
-	private void assign(int x, int y, char board) {
-		//board[x][y] = sq;
 	}
 
 	/**
