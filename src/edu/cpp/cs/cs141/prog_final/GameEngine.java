@@ -237,7 +237,7 @@ public class GameEngine implements Serializable {
 			grid.assign(7, 7, 'B');
 			briefcase = new Briefcase(7,7);
 			break;
-		}		
+		}
 	}
 	
 
