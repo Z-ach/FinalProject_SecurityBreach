@@ -49,8 +49,8 @@ public class Invincibility extends Item implements Serializable{
 	 * This constructor will represent the actual position of the Invincibility
 	 * drop in the array.
 	 */
-	public Invincibility(int[] position) {
-		super(position);
+	public Invincibility(int x, int y) {
+		super(x, y);
 	}
 
 }

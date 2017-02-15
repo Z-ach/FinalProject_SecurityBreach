@@ -51,8 +51,8 @@ public class Briefcase extends Item implements Serializable{
 	 * This constructor will show the actual position of the briefcase in the
 	 * array.
 	 */
-	public Briefcase(int[] position) {
-		super(position);
+	public Briefcase(int x, int y) {
+		super(x, y);
 	}
 
 }

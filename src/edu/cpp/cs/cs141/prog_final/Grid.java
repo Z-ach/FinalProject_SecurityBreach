@@ -30,6 +30,8 @@ package edu.cpp.cs.cs141.prog_final;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+
 /**
  * This class represents the building in which the game is played. The building
  * is represented as a two dimensional array which is stored in {@link #board}.
@@ -103,12 +105,16 @@ public class Grid implements Serializable {
 		light[7][7] = true;
 	}
 
-	public void debugMode(boolean enable) {
+	public void debugMode(boolean enable, Briefcase bCase) {
 		for (int row = 0; row < DIMENSION; row++) {
 			for (int column = 0; column < DIMENSION; column++) {
 				light[row][column] = enable;
 			}
 		}
+		if(enable)
+			assign(bCase.getX(), bCase.getY(), 'B');
+		else
+			assign(bCase.getX(), bCase.getY(), 'R');
 	}
 
 	/**

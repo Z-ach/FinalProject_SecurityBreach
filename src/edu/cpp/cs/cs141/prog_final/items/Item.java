@@ -47,15 +47,24 @@ public abstract class Item implements Serializable{
 	 * This field will represent and hold the position of any of the 
 	 * items in the array. (Radar, Bullet, Invincibility, Briefcase) 
 	 */
-	private int[] position;
+	private int x, y;
 	
 	/**
 	 * This constructor will show the actual position of any of the
 	 * items used in the game. It will be located on a (x,y) coordinate 
 	 * on the 9x9 grid. 
 	 */
-	public Item(int[] position) {
-		this.position = position;
+	public Item(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
 	}
 
 }

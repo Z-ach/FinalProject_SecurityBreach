@@ -50,8 +50,8 @@ public class Bullet extends Item implements Serializable{
 	 * This constructor will represent the actual position of the bullet in the
 	 * array.
 	 */
-	public Bullet(int[] position) {
-		super(position);
+	public Bullet(int x, int y) {
+		super(x, y);
 	}
 
 }
