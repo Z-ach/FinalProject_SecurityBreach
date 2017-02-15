@@ -224,7 +224,9 @@ public class GameEngine implements Serializable {
 			grid.assign(7, 7, 'B');
 			break;
 		}
-		
+		for(int c = 0; c < 6; c++){
+			
+		}
 	}
 	
 
