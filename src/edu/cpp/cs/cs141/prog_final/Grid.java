@@ -62,18 +62,8 @@ public class Grid implements Serializable{
 	 */
 	private ArrayList<int[][]> rooms;
 	// rooms:
-	// 2,1
-	// 2,4
-	// 2,7
-	// 5,1
-	// 5,4
-	// 5,7
-	// ------ code for these rooms -------
-	/*for (int i = 0; i < 2; i++) {
-		for (int j = 0; j < 3; j++) {
-			grid[i*3 + 2][j*3 + 1] = "X";
-		}
-	}*/
+	// room x: = (1 + 3*i)
+	// room y: = (1 + 3*j)
 
 	/**
 	 * Constructor for the {@link Grid} class. This will generate the board by
