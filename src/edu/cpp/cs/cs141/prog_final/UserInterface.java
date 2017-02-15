@@ -37,13 +37,13 @@ import java.util.Scanner;
  * move, shoot, or debug, save or exit the game, status of powerups and bullets,
  * and the end result of the game is displayed.
  */
-public class UserInterface implements Serializable{
+public class UserInterface implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7625972601335457659L;
-	
+
 	/**
 	 * This field represents the {@link java.util.Scanner} object that creates
 	 * the scanner that will take the user input to play the game and to print
@@ -60,22 +60,13 @@ public class UserInterface implements Serializable{
 	 * 
 	 */
 	public UserInterface() {
-
-	}
-	
-	public void printGrid(boolean[][] light) {
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				
-			}
-			System.out.println();
-		}
+		input = new Scanner(System.in);
 	}
 
 	/**
-	 * This method represents the {@link #instruction()} of how to play the game to
-	 * the user. The field will explain to the user what keys to use to play the
-	 * game, what the powerups do, and the end objective to find the hidden
+	 * This method represents the {@link #instruction()} of how to play the game
+	 * to the user. The field will explain to the user what keys to use to play
+	 * the game, what the powerups do, and the end objective to find the hidden
 	 * briefcase through describing the setting.
 	 */
 	public void instruction() {
@@ -83,12 +74,25 @@ public class UserInterface implements Serializable{
 	}
 
 	/**
-	 * This method represents the {@link #playerOptions()} prints out the player's
-	 * options of looking, shooting, and debugging. These options will be
-	 * displayed
+	 * This method represents the {@link #playerOptions()} prints out the
+	 * player's options of looking, shooting, and debugging. These options will
+	 * be displayed
 	 */
-	public void playerOptions() {
+	public int playerOptions() {
+		System.out.println("Choose one of the following options:");
+		System.out.println("1: LOOK");
+		System.out.println("2: SHOOT");
+		System.out.println("3: EXIT MENU");
+		System.out.println("4: DEBUG MODE");
+		return takeInput(1, 4);
+	}
 
+	public int lookDirection() {
+		System.out.println("1: LOOK UP");
+		System.out.println("2: LOOK DOWN");
+		System.out.println("3: LOOK LEFT");
+		System.out.println("4: LOOK RIGHT");
+		return takeInput(1, 4);
 	}
 
 	/**
@@ -105,8 +109,22 @@ public class UserInterface implements Serializable{
 	 * player to enter their desired options of looking, shooting, debugging,
 	 * saving the game, loading a game, or exiting.
 	 */
-	public void takeInput() {
-
+	public int takeInput(int lowerBound, int upperBound) {
+		int validInput = -1;
+		boolean valid = false;
+		while (validInput == -1) {
+			if (input.hasNextInt()) {
+				validInput = input.nextInt();
+				valid = true;
+			}
+			if (validInput < lowerBound || validInput > upperBound) {
+				System.out.println("Input is not a valid number!");
+				if (!valid)
+					input.next();
+				validInput = -1;
+			}
+		}
+		return validInput;
 	}
 
 	/**
@@ -114,41 +132,49 @@ public class UserInterface implements Serializable{
 	 * view of the game that will hold each of the objects. The player must
 	 * navigate through the grid in order to play.
 	 */
-	public void printGrid() {
-
+	public void printGrid(char[][] board, boolean[][] light) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (light[i][j])
+					System.out.print("[ " + board[i][j] + " ]");
+				else
+					System.out.print("[ X ]");
+			}
+			System.out.println("\n");
+		}
 	}
 
 	/**
-	 * This method {@link #displayInfo()} represents the status of lives that the
-	 * user has and notifies the user if any power ups are being used during the
-	 * player's turn.
+	 * This method {@link #displayInfo()} represents the status of lives that
+	 * the user has and notifies the user if any power ups are being used during
+	 * the player's turn.
 	 */
 	public void displayInfo() {
 
 	}
 
 	/**
-	 * The method of {@link #saveGame()} represents what the system will ask after
-	 * they choose the option to save the game. The input for a file name will
-	 * be asked from the player in order to successfully save it.
+	 * The method of {@link #saveGame()} represents what the system will ask
+	 * after they choose the option to save the game. The input for a file name
+	 * will be asked from the player in order to successfully save it.
 	 */
 	public void saveGame() {
 
 	}
 
 	/**
-	 * This method represents the {@link #debug()} option that allows for the all
-	 * components of the grid to be visible. Debug mode option will be available
-	 * for the player throughout the game.
+	 * This method represents the {@link #debug()} option that allows for the
+	 * all components of the grid to be visible. Debug mode option will be
+	 * available for the player throughout the game.
 	 */
 	public void debug() {
 
 	}
 
 	/**
-	 * This method represents the {@link #errorCheck()} to display an error message
-	 * when the user attempts to move in directions that are outside the grid
-	 * space.
+	 * This method represents the {@link #errorCheck()} to display an error
+	 * message when the user attempts to move in directions that are outside the
+	 * grid space.
 	 */
 	public void errorCheck() {
 
@@ -164,18 +190,19 @@ public class UserInterface implements Serializable{
 	}
 
 	/**
-	 * The method represents when the character will {@link #loseLife()} when they
-	 * are stabbed by a ninja. The system will tell the character that they have
-	 * lost a life and have respawned to their initial placement on the grid.
+	 * The method represents when the character will {@link #loseLife()} when
+	 * they are stabbed by a ninja. The system will tell the character that they
+	 * have lost a life and have respawned to their initial placement on the
+	 * grid.
 	 */
 	public void loseLife() {
 
 	}
 
 	/**
-	 * This method represents the {@link #briefCase(boolean)} that needs to be found by
-	 * the player in order to win the game. If {@code true} then the message
-	 * tells the player that they have successfully found the briefcase.
+	 * This method represents the {@link #briefCase(boolean)} that needs to be
+	 * found by the player in order to win the game. If {@code true} then the
+	 * message tells the player that they have successfully found the briefcase.
 	 */
 	public void briefCase(boolean hasCase) {
 
