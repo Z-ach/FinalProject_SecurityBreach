@@ -115,7 +115,7 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-		//grid.debugMode(true);
+		// grid.debugMode(true);
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
@@ -224,10 +224,11 @@ public class GameEngine implements Serializable {
 			grid.assign(7, 7, 'B');
 			break;
 		}
-		for(int c = 0; c < 6; c++){
+		for (int c = 0; c < 6; c++) {
+			int a = rand.nextInt(9);
+			int b = rand.nextInt(9);
 			
+
 		}
 	}
-	
-
 }
