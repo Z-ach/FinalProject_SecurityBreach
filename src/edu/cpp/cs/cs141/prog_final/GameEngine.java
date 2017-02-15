@@ -132,6 +132,8 @@ public class GameEngine implements Serializable {
 	public void run() {
 		assignBriefcase();
 		assignRadar();
+		assignBullet();
+		assignInvincibility();
 		grid.debugMode(true, briefcase);
 		ui.printGrid(grid.getBoard(), grid.getLight());
 		
@@ -273,17 +275,27 @@ public class GameEngine implements Serializable {
 				radar = new Radar(x,y);
 				valid = true;
 			}
-			
-				
 		}
-		
-		
-			
-		
-		
 	}
 	
 	public void assignBullet(){
+		
+		boolean valid = false;
+		
+		while(!valid){
+			
+			int x = rand.nextInt(9);
+			int y = rand.nextInt(9);
+			
+			if(grid.getBoard()[x][y] == ' '){
+				grid.assign(x, y, 'b');
+				bullet = new Bullet(x,y);
+				valid = true;
+			}
+			
+			
+		}
+		
 		
 	}
 	
