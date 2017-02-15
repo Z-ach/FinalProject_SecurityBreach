@@ -52,7 +52,7 @@ public class Grid implements Serializable{
 	 * position of all entities in the game.
 	 */
 
-	private Object[][] board;
+	private Square[][] board;
 
 	/**
 	 * This field represents the location of the rooms in the building. This
@@ -61,6 +61,19 @@ public class Grid implements Serializable{
 	 * rooms will contain the briefcase.
 	 */
 	private ArrayList<int[][]> rooms;
+	// rooms:
+	// 2,1
+	// 2,4
+	// 2,7
+	// 5,1
+	// 5,4
+	// 5,7
+	// ------ code for these rooms -------
+	/*for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 3; j++) {
+			grid[i*3 + 2][j*3 + 1] = "X";
+		}
+	}*/
 
 	/**
 	 * Constructor for the {@link Grid} class. This will generate the board by
@@ -80,7 +93,7 @@ public class Grid implements Serializable{
 	private void generateBoards() {
 		for (int row1 = 0; row1 < DIMENSION; row1++) {
 			for (int col1 = 0; col1 < DIMENSION; col1++) {
-				board[row1][col1] = "null"; // as of right now, it is null until
+				board[row1][col1] = null; // as of right now, it is null until
 											// we store stuff inside the
 											// arraylist.
 			}
@@ -110,8 +123,8 @@ public class Grid implements Serializable{
 	 * @param obj
 	 *            the object to insert into the board
 	 */
-	private void assign(int x, int y, Object obj) {
-		board[x][y] = obj;
+	private void assign(int x, int y, Square sq) {
+		board[x][y] = sq;
 	}
 
 	/**

@@ -62,6 +62,15 @@ public class UserInterface implements Serializable{
 	public UserInterface() {
 
 	}
+	
+	public void printGrid(boolean[][] light) {
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				
+			}
+			System.out.println();
+		}
+	}
 
 	/**
 	 * This method represents the {@link #instruction()} of how to play the game to
