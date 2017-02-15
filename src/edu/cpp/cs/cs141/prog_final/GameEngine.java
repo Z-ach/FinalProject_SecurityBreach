@@ -238,6 +238,13 @@ public class GameEngine implements Serializable {
 			briefcase = new Briefcase(7, 7);
 			break;
 		}
+	}
 
+	public void assignNinja() {
+		for (int c = 0; c < 6; c++) {
+			int a = rand.nextInt(9);
+			int b = rand.nextInt(9);
+
+		}
 	}
 }
