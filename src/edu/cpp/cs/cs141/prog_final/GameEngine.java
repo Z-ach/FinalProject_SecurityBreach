@@ -95,7 +95,7 @@ public class GameEngine implements Serializable {
 	private Player player;
 
 	private Briefcase briefcase;
-	
+
 	/**
 	 * This is the constructor for the game engine class and it instantiates all
 	 * the fields, which are the objects from other class. It only creates the
@@ -119,12 +119,8 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-<<<<<<< HEAD
-		// grid.debugMode(true);
-=======
-		assignObject();
+		assignBriefcase();
 		grid.debugMode(true, briefcase);
->>>>>>> origin/master
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
@@ -202,52 +198,46 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
-	public void assignObject() {
+	public void assignBriefcase() {
 		int check = rand.nextInt(9);
 		switch (check) {
 		case 0:
 			grid.assign(1, 1, 'B');
-			briefcase = new Briefcase(1,1);
+			briefcase = new Briefcase(1, 1);
 			break;
 		case 1:
 			grid.assign(1, 4, 'B');
-			briefcase = new Briefcase(1,4);
+			briefcase = new Briefcase(1, 4);
 			break;
 		case 2:
 			grid.assign(1, 7, 'B');
-			briefcase = new Briefcase(1,7);
+			briefcase = new Briefcase(1, 7);
 			break;
 		case 3:
 			grid.assign(4, 1, 'B');
-			briefcase = new Briefcase(4,1);
+			briefcase = new Briefcase(4, 1);
 			break;
 		case 4:
 			grid.assign(4, 4, 'B');
-			briefcase = new Briefcase(4,4);
+			briefcase = new Briefcase(4, 4);
 			break;
 		case 5:
 			grid.assign(4, 7, 'B');
-			briefcase = new Briefcase(4,7);
+			briefcase = new Briefcase(4, 7);
 			break;
 		case 6:
 			grid.assign(7, 1, 'B');
-			briefcase = new Briefcase(7,1);
+			briefcase = new Briefcase(7, 1);
 			break;
 		case 7:
 			grid.assign(7, 4, 'B');
-			briefcase = new Briefcase(7,4);
+			briefcase = new Briefcase(7, 4);
 			break;
 		case 8:
 			grid.assign(7, 7, 'B');
-			briefcase = new Briefcase(7,7);
+			briefcase = new Briefcase(7, 7);
 			break;
 		}
 
-		for (int c = 0; c < 6; c++) {
-			int a = rand.nextInt(9);
-			int b = rand.nextInt(9);
-			
-
-		}
 	}
 }
