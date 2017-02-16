@@ -58,14 +58,14 @@ public class GameEngine implements Serializable {
 	 * equal chance of moving in each direction.
 	 */
 	private Random rand;
-	
+
 	/**
 	 * 
 	 */
 	private Radar radar;
-	
+
 	private Invincibility invinc;
-	
+
 	private Bullet bullet;
 
 	/**
@@ -77,11 +77,10 @@ public class GameEngine implements Serializable {
 	private Grid grid;
 
 	/**
-	 * This field ninjas which will hold the ninjas and randomly
-	 * distribute them onto the grid from here. It would make more sense for the
-	 * engine to have this field because it would use the random generator to
-	 * distribute the ninjas instead of distributing them in the grid and
-	 * calling it.
+	 * This field ninjas which will hold the ninjas and randomly distribute them
+	 * onto the grid from here. It would make more sense for the engine to have
+	 * this field because it would use the random generator to distribute the
+	 * ninjas instead of distributing them in the grid and calling it.
 	 */
 	private Ninja[] ninjas;
 
@@ -135,7 +134,7 @@ public class GameEngine implements Serializable {
 		assignBullet();
 		assignInvincibility();
 		grid.debugMode(false, briefcase);
-		ui.printGrid(grid.getBoard(), grid.getLight());		
+		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
 	/**
@@ -258,61 +257,75 @@ public class GameEngine implements Serializable {
 		for (int c = 0; c < 6; c++) {
 			int a = rand.nextInt(6);
 			int b = rand.nextInt(6) + 3;
-			ninjas[c] = new Ninja(a,b);
+			if (a == 1 && b == 1) {
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
+			} else if (a == 1 && b == 4) {
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
+			} else if (a == 1 && b == 7) {
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
+			} else if (a == 4 && b == 4) {
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
+			} else if (a == 4 && b == 7) {
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
+			}
+			ninjas[c] = new Ninja(a, b);
 		}
 	}
-	
-	public void assignRadar(){
+
+	public void assignRadar() {
 		boolean valid = false;
-		
-		while(!valid){
+
+		while (!valid) {
 			int x = rand.nextInt(9);
 			int y = rand.nextInt(9);
-			
-			if (grid.getBoard()[x][y] == ' '){
+
+			if (grid.getBoard()[x][y] == ' ') {
 				grid.assign(x, y, 'r');
-				radar = new Radar(x,y);
+				radar = new Radar(x, y);
 				valid = true;
 			}
 		}
 	}
-	
-	public void assignBullet(){
-		
+
+	public void assignBullet() {
+
 		boolean valid = false;
-		
-		while(!valid){
-			
+
+		while (!valid) {
+
 			int x = rand.nextInt(9);
 			int y = rand.nextInt(9);
-			
-			if(grid.getBoard()[x][y] == ' '){
+
+			if (grid.getBoard()[x][y] == ' ') {
 				grid.assign(x, y, 'b');
-				bullet = new Bullet(x,y);
+				bullet = new Bullet(x, y);
 				valid = true;
 			}
-			
-			
+
 		}
-		
-		
+
 	}
-	
-	public void assignInvincibility(){
-		
+
+	public void assignInvincibility() {
+
 		boolean valid = false;
-		
-		while(!valid){
-			
+
+		while (!valid) {
+
 			int x = rand.nextInt(9);
 			int y = rand.nextInt(9);
-			
-			if(grid.getBoard()[x][y] == ' '){
+
+			if (grid.getBoard()[x][y] == ' ') {
 				grid.assign(x, y, 'I');
-				invinc = new Invincibility(x,y);
+				invinc = new Invincibility(x, y);
 				valid = true;
 			}
 		}
-		
+
 	}
 }
