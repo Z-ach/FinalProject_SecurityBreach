@@ -77,7 +77,7 @@ public class GameEngine implements Serializable {
 	private Grid grid;
 
 	/**
-	 * This field is an array of ninjas which will hold the ninjas and randomly
+	 * This field ninjas which will hold the ninjas and randomly
 	 * distribute them onto the grid from here. It would make more sense for the
 	 * engine to have this field because it would use the random generator to
 	 * distribute the ninjas instead of distributing them in the grid and
@@ -256,9 +256,9 @@ public class GameEngine implements Serializable {
 
 	public void assignNinja() {
 		for (int c = 0; c < 6; c++) {
-			int a = rand.nextInt(9);
-			int b = rand.nextInt(9);
-
+			int a = rand.nextInt(6);
+			int b = rand.nextInt(6) + 3;
+			ninjas[c] = new Ninja(a,b);
 		}
 	}
 	
