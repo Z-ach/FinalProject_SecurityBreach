@@ -237,7 +237,7 @@ public class GameEngine implements Serializable {
 		assignBullet();
 		assignInvincibility();
 		assignNinja();
-		grid.debugMode(true, briefcase);
+		grid.debugMode(false, briefcase);
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 

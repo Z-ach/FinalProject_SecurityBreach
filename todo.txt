@@ -1,11 +1,10 @@
-user interface prompt
-player movement
-ninja movement
-powerups
-movement checking / room requirements
-shooting
-check room
-game loop
--conditions
---briefcase taken
---player lives
+user interface prompt - Bryan
+grid refresh - Zach
+ninja movement - Kelvin
+powerups - Bryan
+movement checking / room requirements - Jason
+shooting - Annalyn
+check room - Kelvin
+game loop - Zach
+-conditions for loop - Annalyn
+->player lives
