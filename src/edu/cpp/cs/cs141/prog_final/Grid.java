@@ -28,7 +28,6 @@
 package edu.cpp.cs.cs141.prog_final;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 
@@ -38,11 +37,13 @@ import edu.cpp.cs.cs141.prog_final.items.Briefcase;
  * The grid holds all the objects and position of those objects within the game.
  */
 public class Grid implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 7922732579776384853L;
 
+	/**
+	 * The dimension of the board. Useful so that if this needs to change, each
+	 * individual value will not have to be changed
+	 */
 	public final int DIMENSION = 9;
 
 	private boolean[][] light;
@@ -104,7 +105,10 @@ public class Grid implements Serializable {
 	 * that the player can assure that the game is working as expected
 	 * 
 	 * @param enable
+	 *            {@code true} if debug mode should be on, {@code false} if it
+	 *            should be off
 	 * @param bCase
+	 *            the briefcase object
 	 */
 	public void debugMode(boolean enable, Briefcase bCase) {
 		for (int row = 0; row < DIMENSION; row++) {
@@ -152,8 +156,11 @@ public class Grid implements Serializable {
 	 * may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
 	 * 
 	 * @param x
+	 *            the row to assign it to
 	 * @param y
+	 *            the column to assign it to
 	 * @param object
+	 *            the character representation of the object being assigned
 	 */
 	public void assign(int x, int y, char object) {
 		board[x][y] = object;
@@ -163,7 +170,7 @@ public class Grid implements Serializable {
 	 * gets the current state of a block on the grid and returns it to the
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}
 	 * 
-	 * @return light
+	 * @return the board state with regards to lighting
 	 */
 	public boolean[][] getLight() {
 		return light;
