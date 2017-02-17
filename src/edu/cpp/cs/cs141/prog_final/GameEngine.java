@@ -129,12 +129,7 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-		assignBriefcase();
-		assignRadar();
-		assignBullet();
-		assignInvincibility();
-		grid.debugMode(false, briefcase);
-		ui.printGrid(grid.getBoard(), grid.getLight());
+		createBoard();
 	}
 
 	/**
@@ -211,6 +206,16 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
+	public void createBoard() {
+		assignBriefcase();
+		assignRadar();
+		assignBullet();
+		assignInvincibility();
+		assignNinja();
+		grid.debugMode(true, briefcase);
+		ui.printGrid(grid.getBoard(), grid.getLight());
+	}
+
 	public void assignBriefcase() {
 		int check = rand.nextInt(9);
 		switch (check) {
@@ -254,30 +259,17 @@ public class GameEngine implements Serializable {
 	}
 
 	public void assignNinja() {
+		ninjas = new Ninja[6];
 		for (int c = 0; c < 6; c++) {
-			int a = rand.nextInt(6);
-			int b = rand.nextInt(6) + 3;
-			if (a == 1 && b == 1) {
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
-			} else if (a == 1 && b == 4) {
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
-			} else if (a == 1 && b == 7) {
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
-			} else if (a == 4 && b == 4) {
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
-			} else if (a == 4 && b == 7) {
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
-			} else if (!(grid.getBoard()[a][b] == ' ')){
-				a = rand.nextInt(6);
-				b = rand.nextInt(6) + 3;
+			while (ninjas[c] == null) {
+				int row = rand.nextInt(9);
+				int col = rand.nextInt(9);
+				if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
+						&& (grid.getBoard()[row][col] == ' ')) {
+					grid.assign(row, col, 'N');
+					ninjas[c] = new Ninja(row, col);
+				}
 			}
-			grid.assign(a, b, 'N');
-			ninjas[c] = new Ninja(a, b);
 		}
 	}
 
@@ -285,12 +277,13 @@ public class GameEngine implements Serializable {
 		boolean valid = false;
 
 		while (!valid) {
-			int x = rand.nextInt(9);
-			int y = rand.nextInt(9);
 
-			if (grid.getBoard()[x][y] == ' ') {
-				grid.assign(x, y, 'r');
-				radar = new Radar(x, y);
+			int row = rand.nextInt(9);
+			int col = rand.nextInt(9);
+
+			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
+				grid.assign(row, col, 'r');
+				radar = new Radar(row, col);
 				valid = true;
 			}
 		}
@@ -302,17 +295,15 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-			int x = rand.nextInt(9);
-			int y = rand.nextInt(9);
+			int row = rand.nextInt(9);
+			int col = rand.nextInt(9);
 
-			if (grid.getBoard()[x][y] == ' ') {
-				grid.assign(x, y, 'b');
-				bullet = new Bullet(x, y);
+			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
+				grid.assign(row, col, 'b');
+				bullet = new Bullet(row, col);
 				valid = true;
 			}
-
 		}
-
 	}
 
 	public void assignInvincibility() {
@@ -321,15 +312,14 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-			int x = rand.nextInt(9);
-			int y = rand.nextInt(9);
+			int row = rand.nextInt(9);
+			int col = rand.nextInt(9);
 
-			if (grid.getBoard()[x][y] == ' ') {
-				grid.assign(x, y, 'I');
-				invinc = new Invincibility(x, y);
+			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
+				grid.assign(row, col, 'I');
+				invinc = new Invincibility(row, col);
 				valid = true;
 			}
 		}
-
 	}
 }
