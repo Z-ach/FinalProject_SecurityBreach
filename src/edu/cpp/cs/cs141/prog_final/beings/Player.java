@@ -43,6 +43,10 @@ public class Player extends LivingBeing implements Serializable{
 	public Player(int x, int y) {
 		super(x, y);
 	}
+	public void setPlayer(){
+		x = 8;
+		y = 0;
+	}
 
 	/**
 	 * This is the shoot method. Whenever this method is called the player will
@@ -50,17 +54,8 @@ public class Player extends LivingBeing implements Serializable{
 	 * makes contact with an enemy, the enemy will die. Will decrease the
 	 * {@link #bullet} amount by {@code 1}.
 	 */
-	public void shoot() {
-
-	}
-
-	/**
-	 * This is look method. Whenever this method is called the player will look
-	 * in whichever direction the player chooses. Once the player chooses where
-	 * to look, the next two steps will be lit.
-	 */
-	public void look() {
-
+	public void shoot(int direction) {
+		bullet--;
 	}
 
 	/**
