@@ -60,12 +60,23 @@ public class GameEngine implements Serializable {
 	private Random rand;
 
 	/**
-	 * 
+	 * This field creates a radar item from the Radar class
+	 * the player with the location of the briefcase.
 	 */
 	private Radar radar;
 
+	/**
+	 * This field creates an invincibility item from the Invincibility class
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Invincibility} that will grant
+	 * the player a shield for five turns.
+	 */
 	private Invincibility invinc;
 
+	/**
+	 * This field creates a bullet from the Bullet class 
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Bullet} that will
+	 * give the player a bullet if he or she does not have one. 
+	 */
 	private Bullet bullet;
 
 	/**
@@ -272,7 +283,16 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
+	
+	
 
+	/**
+	 * This method will place the Radar item drop on a random position on the grid.
+	 * Before the item is placed there, this method checks if there is an existing item(s),
+	 * player or room before it places the Radar item down. If it is an empty space, it will place 
+	 * the item on that specific (x,y) coordinate. 
+	 */
+	
 	public void assignRadar() {
 		boolean valid = false;
 
@@ -288,6 +308,13 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * This method will place the Bullet item drop on a random position on the grid.
+	 * Before the item is placed on the spot, it will check if there is another item(s),
+	 * player or room that exist on the spot. If it is an empty space on the grid, it will
+	 * place the item there.  
+	 */
 
 	public void assignBullet() {
 
@@ -306,6 +333,13 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	
+	/**
+	 * This method will place the Invincibility item drop on a random position
+	 * on the grid. It will check to see if any existing item(s), player, or room
+	 * is on the selected coordinate. If it is an empty space, it will place it there.
+	 */
+	
 	public void assignInvincibility() {
 
 		boolean valid = false;
