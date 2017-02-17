@@ -164,7 +164,9 @@ public class GameEngine implements Serializable {
 	 * start menu will also call this method.
 	 */
 	public void restartPlayer() {
-
+		if (player == null)
+			player = new Player(8, 0);
+		player.setPlayer();
 	}
 
 	/**

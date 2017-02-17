@@ -8,13 +8,13 @@ import java.io.Serializable;
  * subclasses. No instances can be made from this class, therefore the
  * subclasses inherit this classes methods.
  */
-public abstract class LivingBeing implements Serializable{
+public abstract class LivingBeing implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2923290159600843630L;
-	
+
 	/**
 	 * This field represents an array of integers that represent the spy's
 	 * location in the building. The 0th index in the array represents the row,
@@ -22,8 +22,8 @@ public abstract class LivingBeing implements Serializable{
 	 * initially set by the constructors of the subclasses, and then will be
 	 * managed in this class.
 	 */
-	private int x, y;
-	//TODO change javadoc
+	protected int x, y;
+	// TODO change javadoc
 
 	/**
 	 * This is the constructor for the {@link LivingBeing} abstract class. It's
@@ -32,7 +32,8 @@ public abstract class LivingBeing implements Serializable{
 	 * on that position on the grid. The constructor essentially spawns the
 	 * living being when it is called on.
 	 * 
-	 * @param position the position on the grid to create the {@link LivingBeing}
+	 * @param position
+	 *            the position on the grid to create the {@link LivingBeing}
 	 */
 	public LivingBeing(int x, int y) {
 		this.x = x;
@@ -46,13 +47,13 @@ public abstract class LivingBeing implements Serializable{
 	 * 
 	 * @return the position of the {@link LivingBeing}
 	 */
-	//TODO JAVADOCS CHANGE
+	// TODO JAVADOCS CHANGE
 	public int getPositionX() {
 		return x;
 	}
-	
-	//TODO JAVADOCS
-	public int getPositionY(){
+
+	// TODO JAVADOCS
+	public int getPositionY() {
 		return y;
 	}
 
@@ -60,9 +61,26 @@ public abstract class LivingBeing implements Serializable{
 	 * This is the move class. It receives a parameter, direction, and passes it
 	 * on to the subclasses and tells them when to move.
 	 * 
-	 * @param direction the direction to move the {@link LivingBeing}
+	 * @param direction
+	 *            the direction to move the {@link LivingBeing}. If it is
+	 *            {@code 0}, the being moves up. If {@code 1}, the being moves
+	 *            down. If {@code 2}, the being moves left. If {@code 3}, the
+	 *            being moves right
 	 */
 	public void move(int direction) {
-
+		switch(direction){
+		case 0:
+			y--;
+			break;
+		case 1:
+			y++;
+			break;
+		case 2:
+			x--;
+			break;
+		case 3:
+			x++;
+			break;
+		}
 	}
 }
