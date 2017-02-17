@@ -272,7 +272,11 @@ public class GameEngine implements Serializable {
 			} else if (a == 4 && b == 7) {
 				a = rand.nextInt(6);
 				b = rand.nextInt(6) + 3;
+			} else if (!(grid.getBoard()[a][b] == ' ')){
+				a = rand.nextInt(6);
+				b = rand.nextInt(6) + 3;
 			}
+			grid.assign(a, b, 'N');
 			ninjas[c] = new Ninja(a, b);
 		}
 	}
