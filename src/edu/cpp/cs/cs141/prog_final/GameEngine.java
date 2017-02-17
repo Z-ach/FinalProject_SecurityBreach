@@ -61,8 +61,8 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This field creates a radar item from the Radar class
-	 * {@link edu.cs.cs141.prog_final.items.Radar} that will grant
-	 * the player with the location of the briefcase.
+	 * {@link edu.cs.cs141.prog_final.items.Radar} that will grant the player
+	 * with the location of the briefcase.
 	 */
 	private Radar radar;
 
@@ -74,9 +74,9 @@ public class GameEngine implements Serializable {
 	private Invincibility invinc;
 
 	/**
-	 * This field creates a bullet from the Bullet class 
-	 * {@link edu.cpp.cs.cs141.prog_final.items.Bullet} that will
-	 * give the player a bullet if he or she does not have one. 
+	 * This field creates a bullet from the Bullet class
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Bullet} that will give the
+	 * player a bullet if he or she does not have one.
 	 */
 	private Bullet bullet;
 
@@ -218,6 +218,17 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
+	/**
+	 * This method runs through all the necessary calls in order to create
+	 * objects and assign them to the board. It also designates whether or not
+	 * the initial debug mode is activated, then prints the grid using the UI.
+	 * 
+	 * @see #assignBriefcase()
+	 * @see #assignBullet()
+	 * @see #assignRadar()
+	 * @see #assignNinja()
+	 * @see #assignInvincibility()
+	 */
 	public void createBoard() {
 		assignBriefcase();
 		assignRadar();
@@ -228,6 +239,11 @@ public class GameEngine implements Serializable {
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
+	/**
+	 * This method assigns a briefcase to a room at random. The briefcase is
+	 * denoted as a 'B' in debug mode. The randomization is based on
+	 * {@link java.util.Random}.
+	 */
 	public void assignBriefcase() {
 		int check = rand.nextInt(9);
 		switch (check) {
@@ -270,6 +286,14 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method assigns a total of six ninjas to the board. It starts by
+	 * initializing an array of ninjas, stored in {@link #ninjas}. Then, one by
+	 * one, the ninjas are assigned using {@link java.util.Random}. If the spot
+	 * is already occupied, the method will try again until all ninjas occupy a
+	 * spot that was not previously occupied. The ninjas must also spawn 3 away
+	 * from the player's initial position.
+	 */
 	public void assignNinja() {
 		ninjas = new Ninja[6];
 		for (int c = 0; c < 6; c++) {
@@ -284,16 +308,15 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
-	
-	
 
 	/**
-	 * This method will place the Radar item drop on a random position on the grid.
-	 * Before the item is placed there, this method checks if there is an existing item(s),
-	 * player or room before it places the Radar item down. If it is an empty space, it will place 
-	 * the item on that specific (x,y) coordinate. 
+	 * This method will place the Radar item drop on a random position on the
+	 * grid. Before the item is placed there, this method checks if there is an
+	 * existing item(s), player or room before it places the Radar item down. If
+	 * it is an empty space, it will place the item on that specific (x,y)
+	 * coordinate.
 	 */
-	
+
 	public void assignRadar() {
 		boolean valid = false;
 
@@ -309,12 +332,12 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
-	
+
 	/**
-	 * This method will place the Bullet item drop on a random position on the grid.
-	 * Before the item is placed on the spot, it will check if there is another item(s),
-	 * player or room that exist on the spot. If it is an empty space on the grid, it will
-	 * place the item there.  
+	 * This method will place the Bullet item drop on a random position on the
+	 * grid. Before the item is placed on the spot, it will check if there is
+	 * another item(s), player or room that exist on the spot. If it is an empty
+	 * space on the grid, it will place the item there.
 	 */
 
 	public void assignBullet() {
@@ -334,13 +357,13 @@ public class GameEngine implements Serializable {
 		}
 	}
 
-	
 	/**
 	 * This method will place the Invincibility item drop on a random position
-	 * on the grid. It will check to see if any existing item(s), player, or room
-	 * is on the selected coordinate. If it is an empty space, it will place it there.
+	 * on the grid. It will check to see if any existing item(s), player, or
+	 * room is on the selected coordinate. If it is an empty space, it will
+	 * place it there.
 	 */
-	
+
 	public void assignInvincibility() {
 
 		boolean valid = false;
