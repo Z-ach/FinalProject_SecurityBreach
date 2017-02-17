@@ -96,7 +96,16 @@ public class Grid implements Serializable {
 		board[7][7] = 'R';
 		roomLighting();
 	}
-
+	
+	/**
+	 * This is the debug method. It is an option given to the player 
+	 * that will turn on all the lights in the grid and allow the 
+	 * player to to see everything that is happening in the grid.
+	 * This method was included so that the player can assure that 
+	 * the game is working as expected
+	 * @param enable
+	 * @param bCase
+	 */
 	public void debugMode(boolean enable, Briefcase bCase) {
 		for (int row = 0; row < DIMENSION; row++) {
 			for (int column = 0; column < DIMENSION; column++) {
@@ -111,6 +120,11 @@ public class Grid implements Serializable {
 		}
 	}
 	
+	/**
+	 * This method is in charge of the lighting of the rooms where
+	 * the rooms are located. It allows the player to see where the 
+	 * rooms are and make their way over to them while avoiding enemies
+	 */
 	public void roomLighting(){
 		light[1][1] = true;
 		light[1][4] = true;
@@ -133,10 +147,23 @@ public class Grid implements Serializable {
 		return board;
 	}
 
+	/**
+	 * This method assigns objects to certain sections on the gird
+	 * so that they may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * @param x
+	 * @param y
+	 * @param object
+	 */
 	public void assign(int x, int y, char object) {
 		board[x][y] = object;
 	}
 
+	/**
+	 * gets the current state of a block on the grid and 
+	 * returns it to the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * 
+	 * @return light
+	 */
 	public boolean[][] getLight() {
 		return light;
 	}
