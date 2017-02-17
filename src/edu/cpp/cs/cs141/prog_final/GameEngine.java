@@ -316,7 +316,6 @@ public class GameEngine implements Serializable {
 	 * it is an empty space, it will place the item on that specific (x,y)
 	 * coordinate.
 	 */
-
 	public void assignRadar() {
 		boolean valid = false;
 
@@ -339,7 +338,6 @@ public class GameEngine implements Serializable {
 	 * another item(s), player or room that exist on the spot. If it is an empty
 	 * space on the grid, it will place the item there.
 	 */
-
 	public void assignBullet() {
 
 		boolean valid = false;
@@ -363,7 +361,6 @@ public class GameEngine implements Serializable {
 	 * room is on the selected coordinate. If it is an empty space, it will
 	 * place it there.
 	 */
-
 	public void assignInvincibility() {
 
 		boolean valid = false;
