@@ -65,7 +65,6 @@ public class Player extends LivingBeing implements Serializable{
 	 * if there are no bullets a shot cannot be taken.
 	 */
 	public int getBullets() {
-
 		return bullet;
 	}
 
