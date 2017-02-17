@@ -96,13 +96,13 @@ public class Grid implements Serializable {
 		board[7][7] = 'R';
 		roomLighting();
 	}
-	
+
 	/**
-	 * This is the debug method. It is an option given to the player 
-	 * that will turn on all the lights in the grid and allow the 
-	 * player to to see everything that is happening in the grid.
-	 * This method was included so that the player can assure that 
-	 * the game is working as expected
+	 * This is the debug method. It is an option given to the player that will
+	 * turn on all the lights in the grid and allow the player to to see
+	 * everything that is happening in the grid. This method was included so
+	 * that the player can assure that the game is working as expected
+	 * 
 	 * @param enable
 	 * @param bCase
 	 */
@@ -112,20 +112,20 @@ public class Grid implements Serializable {
 				light[row][column] = enable;
 			}
 		}
-		if(enable)
+		if (enable)
 			assign(bCase.getX(), bCase.getY(), 'B');
-		else{
+		else {
 			assign(bCase.getX(), bCase.getY(), 'R');
 			roomLighting();
 		}
 	}
-	
+
 	/**
-	 * This method is in charge of the lighting of the rooms where
-	 * the rooms are located. It allows the player to see where the 
-	 * rooms are and make their way over to them while avoiding enemies
+	 * This method is in charge of the lighting of the rooms where the rooms are
+	 * located. It allows the player to see where the rooms are and make their
+	 * way over to them while avoiding enemies
 	 */
-	public void roomLighting(){
+	public void roomLighting() {
 		light[1][1] = true;
 		light[1][4] = true;
 		light[1][7] = true;
@@ -148,8 +148,9 @@ public class Grid implements Serializable {
 	}
 
 	/**
-	 * This method assigns objects to certain sections on the gird
-	 * so that they may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * This method assigns objects to certain sections on the gird so that they
+	 * may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * 
 	 * @param x
 	 * @param y
 	 * @param object
@@ -159,8 +160,8 @@ public class Grid implements Serializable {
 	}
 
 	/**
-	 * gets the current state of a block on the grid and 
-	 * returns it to the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * gets the current state of a block on the grid and returns it to the
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}
 	 * 
 	 * @return light
 	 */
