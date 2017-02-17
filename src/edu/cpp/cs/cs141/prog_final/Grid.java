@@ -94,15 +94,7 @@ public class Grid implements Serializable {
 		board[7][1] = 'R';
 		board[7][4] = 'R';
 		board[7][7] = 'R';
-		light[1][1] = true;
-		light[1][4] = true;
-		light[1][7] = true;
-		light[4][1] = true;
-		light[4][4] = true;
-		light[4][7] = true;
-		light[7][1] = true;
-		light[7][4] = true;
-		light[7][7] = true;
+		roomLighting();
 	}
 
 	public void debugMode(boolean enable, Briefcase bCase) {
