@@ -61,6 +61,7 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This field creates a radar item from the Radar class
+	 * {@link edu.cs.cs141.prog_final.items.Radar} that will grant
 	 * the player with the location of the briefcase.
 	 */
 	private Radar radar;
