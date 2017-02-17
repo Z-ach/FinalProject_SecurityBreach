@@ -70,16 +70,16 @@ public abstract class LivingBeing implements Serializable {
 	public void move(int direction) {
 		switch(direction){
 		case 0:
-			y--;
-			break;
-		case 1:
-			y++;
-			break;
-		case 2:
 			x--;
 			break;
-		case 3:
+		case 1:
 			x++;
+			break;
+		case 2:
+			y--;
+			break;
+		case 3:
+			y++;
 			break;
 		}
 	}
