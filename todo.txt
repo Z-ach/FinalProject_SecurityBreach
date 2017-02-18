@@ -7,4 +7,4 @@ shooting - Annalyn
 check room - Kelvin
 game loop - Zach
 -conditions for loop - Annalyn
-->player lives
+->player lives 

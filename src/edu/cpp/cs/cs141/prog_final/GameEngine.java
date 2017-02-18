@@ -175,8 +175,25 @@ public class GameEngine implements Serializable {
 	 * after the player is settled in a spot. It will incorporate the random
 	 * number generator that will randomize the movement of each ninja.
 	 */
-	public void moveNinja(Ninja n) {
-
+	public void moveNinja() {
+		for(Ninja n : ninjas){
+			int direction = rand.nextInt(4);
+			switch(direction){
+			case 0:
+				n.move(0);
+				break;
+			case 1:
+				n.move(1);
+				break;
+			case 2:
+				n.move(2);
+				break;
+			case 3:
+				n.move(3);
+				break;
+			}
+			
+		}
 	}
 
 	/**
