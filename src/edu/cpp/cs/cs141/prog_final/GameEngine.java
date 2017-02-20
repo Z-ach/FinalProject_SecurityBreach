@@ -151,7 +151,7 @@ public class GameEngine implements Serializable {
 
 		while (player.alive()) {
 			refreshGrid();
-			grid.debugMode(debugMode, briefcase, player);
+			grid.debugMode(true, briefcase, player);
 			ui.printGrid(grid.getBoard(), grid.getLight());
 			move = false;
 			switch (ui.playerOptions(true)) {
@@ -222,8 +222,8 @@ public class GameEngine implements Serializable {
 		int direction;
 		for (Ninja n : ninjas) {
 			move = false;
-			direction = rand.nextInt(4);
 			while(!move){
+				direction = rand.nextInt(4);
 				move = movementCheck(direction, n);
 			}
 		}
