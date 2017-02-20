@@ -127,14 +127,17 @@ public class UserInterface implements Serializable {
 	 */
 	public int playerOptions(boolean look) {
 		System.out.println("Choose one of the following options:");
-		if (look)
-			System.out.println("1: LOOK");
-		else
+		if (!look) {
 			System.out.println("1: MOVE");
-		System.out.println("2: SHOOT");
-		System.out.println("3: EXIT MENU");
-		System.out.println("4: DEBUG MODE");
-		return takeInput(1, 4);
+			System.out.println("2: SHOOT");
+			return takeInput(1, 2);
+		} else {
+			System.out.println("1: LOOK");
+			System.out.println("2: SHOOT");
+			System.out.println("3: EXIT MENU");
+			System.out.println("4: DEBUG MODE");
+			return takeInput(1, 4);
+		}
 	}
 
 	public int direction() {

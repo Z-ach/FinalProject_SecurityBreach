@@ -116,11 +116,10 @@ public class GameEngine implements Serializable {
 	 * user interface when the method movePlayer is called.
 	 */
 	private Player player;
-	
+
 	private boolean debugMode;
 
 	private Briefcase briefcase;
-
 
 	/**
 	 * This is the constructor for the game engine class and it instantiates all
@@ -146,29 +145,37 @@ public class GameEngine implements Serializable {
 	 */
 	public void run() {
 		createBoard();
-		
+
 		debugMode = false;
-		
-		while(player.alive()){
+		boolean move = false;
+
+		while (player.alive()) {
+			grid.debugMode(debugMode, briefcase, player);
 			ui.printGrid(grid.getBoard(), grid.getLight());
-			switch(ui.playerOptions(true)){
+			switch (ui.playerOptions(true)) {
 			case 1:
-				grid.look(player.getPositionX(), player.getPositionY(), ui.direction());
-				switch(ui.playerOptions(false)){
+				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
+				ui.printGrid(grid.getBoard(), grid.getLight());
+				switch (ui.playerOptions(false)) {
 				case 1:
-					
+					while (!move) {
+						move = movementCheck(ui.direction() - 1, player);
+					}
+					break;
+				case 2:
+					// shoot goes here
+					break;
 				}
 				break;
-			case 2: 
-				//shoot goes here
+			case 2:
+				// shoot goes here
 				break;
 			case 3:
-				//exit menu goes here
+				// exit menu goes here
 				break;
 			case 4:
 				debugMode = true;
 			}
-			ui.printGrid(grid.getBoard(), grid.getLight());
 		}
 	}
 
@@ -205,23 +212,14 @@ public class GameEngine implements Serializable {
 	 * number generator that will randomize the movement of each ninja.
 	 */
 	public void moveNinja() {
+		boolean move;
+		int direction;
 		for (Ninja n : ninjas) {
-			int direction = rand.nextInt(4);
-			switch (direction) {
-			case 0:
-				n.move(0);
-				break;
-			case 1:
-				n.move(1);
-				break;
-			case 2:
-				n.move(2);
-				break;
-			case 3:
-				n.move(3);
-				break;
+			move = false;
+			direction = rand.nextInt(4);
+			while(!move){
+				move = movementCheck(direction, n);
 			}
-
 		}
 	}
 
@@ -271,8 +269,6 @@ public class GameEngine implements Serializable {
 		assignInvincibility();
 		assignNinja();
 		restartPlayer();
-		grid.debugMode(true, briefcase);
-		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
 	/**
@@ -438,29 +434,27 @@ public class GameEngine implements Serializable {
 		}
 		return false;
 	}
-	
-	public boolean roomCheckRequirement(int direction){
+
+	public boolean roomCheckRequirement(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
-		
-		
-		
-		if( (x%3==0) && (y%3 == 1)){
+
+		if ((x % 3 == 0) && (y % 3 == 1)) {
 			System.out.println("Sorry you cannot enter from this side of the room"
 					+ "Please enter from the north side of the room");
-			
+
 			return false;
 		}
-		
+
 		return true;
 	}
 
-	public boolean movementCheck(int direction, LivingBeing being){
-		
+	public boolean movementCheck(int direction, LivingBeing being) {
+
 		int x = being.getPositionX();
 		int y = being.getPositionY();
-		
-		switch(direction){
+
+		switch (direction) {
 		case 0:
 			x--;
 			break;
@@ -472,17 +466,16 @@ public class GameEngine implements Serializable {
 			break;
 		case 3:
 			y++;
-			break;	
+			break;
 		}
-		
-		if ( x < 0 || x > 8 || y < 0 || y > 8 ){
-				System.out.println("Movement is not valid. Please try again.");
-				
-				return false;
+
+		if (x < 0 || x > 8 || y < 0 || y > 8) {
+			System.out.println("Movement is not valid. Please try again.");
+
+			return false;
 		}
+		being.move(direction);
 		return true;
 	}
-	
-	
-	
+
 }
