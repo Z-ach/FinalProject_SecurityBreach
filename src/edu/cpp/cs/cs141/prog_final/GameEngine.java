@@ -382,15 +382,15 @@ public class GameEngine implements Serializable {
 
 	public void refreshGrid() {
 		grid.eraseGrid();
-		for (int i = 0; i < ninjas.length; i++) {
-			grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
-		}
 		if (!bullet.isUsed())
 			grid.assign(bullet.getX(), bullet.getY(), 'b');
 		if (!radar.isUsed())
 			grid.assign(radar.getX(), radar.getY(), 'r');
 		if (!invinc.isUsed())
 			grid.assign(invinc.getX(), invinc.getY(), 'I');
+		for (int i = 0; i < ninjas.length; i++) {
+			grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
+		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
 	}
 
@@ -483,9 +483,7 @@ public class GameEngine implements Serializable {
 			break;
 		}
 
-		if (x < 0 || x > 8 || y < 0 || y > 8) {
-			System.out.println("Movement is not valid. Please try again.");
-			
+		if (x < 0 || x > 8 || y < 0 || y > 8) {			
 			return false;
 		}
 		
