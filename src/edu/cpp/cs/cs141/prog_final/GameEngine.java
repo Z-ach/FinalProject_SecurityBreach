@@ -396,4 +396,12 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
+	public boolean roomCheck(){
+		int x = player.getPositionX();
+		int y = player.getPositionY();
+		if(grid.getBoard()[x+1][y] == 'R'){
+			return true;
+		}
+		return false;
+	}
 }
