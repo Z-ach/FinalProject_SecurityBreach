@@ -236,8 +236,18 @@ public class GameEngine implements Serializable {
 	 * @return the {@link edu.cpp.cs.cs141.prog_final.items.Item} on the grid
 	 *         space where the player is. {@code null} if none.
 	 */
-	public Item checkForItem() {
-		return null;
+	public void checkForItem() {
+		switch(grid.getBoard()[player.getPositionX()][player.getPositionY()]){
+		case 'i':
+			pickupInvinc();
+			break;	
+		case 'r':
+			pickupRadar();
+			break;
+		case 'b':
+			pickupBullet();
+			break;
+		}	
 	}
 
 	/**
@@ -482,7 +492,24 @@ public class GameEngine implements Serializable {
 		}
 		return true;
 	}
-	
-	
-	
+	public void pickupBullet(){
+		if(player.getBullets() == 0){
+			player.findBullet();
+			bullet.isUsed();
+		}
+		else if(player.getBullets() != 0){
+			bullet.isUsed();
+		}
+		
+	}
+
+	private void pickupRadar() {
+		
+		
+	}
+
+	private void pickupInvinc() {
+		
+		
+	}
 }
