@@ -100,7 +100,7 @@ public class Grid implements Serializable {
 	}
 
 	public void look(int x, int y, int direction) {
-		System.out.println("looking " + direction  + " from " + x + "," + y);
+		//System.out.println("looking " + direction  + " from " + x + "," + y);
 		switch (direction) {
 		case 0:
 			if (x - 2 >= 0) {
@@ -165,8 +165,11 @@ public class Grid implements Serializable {
 	public void eraseGrid() {
 		for (int row = 0; row < DIMENSION; row++) {
 			for (int col = 0; col < DIMENSION; col++) {
-				if (row % 3 != 1 && col % 3 != 1)
+				if (row % 3 == 1 && col % 3 == 1){
+				}
+				else{
 					board[row][col] = ' ';
+				}
 			}
 		}
 	}

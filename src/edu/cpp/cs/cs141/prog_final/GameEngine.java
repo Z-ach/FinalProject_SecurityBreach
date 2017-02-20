@@ -157,11 +157,14 @@ public class GameEngine implements Serializable {
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
+				refreshGrid();
 				ui.printGrid(grid.getBoard(), grid.getLight());
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {
 						move = movementCheck(ui.direction() - 1, player);
+						if(!move)
+							ui.errorCheck();
 					}
 					break;
 				case 2:
@@ -178,6 +181,7 @@ public class GameEngine implements Serializable {
 			case 4:
 				debugMode = true;
 			}
+			moveNinja();
 		}
 	}
 
@@ -481,13 +485,17 @@ public class GameEngine implements Serializable {
 
 		if (x < 0 || x > 8 || y < 0 || y > 8) {
 			System.out.println("Movement is not valid. Please try again.");
-
+			
 			return false;
 		}
+		
+		if(grid.getBoard()[x][y] == 'R'){
+			return false;
+		}
+		
 		being.move(direction);
 		return true;
 	}
-<<<<<<< HEAD
 	public void pickupBullet(){
 		if(player.getBullets() == 0){
 			player.findBullet();
@@ -508,7 +516,5 @@ public class GameEngine implements Serializable {
 		
 		
 	}
-=======
 
->>>>>>> origin/master
 }

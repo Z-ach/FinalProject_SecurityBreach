@@ -227,7 +227,7 @@ public class UserInterface implements Serializable {
 	/**
 	 * This method represents the {@link #errorCheck()} to display an error
 	 * message when the user attempts to move in directions that are outside the
-	 * grid space.
+	 * grid space, or when the player tries to move into a room from the wrong direction
 	 */
 	public void errorCheck() {
 
