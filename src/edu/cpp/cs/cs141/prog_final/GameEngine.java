@@ -423,4 +423,33 @@ public class GameEngine implements Serializable {
 		}
 		return false;
 	}
+	
+	public boolean movementCheck(int direction){
+		
+		int x = player.getPositionX();
+		int y = player.getPositionY();
+		
+		switch(direction){
+		case 0:
+			x--;
+			break;
+		case 1:
+			x++;
+			break;
+		case 2:
+			y--;
+			break;
+		case 3:
+			y++;
+			break;	
+		}
+		
+		if ( x < 0 || x > 8 || y < 0 || y > 8 ){
+				System.out.println("Movement is not valid. Please try again.");
+				
+				return false;
+		}
+		return true;
+	}
+	
 }
