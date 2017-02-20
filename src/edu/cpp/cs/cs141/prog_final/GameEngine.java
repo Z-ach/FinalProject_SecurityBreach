@@ -30,6 +30,7 @@ package edu.cpp.cs.cs141.prog_final;
 import java.io.Serializable;
 import java.util.Random;
 
+import edu.cpp.cs.cs141.prog_final.beings.LivingBeing;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
@@ -424,10 +425,10 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 	
-	public boolean movementCheck(int direction){
+	public boolean movementCheck(int direction, LivingBeing being){
 		
-		int x = player.getPositionX();
-		int y = player.getPositionY();
+		int x = being.getPositionX();
+		int y = being.getPositionY();
 		
 		switch(direction){
 		case 0:
