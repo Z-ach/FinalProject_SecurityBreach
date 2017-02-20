@@ -23,7 +23,7 @@ public abstract class LivingBeing implements Serializable {
 	 * managed in this class.
 	 */
 	protected int x, y;
-	// TODO change javadoc
+	
 
 	/**
 	 * This is the constructor for the {@link LivingBeing} abstract class. It's

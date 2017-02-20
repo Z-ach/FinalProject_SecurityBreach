@@ -54,7 +54,7 @@ public class Player extends LivingBeing implements Serializable{
 	 * makes contact with an enemy, the enemy will die. Will decrease the
 	 * {@link #bullet} amount by {@code 1}.
 	 */
-	public void shoot(int direction) {
+	public void shoot() {
 		bullet--;
 	}
 
