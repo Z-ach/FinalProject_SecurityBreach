@@ -49,14 +49,25 @@ public abstract class Item implements Serializable{
 	 */
 	private int x, y;
 	
+	private boolean used;
+	
 	/**
 	 * This constructor will show the actual position of any of the
 	 * items used in the game. It will be located on a (x,y) coordinate 
 	 * on the 9x9 grid. 
 	 */
 	public Item(int x, int y) {
+		used = false;
 		this.x = x;
 		this.y = y;
+	}
+	
+	public boolean isUsed(){
+		return used;
+	}
+	
+	public void use(){
+		used = true;
 	}
 	
 	public int getX(){

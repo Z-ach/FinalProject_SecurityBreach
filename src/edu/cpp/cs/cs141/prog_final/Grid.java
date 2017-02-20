@@ -123,6 +123,15 @@ public class Grid implements Serializable {
 			roomLighting();
 		}
 	}
+	
+	public void eraseGrid(){
+		for(int row = 0; row < DIMENSION; row++){
+			for(int col  = 0; col < DIMENSION; col++){
+				if(row % 3 != 1 && col % 3 != 1)
+					board[row][col] = ' ';
+			}
+		}
+	}
 
 	/**
 	 * This method is in charge of the lighting of the rooms where the rooms are

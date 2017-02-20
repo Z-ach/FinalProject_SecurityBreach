@@ -167,6 +167,7 @@ public class GameEngine implements Serializable {
 		if (player == null)
 			player = new Player(8, 0);
 		player.setPlayer();
+		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
 	}
 
 	/**
@@ -176,9 +177,9 @@ public class GameEngine implements Serializable {
 	 * number generator that will randomize the movement of each ninja.
 	 */
 	public void moveNinja() {
-		for(Ninja n : ninjas){
+		for (Ninja n : ninjas) {
 			int direction = rand.nextInt(4);
-			switch(direction){
+			switch (direction) {
 			case 0:
 				n.move(0);
 				break;
@@ -192,7 +193,7 @@ public class GameEngine implements Serializable {
 				n.move(3);
 				break;
 			}
-			
+
 		}
 	}
 
@@ -254,7 +255,8 @@ public class GameEngine implements Serializable {
 		assignBullet();
 		assignInvincibility();
 		assignNinja();
-		grid.debugMode(false, briefcase);
+		restartPlayer();
+		grid.debugMode(true, briefcase);
 		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
@@ -351,6 +353,22 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	public void refreshGrid() {
+		grid.eraseGrid();
+		for (int i = 0; i < ninjas.length; i++) {
+			grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
+		}
+		if (!bullet.isUsed())
+			grid.assign(bullet.getX(), bullet.getY(), 'b');
+		if (!radar.isUsed())
+			grid.assign(radar.getX(), radar.getY(), 'r');
+		if (!invinc.isUsed())
+			grid.assign(invinc.getX(), invinc.getY(), 'I');
+		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
+		System.out.println("");
+		ui.printGrid(grid.getBoard(), grid.getLight());
+	}
+
 	/**
 	 * This method will place the Bullet item drop on a random position on the
 	 * grid. Before the item is placed on the spot, it will check if there is
@@ -396,10 +414,11 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
-	public boolean roomCheck(){
+
+	public boolean roomCheck() {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
-		if(grid.getBoard()[x+1][y] == 'R'){
+		if (grid.getBoard()[x + 1][y] == 'R') {
 			return true;
 		}
 		return false;
