@@ -498,6 +498,42 @@ public class GameEngine implements Serializable {
 		}
 		
 	}
+	
+	public void shoot(int bullet){
+		int x = player.getPositionX();
+		int y = player.getPositionY();
+		
+		
+		
+		switch(bullet){
+		
+		case 0:
+			while(x < 0 && x > 8){
+				--bullet;
+			
+			}
+			break;
+		
+		case 1:
+			while(x < 0 && x > 8){
+				++bullet;
+			}
+			break;
+		
+		case 2:
+			while(y < 0 && y > 8){
+				--bullet;
+			}
+			break;
+		
+		case 3:
+			while(y < 0 && y > 8){
+				++bullet;
+			}
+			break;
+		}
+		
+	}
 
 	private void pickupRadar() {
 		
