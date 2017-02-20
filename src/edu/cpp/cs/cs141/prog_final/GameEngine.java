@@ -150,8 +150,10 @@ public class GameEngine implements Serializable {
 		boolean move = false;
 
 		while (player.alive()) {
+			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			ui.printGrid(grid.getBoard(), grid.getLight());
+			move = false;
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
@@ -376,8 +378,6 @@ public class GameEngine implements Serializable {
 		if (!invinc.isUsed())
 			grid.assign(invinc.getX(), invinc.getY(), 'I');
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
-		System.out.println("");
-		ui.printGrid(grid.getBoard(), grid.getLight());
 	}
 
 	/**
