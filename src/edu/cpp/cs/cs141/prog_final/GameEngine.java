@@ -116,6 +116,8 @@ public class GameEngine implements Serializable {
 	 * user interface when the method movePlayer is called.
 	 */
 	private Player player;
+	
+	private boolean debugMode;
 
 	private Briefcase briefcase;
 
@@ -144,6 +146,30 @@ public class GameEngine implements Serializable {
 	 */
 	public void run() {
 		createBoard();
+		
+		debugMode = false;
+		
+		while(player.alive()){
+			ui.printGrid(grid.getBoard(), grid.getLight());
+			switch(ui.playerOptions(true)){
+			case 1:
+				grid.look(player.getPositionX(), player.getPositionY(), ui.direction());
+				switch(ui.playerOptions(false)){
+				case 1:
+					
+				}
+				break;
+			case 2: 
+				//shoot goes here
+				break;
+			case 3:
+				//exit menu goes here
+				break;
+			case 4:
+				debugMode = true;
+			}
+			ui.printGrid(grid.getBoard(), grid.getLight());
+		}
 	}
 
 	/**
@@ -224,19 +250,6 @@ public class GameEngine implements Serializable {
 	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
 	public boolean isValidMove() {
-		return false;
-	}
-
-	/**
-	 * This method is used in the run method to check the condition for the game
-	 * to continue. The things that will be in here will return the a boolean
-	 * value. As of right now, it will return a value of false, but as the game
-	 * is more developed there will be conditions that are checked.
-	 * 
-	 * @return {@code true} if the game should continue, {@code false} if the
-	 *         game should end.
-	 */
-	public boolean continueGame() {
 		return false;
 	}
 

@@ -98,6 +98,40 @@ public class Grid implements Serializable {
 		roomLighting();
 	}
 
+	public void look(int x, int y, int direction) {
+
+		switch (direction) {
+		case 0:
+			if (x - 2 >= 0) {
+				light[x - 2][y] = true;
+				light[x - 1][y] = true;
+			} else if (x - 1 >= 0)
+				light[x - 1][y] = true;
+			break;
+		case 1:
+			if (x + 2 <= 8) {
+				light[x + 2][y] = true;
+				light[x + 1][y] = true;
+			} else if (x + 1 <= 8)
+				light[x + 1][y] = true;
+			break;
+		case 2:
+			if (y - 2 >= 0) {
+				light[x][y - 2] = true;
+				light[x][y - 1] = true;
+			} else if (y - 1 >= 0)
+				light[x][y - 1] = true;
+			break;
+		case 3:
+			if (y + 2 <= 8) {
+				light[x][y + 2] = true;
+				light[x][y + 1] = true;
+			} else if (y + 1 <= 8)
+				light[x][y + 1] = true;
+			break;
+		}
+	}
+
 	/**
 	 * This is the debug method. It is an option given to the player that will
 	 * turn on all the lights in the grid and allow the player to to see
@@ -123,11 +157,11 @@ public class Grid implements Serializable {
 			roomLighting();
 		}
 	}
-	
-	public void eraseGrid(){
-		for(int row = 0; row < DIMENSION; row++){
-			for(int col  = 0; col < DIMENSION; col++){
-				if(row % 3 != 1 && col % 3 != 1)
+
+	public void eraseGrid() {
+		for (int row = 0; row < DIMENSION; row++) {
+			for (int col = 0; col < DIMENSION; col++) {
+				if (row % 3 != 1 && col % 3 != 1)
 					board[row][col] = ' ';
 			}
 		}

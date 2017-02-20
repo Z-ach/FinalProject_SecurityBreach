@@ -75,21 +75,16 @@ public class UserInterface implements Serializable {
 
 	}
 
-	
-	
-	
-	
-	public void gameStartPrompt(){
+	public void gameStartPrompt() {
 		System.out.println("Welcome to Escape from Ninja Island!!!");
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
 		System.out.println("3. Exit");
-		
+
 	}
-	
-	
-	public void instructions(){
+
+	public void instructions() {
 		System.out.println("Your name is John Carter");
 		System.out.println("You are from the year 2165.");
 		System.out.println("You were sent back to the year 1944 in the wake of the second world war.");
@@ -103,9 +98,12 @@ public class UserInterface implements Serializable {
 		System.out.println("You took out the ninja keeping watch of you and took his gun.");
 		System.out.println("Unfortunatly the ninja keeping track was showing off his gun skills to the lady ninjas.");
 		System.out.println("His gun has one bullet left. Use it wisley.");
-		System.out.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
-		System.out.println("The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
-		System.out.println("You must choose which direction you would like to look in, then choose what way you want to step.");
+		System.out
+				.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
+		System.out.println(
+				"The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
+		System.out.println(
+				"You must choose which direction you would like to look in, then choose what way you want to step.");
 		System.out.println("But be carful, the ninjas are very deadly. One hit from them means instant death.");
 		System.out.println("Fortunalty, one hit from the bullet kills them instantly.");
 		System.out.println("You have one job. Survive the ninjas and find the briefcase hidden in one of 9 rooms.");
@@ -113,35 +111,37 @@ public class UserInterface implements Serializable {
 		System.out.println("Once the call is made. The Canadian army will rescue you.");
 		System.out.println("There are three items in the bunker.");
 		System.out.println("Finding the bullet powerup will reload your gun if you are out of ammunition.");
-		System.out.println("There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
-		System.out.println("Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
+		System.out.println(
+				"There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
+		System.out.println(
+				"Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
 		System.out.println("Now is your time to escape. You only have once chance. Live long and prosper.");
 		System.out.println("Let it begin");
-		
-		
-	
-	
-	
+
 	}
+
 	/**
 	 * This method represents the {@link #playerOptions()} prints out the
 	 * player's options of looking, shooting, and debugging. These options will
 	 * be displayed
 	 */
-	public int playerOptions() {
+	public int playerOptions(boolean look) {
 		System.out.println("Choose one of the following options:");
-		System.out.println("1: LOOK");
+		if (look)
+			System.out.println("1: LOOK");
+		else
+			System.out.println("1: MOVE");
 		System.out.println("2: SHOOT");
 		System.out.println("3: EXIT MENU");
 		System.out.println("4: DEBUG MODE");
 		return takeInput(1, 4);
 	}
 
-	public int lookDirection() {
-		System.out.println("1: LOOK UP");
-		System.out.println("2: LOOK DOWN");
-		System.out.println("3: LOOK LEFT");
-		System.out.println("4: LOOK RIGHT");
+	public int direction() {
+		System.out.println("1: UP");
+		System.out.println("2: DOWN");
+		System.out.println("3: LEFT");
+		System.out.println("4: RIGHT");
 		return takeInput(1, 4);
 	}
 
