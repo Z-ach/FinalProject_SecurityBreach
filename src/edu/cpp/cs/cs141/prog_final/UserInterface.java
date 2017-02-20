@@ -98,12 +98,9 @@ public class UserInterface implements Serializable {
 		System.out.println("You took out the ninja keeping watch of you and took his gun.");
 		System.out.println("Unfortunatly the ninja keeping track was showing off his gun skills to the lady ninjas.");
 		System.out.println("His gun has one bullet left. Use it wisley.");
-		System.out
-				.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
-		System.out.println(
-				"The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
-		System.out.println(
-				"You must choose which direction you would like to look in, then choose what way you want to step.");
+		System.out.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
+		System.out.println("The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
+		System.out.println("You must choose which direction you would like to look in, then choose what way you want to step.");
 		System.out.println("But be carful, the ninjas are very deadly. One hit from them means instant death.");
 		System.out.println("Fortunalty, one hit from the bullet kills them instantly.");
 		System.out.println("You have one job. Survive the ninjas and find the briefcase hidden in one of 9 rooms.");
@@ -111,10 +108,8 @@ public class UserInterface implements Serializable {
 		System.out.println("Once the call is made. The Canadian army will rescue you.");
 		System.out.println("There are three items in the bunker.");
 		System.out.println("Finding the bullet powerup will reload your gun if you are out of ammunition.");
-		System.out.println(
-				"There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
-		System.out.println(
-				"Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
+		System.out.println("There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
+		System.out.println("Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
 		System.out.println("Now is your time to escape. You only have once chance. Live long and prosper.");
 		System.out.println("Let it begin");
 
