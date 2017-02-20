@@ -505,11 +505,6 @@ public class GameEngine implements Serializable {
 	}
 
 	private void pickupInvinc() {
-		
+		player.findShield();
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/master
 }

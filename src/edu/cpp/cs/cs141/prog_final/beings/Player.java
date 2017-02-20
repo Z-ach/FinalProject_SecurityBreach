@@ -83,7 +83,7 @@ public class Player extends LivingBeing implements Serializable{
 	 * over {@code 0} lives left. If there are no lives left, the game is over and the
 	 * player has lost.
 	 * 
-	 * @return {@code true} if the player is alive. If the player is dead, the
+	 * @return {@code true} if the playefr is alive. If the player is dead, the
 	 *         method will return {@code false}
 	 */
 	public boolean alive() {
