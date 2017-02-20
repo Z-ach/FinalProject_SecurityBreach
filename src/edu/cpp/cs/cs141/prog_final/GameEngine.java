@@ -496,6 +496,7 @@ public class GameEngine implements Serializable {
 		being.move(direction);
 		return true;
 	}
+
 	public void pickupBullet(){
 		if(player.getBullets() == 0){
 			player.findBullet();
@@ -506,6 +507,42 @@ public class GameEngine implements Serializable {
 		}
 		
 	}
+	
+	public void shoot(int bullet){
+		int x = player.getPositionX();
+		int y = player.getPositionY();
+		
+		
+		
+		switch(bullet){
+		
+		case 0:
+			while(x < 0 && x > 8){
+				--bullet;
+			
+			}
+			break;
+		
+		case 1:
+			while(x < 0 && x > 8){
+				++bullet;
+			}
+			break;
+		
+		case 2:
+			while(y < 0 && y > 8){
+				--bullet;
+			}
+			break;
+		
+		case 3:
+			while(y < 0 && y > 8){
+				++bullet;
+			}
+			break;
+		}
+		
+	}
 
 	private void pickupRadar() {
 		
@@ -513,8 +550,6 @@ public class GameEngine implements Serializable {
 	}
 
 	private void pickupInvinc() {
-		
-		
+		player.findShield();
 	}
-
 }

@@ -22,7 +22,7 @@ public class Player extends LivingBeing implements Serializable{
 	 * game.
 	 */
 	private static int lives = 3;
-
+	private boolean shield = false;
 	/**
 	 * This field represents the amount of bullets that the player has in their
 	 * gun. The max amount of bullets a gun can carry is one. Initially
@@ -54,7 +54,7 @@ public class Player extends LivingBeing implements Serializable{
 	 * makes contact with an enemy, the enemy will die. Will decrease the
 	 * {@link #bullet} amount by {@code 1}.
 	 */
-	public void shoot(int direction) {
+	public void shoot() {
 		bullet--;
 	}
 
@@ -67,23 +67,23 @@ public class Player extends LivingBeing implements Serializable{
 	public int getBullets() {
 		return bullet;
 	}
-
+	public void loseLive(){
+		lives--; 
+	}
 	/**
 	 * This is the getLives method. It returns the number of lives left that the
 	 * player has back to the User Interface class and displays it for the
 	 * player. Also used in {@link edu.cpp.cs.cs141.prog_final.GameEngine}.
 	 */
 	public int getLives() {
-
 		return lives;
 	}
-
 	/**
 	 * This is the alive class. Its main purpose is to check if the player has
 	 * over {@code 0} lives left. If there are no lives left, the game is over and the
 	 * player has lost.
 	 * 
-	 * @return {@code true} if the player is alive. If the player is dead, the
+	 * @return {@code true} if the playefr is alive. If the player is dead, the
 	 *         method will return {@code false}
 	 */
 	public boolean alive() {
@@ -95,5 +95,11 @@ public class Player extends LivingBeing implements Serializable{
 	}
 	public void findBullet(){
 		bullet++;
+	}
+	public void findShield(){
+		shield = true;
+	}
+	public boolean getShield(){
+		return shield;
 	}
 }
