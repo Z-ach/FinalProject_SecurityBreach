@@ -119,6 +119,7 @@ public class GameEngine implements Serializable {
 
 	private Briefcase briefcase;
 
+
 	/**
 	 * This is the constructor for the game engine class and it instantiates all
 	 * the fields, which are the objects from other class. It only creates the
@@ -420,11 +421,28 @@ public class GameEngine implements Serializable {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
 		if (grid.getBoard()[x + 1][y] == 'R') {
+			
 			return true;
 		}
 		return false;
 	}
 	
+	public boolean roomCheckRequirement(int direction){
+		int x = player.getPositionX();
+		int y = player.getPositionY();
+		
+		
+		
+		if( (x%3==0) && (y%3 == 1)){
+			System.out.println("Sorry you cannot enter from this side of the room"
+					+ "Please enter from the north side of the room");
+			
+			return false;
+		}
+		
+		return true;
+	}
+
 	public boolean movementCheck(int direction, LivingBeing being){
 		
 		int x = being.getPositionX();
@@ -452,5 +470,7 @@ public class GameEngine implements Serializable {
 		}
 		return true;
 	}
+	
+	
 	
 }
