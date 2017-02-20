@@ -29,6 +29,7 @@ package edu.cpp.cs.cs141.prog_final;
 
 import java.io.Serializable;
 
+import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 
 /**
@@ -99,7 +100,7 @@ public class Grid implements Serializable {
 	}
 
 	public void look(int x, int y, int direction) {
-
+		System.out.println("looking " + direction  + " from " + x + "," + y);
 		switch (direction) {
 		case 0:
 			if (x - 2 >= 0) {
@@ -144,10 +145,13 @@ public class Grid implements Serializable {
 	 * @param bCase
 	 *            the briefcase object
 	 */
-	public void debugMode(boolean enable, Briefcase bCase) {
+	public void debugMode(boolean enable, Briefcase bCase, Player player) {
 		for (int row = 0; row < DIMENSION; row++) {
 			for (int column = 0; column < DIMENSION; column++) {
-				light[row][column] = enable;
+				if (player.getPositionX() == row && player.getPositionY() == column)
+					light[row][column] = true;
+				else
+					light[row][column] = enable;
 			}
 		}
 		if (enable)
