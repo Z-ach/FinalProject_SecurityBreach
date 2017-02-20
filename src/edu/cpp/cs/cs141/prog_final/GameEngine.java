@@ -487,7 +487,7 @@ public class GameEngine implements Serializable {
 		being.move(direction);
 		return true;
 	}
-<<<<<<< HEAD
+
 	public void pickupBullet(){
 		if(player.getBullets() == 0){
 			player.findBullet();
@@ -506,9 +506,7 @@ public class GameEngine implements Serializable {
 
 	private void pickupInvinc() {
 		
-		
 	}
-=======
 
->>>>>>> origin/master
+
 }
