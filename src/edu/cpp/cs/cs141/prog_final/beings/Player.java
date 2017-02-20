@@ -93,5 +93,7 @@ public class Player extends LivingBeing implements Serializable{
 			return false;
 		}
 	}
-
+	public void findBullet(){
+		bullet++;
+	}
 }
