@@ -1,10 +1,11 @@
 user interface prompt - Bryan
-grid refresh - Zach
-ninja movement - Kelvin
 powerups - Bryan
-movement checking / room requirements - Jason
 shooting - Annalyn
-check room - Kelvin
 game loop - Zach
 -conditions for game loop - Annalyn
 ->player lives
+
+
+TEST
+
+movement checking / room requirements - Jason
