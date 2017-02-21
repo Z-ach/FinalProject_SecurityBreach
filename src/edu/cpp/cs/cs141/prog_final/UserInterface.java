@@ -81,13 +81,24 @@ public class UserInterface implements Serializable {
 		}
 	
 
-	public void gameStartPrompt() {
+	public int gameStartPrompt() {
 		System.out.println("Welcome to Escape from Ninja Island!!!");
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
-		System.out.println("3. Exit");
-
+		System.out.println("3. Exit \n");
+		
+		int answer = input.nextInt();
+		
+		if(answer == 1)
+			answer = 1;
+		else if(answer == 2)
+			answer = 2;
+		else if(answer == 3)
+			answer = 3;
+		
+		return answer;
+		
 	}
 
 	

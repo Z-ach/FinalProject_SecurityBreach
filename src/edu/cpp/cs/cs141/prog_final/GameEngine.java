@@ -133,8 +133,31 @@ public class GameEngine implements Serializable {
 		this.ui = ui;
 		grid = new Grid();
 		rand = new Random();
+		
+		
 	}
 
+	
+	
+	public void startPrompt(){
+		
+		
+		int answer = ui.gameStartPrompt();
+		
+		if(answer == 1){
+			ui.instruction();
+			run();
+		}
+		 if(answer == 2)
+			
+		 if(answer == 3)
+			System.exit(0); 
+			
+		
+		
+	}
+	
+	
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
@@ -144,6 +167,9 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
+		
+		
+		
 		createBoard();
 
 		debugMode = false;
