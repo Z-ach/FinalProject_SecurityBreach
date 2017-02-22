@@ -179,7 +179,12 @@ public class UserInterface implements Serializable {
 	 * This method represents the {@link #printGrid()} which serves as the base
 	 * view of the game that will hold each of the objects. The player must
 	 * navigate through the grid in order to play.
+	 * 	
+	 * This method {@link #displayInfo()} represents the status of lives that
+	 * the user has and notifies the user if any power ups are being used during
+	 * the player's turn.
 	 */
+
 	public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield) {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -202,16 +207,6 @@ public class UserInterface implements Serializable {
 			}
 			System.out.println("\n");
 		}
-	}
-
-	/**
-	 * This method {@link #displayInfo()} represents the status of lives that
-	 * the user has and notifies the user if any power ups are being used during
-	 * the player's turn.
-	 */
-	public void displayInfo() {
-		System.out.println("Lives:\t ");
-		System.out.println("Bullet:\t ");
 	}
 
 	/**
