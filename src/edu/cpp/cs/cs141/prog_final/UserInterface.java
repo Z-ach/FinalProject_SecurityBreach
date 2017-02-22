@@ -247,15 +247,6 @@ public class UserInterface implements Serializable {
 
 
 	/**
-	 * This method represents the {@link #debug()} option that allows for the
-	 * all components of the grid to be visible. Debug mode option will be
-	 * available for the player throughout the game.
-	 */
-	public void debug() {
-
-	}
-
-	/**
 	 * This method represents the {@link #errorCheck()} to display an error
 	 * message when the user attempts to move in directions that are outside the
 	 * grid space, or when the player tries to move into a room from the wrong
