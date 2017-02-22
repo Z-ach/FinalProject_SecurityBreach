@@ -96,8 +96,8 @@ public class Player extends LivingBeing implements Serializable{
 	public void findBullet(){
 		bullet++;
 	}
-	public void findShield(){
-		shield = true;
+	public void setShield(boolean hasShield){
+		shield = hasShield;
 	}
 	public boolean getShield(){
 		return shield;

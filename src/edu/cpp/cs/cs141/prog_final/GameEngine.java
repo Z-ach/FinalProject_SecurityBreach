@@ -36,7 +36,6 @@ import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Item;
 import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
@@ -175,6 +174,9 @@ public class GameEngine implements Serializable {
 				grid.enableCaseLighting(briefcase);
 			ui.printGrid(grid.getBoard(), grid.getLight());
 			move = false;
+			player.setShield(player.getShield() && invinc.getTurns() > 0);
+			if(player.getShield())
+				invinc.useTurn();
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
@@ -615,6 +617,6 @@ public class GameEngine implements Serializable {
 	}
 
 	private void pickupInvinc() {
-		player.findShield();
+		player.setShield(true);
 	}
 }

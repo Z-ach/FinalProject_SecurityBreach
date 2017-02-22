@@ -45,6 +45,8 @@ public class Invincibility extends Item implements Serializable{
 	 */
 	private static final long serialVersionUID = -1545837670490087076L;
 
+	private int turns = 5;
+	
 	/**
 	 * This constructor will represent the actual position of the Invincibility
 	 * drop in the array.
@@ -53,4 +55,15 @@ public class Invincibility extends Item implements Serializable{
 		super(x, y);
 	}
 
+	public int getTurns() {
+		return turns;
+	}
+
+	public void useTurn() {
+		turns--;
+	}
+
+	
+	
+	
 }
