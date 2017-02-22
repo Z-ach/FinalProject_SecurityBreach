@@ -190,7 +190,7 @@ public class GameEngine implements Serializable {
 					while (!move) {
 						move = movementCheck(ui.direction() - 1, player);
 						if(!move)
-							ui.errorCheck();
+							ui.errorCheck(false);
 					}
 					break;
 				case 2:
@@ -480,9 +480,7 @@ public class GameEngine implements Serializable {
 		int y = player.getPositionY();
 
 		if ((x % 3 == 0) && (y % 3 == 1)) {
-			System.out.println("Sorry you cannot enter from this side of the room"
-					+ "Please enter from the north side of the room");
-
+			ui.errorCheck(true);
 			return false;
 		}
 

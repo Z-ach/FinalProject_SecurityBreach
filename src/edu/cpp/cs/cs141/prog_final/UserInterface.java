@@ -73,36 +73,40 @@ public class UserInterface implements Serializable {
 	 */
 	public void instruction() {
 
-			System.out.println("Your name is John Carter");
-			System.out.println("You are from the year 2165.");
-			System.out.println("You were sent back to the year 1944 in the wake of the second world war.");
-			System.out.println("Your mission was to prevent the start of the antartic civil war.");
-			System.out.println("The mission has changed. Your new mission is...");
-			System.out.println("Survive.");
-			System.out.println("You are being held hostage by a tribe of angry nijnas.");
-			System.out.println("The name of the island your on is Lian Yu. Its madarin, for purgatory.");
-			System.out.println("One of the ninjas has seen the good in you and gives you a key to the door.");
-			System.out.println("You have opened the door to your cell and this is your chance to escape");
-			System.out.println("You took out the ninja keeping watch of you and took his gun.");
-			System.out.println("Unfortunatly the ninja keeping track was showing off his gun skills to the lady ninjas.");
-			System.out.println("His gun has one bullet left. Use it wisley.");
-			System.out.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
-			System.out.println("The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
-			System.out.println("You must choose which direction you would like to look in, then choose what way you want to step.");
-			System.out.println("But be carful, the ninjas are very deadly. One hit from them means instant death.");
-			System.out.println("Fortunalty, one hit from the bullet kills them instantly.");
-			System.out.println("You have one job. Survive the ninjas and find the briefcase hidden in one of 9 rooms.");
-			System.out.println("This briefcase has a satellite phone that will let the Canadian Army know your location.");
-			System.out.println("Once the call is made. The Canadian army will rescue you.");
-			System.out.println("There are three items in the bunker.");
-			System.out.println("Finding the bullet powerup will reload your gun if you are out of ammunition.");
-			System.out.println("There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
-			System.out.println("Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
-			System.out.println("Now is your time to escape. You only have once chance. Live long and prosper.");
-			System.out.println("Let it begin");
+		System.out.println("Your name is John Carter");
+		System.out.println("You are from the year 2165.");
+		System.out.println("You were sent back to the year 1944 in the wake of the second world war.");
+		System.out.println("Your mission was to prevent the start of the antartic civil war.");
+		System.out.println("The mission has changed. Your new mission is...");
+		System.out.println("Survive.");
+		System.out.println("You are being held hostage by a tribe of angry nijnas.");
+		System.out.println("The name of the island your on is Lian Yu. Its madarin, for purgatory.");
+		System.out.println("One of the ninjas has seen the good in you and gives you a key to the door.");
+		System.out.println("You have opened the door to your cell and this is your chance to escape");
+		System.out.println("You took out the ninja keeping watch of you and took his gun.");
+		System.out.println("Unfortunatly the ninja keeping track was showing off his gun skills to the lady ninjas.");
+		System.out.println("His gun has one bullet left. Use it wisley.");
+		System.out
+				.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
+		System.out.println(
+				"The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
+		System.out.println(
+				"You must choose which direction you would like to look in, then choose what way you want to step.");
+		System.out.println("But be carful, the ninjas are very deadly. One hit from them means instant death.");
+		System.out.println("Fortunalty, one hit from the bullet kills them instantly.");
+		System.out.println("You have one job. Survive the ninjas and find the briefcase hidden in one of 9 rooms.");
+		System.out.println("This briefcase has a satellite phone that will let the Canadian Army know your location.");
+		System.out.println("Once the call is made. The Canadian army will rescue you.");
+		System.out.println("There are three items in the bunker.");
+		System.out.println("Finding the bullet powerup will reload your gun if you are out of ammunition.");
+		System.out.println(
+				"There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
+		System.out.println(
+				"Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
+		System.out.println("Now is your time to escape. You only have once chance. Live long and prosper.");
+		System.out.println("Let it begin");
 
-		}
-	
+	}
 
 	public int gameStartPrompt() {
 		System.out.println("Welcome to Escape from Ninja Island!!!");
@@ -110,21 +114,19 @@ public class UserInterface implements Serializable {
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
 		System.out.println("3. Exit \n");
-		
-		int answer = input.nextInt();
-		
-		if(answer == 1)
-			answer = 1;
-		else if(answer == 2)
-			answer = 2;
-		else if(answer == 3)
-			answer = 3;
-		
-		return answer;
-		
-	}
 
-	
+		int answer = input.nextInt();
+
+		if (answer == 1)
+			answer = 1;
+		else if (answer == 2)
+			answer = 2;
+		else if (answer == 3)
+			answer = 3;
+
+		return answer;
+
+	}
 
 	/**
 	 * This method represents the {@link #playerOptions()} prints out the
@@ -160,7 +162,8 @@ public class UserInterface implements Serializable {
 	 * to the player throughout the game.
 	 */
 	public void exitOptions() {
-
+		System.out.println("1: LOAD GAME");
+		System.out.println("2: EXIT");
 	}
 
 	/**
@@ -209,7 +212,8 @@ public class UserInterface implements Serializable {
 	 * the player's turn.
 	 */
 	public void displayInfo() {
-
+		System.out.println("Lives:\t ");
+		System.out.println("Bullet:\t ");
 	}
 
 	/**
@@ -233,9 +237,18 @@ public class UserInterface implements Serializable {
 	/**
 	 * This method represents the {@link #errorCheck()} to display an error
 	 * message when the user attempts to move in directions that are outside the
-	 * grid space, or when the player tries to move into a room from the wrong direction
+	 * grid space, or when the player tries to move into a room from the wrong
+	 * direction
 	 */
-	public void errorCheck() {
+	public void errorCheck(boolean room) {
+		if (room == false) {
+			System.out
+					.println("The direction you want to move is blocked. \n" + "Please select a different direction.");
+		} else if (room == true) {
+			System.out.println("Sorry you cannot enter from this side of the room"
+					+ "Please enter from the north side of the room");
+
+		}
 
 	}
 
@@ -245,7 +258,14 @@ public class UserInterface implements Serializable {
 	 * tells the user that the game is over.
 	 */
 	public void endMessage(boolean win) {
-
+		if (win == true) {
+			System.out.println("You have found the briefcase and escaped the 6 deadly ninjas.\n"
+					+ "Congratulations on beating the game.");
+		} else if (win == false) {
+			System.out.println(
+					"You have not found the briefcase. You have no lives left." 
+							+ "Please choose what you want to do.");
+		}
 	}
 
 	/**
