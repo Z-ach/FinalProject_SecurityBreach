@@ -300,4 +300,8 @@ public class UserInterface implements Serializable {
 					+ "Only a few more rooms to go!");
 		}
 	}
+	
+	public void killedNinja(){
+		System.out.println("You have succesfully killed a ninja!");
+	}
 }
