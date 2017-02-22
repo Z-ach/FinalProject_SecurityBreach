@@ -324,7 +324,6 @@ public class GameEngine implements Serializable {
 	 */
 	public void assignBriefcase() {
 		int check = rand.nextInt(9);
-		check = 6;
 		switch (check) {
 		case 0:
 			grid.assign(1, 1, 'B');
@@ -379,14 +378,10 @@ public class GameEngine implements Serializable {
 			while (ninjas[c] == null) {
 				int row = rand.nextInt(9);
 				int col = rand.nextInt(9);
-/*				if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
+				if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
 						&& (grid.getBoard()[row][col] == ' ')) {
 					grid.assign(row, col, 'N');
 					ninjas[c] = new Ninja(row, col);
-				}*/
-				for(int i = 0; i < 6; i++){
-					grid.assign(i, 0, 'N');
-					ninjas[i] = new Ninja(i,0);
 				}
 			}
 		}
@@ -404,12 +399,8 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-			/*
-			 * int row = rand.nextInt(9); int col = rand.nextInt(9);
-			 */
-
-			int row = 7;
-			int col = 0;
+			int row = rand.nextInt(9); 
+			int col = rand.nextInt(9);
 
 			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
 				grid.assign(row, col, 'r');
@@ -621,7 +612,6 @@ public class GameEngine implements Serializable {
 	private void pickupRadar() {
 		radarFound = true;
 		radar.isUsed();
-		System.out.println("radar found");
 	}
 
 	private void pickupInvinc() {
