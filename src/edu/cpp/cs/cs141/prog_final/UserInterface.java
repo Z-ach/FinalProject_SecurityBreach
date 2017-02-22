@@ -72,41 +72,24 @@ public class UserInterface implements Serializable {
 	 * briefcase through describing the setting.
 	 */
 	public void instruction() {
-		System.out.println("There has been a Security Breach");
-		System.out.println("Your name is John Carter");
-		System.out.println("You are from the year 2165.");
-		System.out.println("You were sent back to the year 1944 in the wake of the second world war.");
-		System.out.println("Your mission was to prevent the start of the antartic civil war.");
-		System.out.println("The mission has changed. Your new mission is...");
-		System.out.println("Survive.");
-		System.out.println("You are being held hostage by a tribe of angry nijnas.");
-		System.out.println("The name of the island your on is Lian Yu. Its madarin, for purgatory.");
-		System.out.println("One of the ninjas has seen the good in you and gives you a key to the door.");
-		System.out.println("You have opened the door to your cell and this is your chance to escape");
-		System.out.println("You took out the ninja keeping watch of you and took his gun.");
-		System.out.println("Unfortunatly the ninja keeping track was showing off his gun skills to the lady ninjas.");
-		System.out.println("His gun has one bullet left. Use it wisley.");
-		System.out
-				.println("You have also taken the ninjas night vision goggles. You will need them to see in the dark.");
-		System.out.println(
-				"The bunker is dark and cold but you can use the goggles to see two steps in whichever direction you use.");
-		System.out.println(
-				"You must choose which direction you would like to look in, then choose what way you want to step.");
-		System.out.println("But be carful, the ninjas are very deadly. One hit from them means instant death.");
-		System.out.println("Fortunalty, one hit from the bullet kills them instantly.");
-		System.out.println("You have one job. Survive the ninjas and find the briefcase hidden in one of 9 rooms.");
-		System.out.println("This briefcase has a satellite phone that will let the Canadian Army know your location.");
-		System.out.println("Once the call is made. The Canadian army will rescue you.");
-		System.out.println("There are three items in the bunker.");
-		System.out.println("Finding the bullet powerup will reload your gun if you are out of ammunition.");
-		System.out.println(
-				"There is a walking talkie radar that the ninjas use to comunicate. This will allow you to see their position.");
-		System.out.println(
-				"Finally, There is a invincibilty artifact from the lost religion of the ninjas. It will protect you from 5 ninjas stabs.");
-		System.out.println("Now is your time to escape. You only have once chance. Live long and prosper.");
-		System.out.println("Let it begin");
+		System.out.print("This game is called Security Breach.\n");
+		System.out.print("-----------------OBJECTIVE-----------------\n");
+		System.out.print("You are a spy that is given a job to retrieve a briefcase located in one\n"
+				+ "of nine rooms. There are 6 ninjas in a dark building, but you only have 1 bullet\n"
+				+ "in your gun. This is a turn-based game. You have a flash light that can see 2 spaces\n"
+				+ "in a desired direction and must be used before movement. Three items exist within\n "
+				+ "the grid to assist you with your mission. Invincibility allows you to be invulnerable\n"
+				+ "to begin stabbed by a ninja. Radar allows you to know the exact location of the briefcase.\n"
+				+ "An extra bullet may be found to shoot after the first bullet has been used. A door to a room\n"
+				+ "is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose\n"
+				+ "one life. You are given three lives to obtain the briefcase. Goodluck!");
+		}
+	
 
-	}
+	/**
+	 *  This method represents the {link {@link #gameStartPrompt()} that will give
+	 *  the player three options of starting a game, loading a game, or exiting the game.
+	 */
 
 	public int gameStartPrompt() {
 		System.out.println("Welcome to Security Breach!!!");
@@ -222,8 +205,31 @@ public class UserInterface implements Serializable {
 	 * will be asked from the player in order to successfully save it.
 	 */
 	public void saveGame() {
-
+		System.out.println("The Save Game option has been selected.\n"
+				+ "Please enter a file name to save the game as: ");
 	}
+	
+	
+	/**
+	 * The method of {@link #saveSuccessful()} is displayed after the user
+	 * has successfully saved the game into a a proper file type.
+	 */
+	public void saveSuccessful() {
+		System.out.println("The game has successfully been saved under the file: ");
+		//enter the user input file 
+	}
+	
+	/**
+	 * The method of {@link #loadGame()} represents the system asking the user
+	 * to enter the file name of the previous game that has been saved. If the
+	 * file name entered does not exist, the system will display to the user that
+	 * it is an invalid file. 
+	 */
+	public static void loadGame() {
+		System.out.println("Please enter the file name where the game is saved: ");
+		
+	}
+
 
 	/**
 	 * This method represents the {@link #debug()} option that allows for the
