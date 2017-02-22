@@ -72,7 +72,7 @@ public class UserInterface implements Serializable {
 	 * briefcase through describing the setting.
 	 */
 	public void instruction() {
-
+		System.out.println("There has been a Security Breach");
 		System.out.println("Your name is John Carter");
 		System.out.println("You are from the year 2165.");
 		System.out.println("You were sent back to the year 1944 in the wake of the second world war.");
