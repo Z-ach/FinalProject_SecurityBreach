@@ -211,7 +211,7 @@ public class UserInterface implements Serializable {
 	 * the user has and notifies the user if any power ups are being used during
 	 * the player's turn.
 	 */
-	public void displayInfo() {
+	public void displayInfo(int lives, int bullets) {
 		System.out.println("Lives:\t ");
 		System.out.println("Bullet:\t ");
 	}
