@@ -173,6 +173,11 @@ public class Grid implements Serializable {
 			}
 		}
 	}
+	
+	public void enableCaseLighting(Briefcase briefcase){
+		light[briefcase.getX()][briefcase.getY()] = true;
+		board[briefcase.getX()][briefcase.getY()] = 'B';
+	}
 
 	/**
 	 * This method is in charge of the lighting of the rooms where the rooms are

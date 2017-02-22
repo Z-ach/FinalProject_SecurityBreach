@@ -117,7 +117,7 @@ public class GameEngine implements Serializable {
 	 */
 	private Player player;
 
-	private boolean debugMode;
+	private boolean debugMode, radarFound;
 
 	private Briefcase briefcase;
 
@@ -165,11 +165,14 @@ public class GameEngine implements Serializable {
 
 		debugMode = false;
 		boolean move = false;
+		radarFound = false;
 		int tempDirection = 0;
 
 		while (player.alive()) {
 			refreshGrid();
-			grid.debugMode(true, briefcase, player);
+			grid.debugMode(debugMode, briefcase, player);
+			if(radarFound)
+				grid.enableCaseLighting(briefcase);
 			ui.printGrid(grid.getBoard(), grid.getLight());
 			move = false;
 			switch (ui.playerOptions(true)) {
@@ -183,19 +186,23 @@ public class GameEngine implements Serializable {
 						tempDirection = ui.direction() - 1;
 						if (tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
 							winGame();
-						move = movementCheck(tempDirection, player);
+						move = movementCheck(tempDirection, player, true);
 						checkForNinja();
 						if (!move)
 							ui.errorCheck(false);
 					}
+					checkForItem();
+					moveNinja();
 					break;
 				case 2:
 					// shoot goes here
+					moveNinja();
 					break;
 				}
 				break;
 			case 2:
 				// shoot goes here
+				moveNinja();
 				break;
 			case 3:
 				// exit menu goes here
@@ -203,7 +210,6 @@ public class GameEngine implements Serializable {
 			case 4:
 				debugMode = true;
 			}
-			moveNinja();
 			checkForNinja();
 		}
 	}
@@ -244,7 +250,7 @@ public class GameEngine implements Serializable {
 				move = false;
 				while (!move) {
 					direction = rand.nextInt(4);
-					move = movementCheck(direction, n);
+					move = movementCheck(direction, n, false);
 				}
 			}
 		}
@@ -252,7 +258,7 @@ public class GameEngine implements Serializable {
 
 	public boolean checkForNinja() {
 		for (int i = 0; i < ninjas.length; i++) {
-			if (ninjas[i] != null) {
+			if (ninjas[i] != null && (!player.getShield())) {
 				if (ninjas[i].getPositionX() == player.getPositionX()
 						&& ninjas[i].getPositionY() == player.getPositionY()) {
 					ui.loseLife();
@@ -316,6 +322,7 @@ public class GameEngine implements Serializable {
 	 */
 	public void assignBriefcase() {
 		int check = rand.nextInt(9);
+		check = 6;
 		switch (check) {
 		case 0:
 			grid.assign(1, 1, 'B');
@@ -391,8 +398,11 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-			int row = rand.nextInt(9);
-			int col = rand.nextInt(9);
+/*			int row = rand.nextInt(9);
+			int col = rand.nextInt(9);*/
+			
+			int row = 7;
+			int col = 0;
 
 			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
 				grid.assign(row, col, 'r');
@@ -404,12 +414,14 @@ public class GameEngine implements Serializable {
 
 	public void refreshGrid() {
 		grid.eraseGrid();
+		if(radarFound)
+			grid.enableCaseLighting(briefcase);
 		if (!bullet.isUsed())
 			grid.assign(bullet.getX(), bullet.getY(), 'b');
 		if (!radar.isUsed())
 			grid.assign(radar.getX(), radar.getY(), 'r');
 		if (!invinc.isUsed())
-			grid.assign(invinc.getX(), invinc.getY(), 'I');
+			grid.assign(invinc.getX(), invinc.getY(), 'i');
 		for (int i = 0; i < ninjas.length; i++) {
 			grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
@@ -455,7 +467,7 @@ public class GameEngine implements Serializable {
 			int col = rand.nextInt(9);
 
 			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
-				grid.assign(row, col, 'I');
+				grid.assign(row, col, 'i');
 				invinc = new Invincibility(row, col);
 				valid = true;
 			}
@@ -496,7 +508,7 @@ public class GameEngine implements Serializable {
 	 *            the being trying to move to check conditions on
 	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
-	public boolean movementCheck(int direction, LivingBeing being) {
+	public boolean movementCheck(int direction, LivingBeing being, boolean isPlayer) {
 
 		int x = being.getPositionX();
 		int y = being.getPositionY();
@@ -515,12 +527,16 @@ public class GameEngine implements Serializable {
 			y++;
 			break;
 		}
+		
+		if(player.getShield() && (!isPlayer)){
+			return false;
+		}
 
 		if (x < 0 || x > 8 || y < 0 || y > 8) {
 			return false;
 		}
 
-		if (grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B') {
+		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
 			return false;
 		}
 
@@ -584,7 +600,9 @@ public class GameEngine implements Serializable {
 	}
 
 	private void pickupRadar() {
-
+		radarFound = true;
+		radar.isUsed();
+		System.out.println("radar found");
 	}
 
 	private void pickupInvinc() {
