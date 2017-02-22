@@ -174,6 +174,7 @@ public class GameEngine implements Serializable {
 
 		debugMode = false;
 		boolean move = false;
+		int tempDirection = 0;
 
 		while (player.alive()) {
 			refreshGrid();
@@ -188,7 +189,10 @@ public class GameEngine implements Serializable {
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {
-						move = movementCheck(ui.direction() - 1, player);
+						tempDirection = ui.direction() - 1;
+						if(tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
+							winGame();
+						move = movementCheck(tempDirection, player);
 						if(!move)
 							ui.errorCheck(false);
 					}
@@ -209,6 +213,11 @@ public class GameEngine implements Serializable {
 			}
 			moveNinja();
 		}
+	}
+	
+	public void winGame(){
+		ui.endMessage(true);
+		System.exit(0);
 	}
 
 	/**
@@ -507,7 +516,7 @@ public class GameEngine implements Serializable {
 			break;
 		}
 
-		if (x < 0 || x > 8 || y < 0 || y > 8) {			
+		if (x < 0 || x > 8 || y < 0 || y > 8) {
 			return false;
 		}
 		
