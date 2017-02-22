@@ -133,31 +133,24 @@ public class GameEngine implements Serializable {
 		this.ui = ui;
 		grid = new Grid();
 		rand = new Random();
-		
-		
+
 	}
 
-	
-	
-	public void startPrompt(){
-		
-		
+	public void startPrompt() {
+
 		int answer = ui.gameStartPrompt();
-		
-		if(answer == 1){
-			
+
+		if (answer == 1) {
+
 			run();
 		}
-		 if(answer == 2)
-			
-		 if(answer == 3)
-			System.exit(0); 
-			
-		
-		
+		if (answer == 2)
+
+			if (answer == 3)
+				System.exit(0);
+
 	}
-	
-	
+
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
@@ -167,9 +160,7 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-		
-		
-		
+
 		createBoard();
 
 		debugMode = false;
@@ -190,10 +181,10 @@ public class GameEngine implements Serializable {
 				case 1:
 					while (!move) {
 						tempDirection = ui.direction() - 1;
-						if(tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
+						if (tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
 							winGame();
 						move = movementCheck(tempDirection, player);
-						if(!move)
+						if (!move)
 							ui.errorCheck(false);
 					}
 					break;
@@ -214,11 +205,12 @@ public class GameEngine implements Serializable {
 			moveNinja();
 		}
 	}
-	
-	public void winGame(){
+
+	public void winGame() {
 		ui.endMessage(true);
 		System.exit(0);
 	}
+
 	/**
 	 * This method resets the player's position and will place them back into
 	 * the spot where the player began. Which is the 9th row and the first
@@ -244,7 +236,7 @@ public class GameEngine implements Serializable {
 		int direction;
 		for (Ninja n : ninjas) {
 			move = false;
-			while(!move){
+			while (!move) {
 				direction = rand.nextInt(4);
 				move = movementCheck(direction, n);
 			}
@@ -263,19 +255,18 @@ public class GameEngine implements Serializable {
 	 *         space where the player is. {@code null} if none.
 	 */
 	public void checkForItem() {
-		switch(grid.getBoard()[player.getPositionX()][player.getPositionY()]){
+		switch (grid.getBoard()[player.getPositionX()][player.getPositionY()]) {
 		case 'i':
 			pickupInvinc();
-			break;	
+			break;
 		case 'r':
 			pickupRadar();
 			break;
 		case 'b':
 			pickupBullet();
 			break;
-		}	
+		}
 	}
-
 
 	/**
 	 * This method runs through all the necessary calls in order to create
@@ -466,14 +457,13 @@ public class GameEngine implements Serializable {
 		if ((x % 3 == 0) && (y % 3 == 1)) {
 			return true;
 		}
-		
+
 		ui.errorCheck(true);
 		return false;
 	}
 
 	/**
-	 * 	/**
-	 * This method returns a boolean value and checks if the move the player
+	 * /** This method returns a boolean value and checks if the move the player
 	 * wants is a valid move. For example, when the player is in the first
 	 * column, this method would prevent the player from moving further left.
 	 * Also, this method is called after every other method of movePlayer to
@@ -506,65 +496,71 @@ public class GameEngine implements Serializable {
 		if (x < 0 || x > 8 || y < 0 || y > 8) {
 			return false;
 		}
-		
-		if(grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B'){
+
+		if (grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B') {
 			return false;
 		}
-		
+
 		being.move(direction);
 		return true;
 	}
 
-	public void pickupBullet(){
-		if(player.getBullets() == 0){
+	public void pickupBullet() {
+		if (player.getBullets() == 0) {
 			player.findBullet();
 			bullet.isUsed();
-		}
-		else if(player.getBullets() != 0){
+		} else if (player.getBullets() != 0) {
 			bullet.isUsed();
 		}
-		
+
 	}
-	
-	public void shoot(int bullet){
+
+	public void shoot(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
-		
-		
-		
-		switch(bullet){
-		
-		case 0:
-			while(x < 0 && x > 8){
-				--bullet;
-			
+		boolean continueCheck = true;
+
+		if (player.getBullets() != 0) {
+
+			switch (direction) {
+
+			case 0:
+				while (x < 0 && x > 8 && continueCheck == true) {
+					--x;
+					if (grid.getBoard()[x][y] == 'B') {
+						continueCheck = false;
+					} else if (grid.getBoard()[x][y] == 'R') {
+						continueCheck = false;
+					} else if (grid.getBoard()[x][y] == 'N') {
+						continueCheck = false;
+					}
+
+				}
+				break;
+
+			case 1:
+				while (x < 0 && x > 8) {
+					++x;
+				}
+				break;
+
+			case 2:
+				while (y < 0 && y > 8) {
+					--y;
+				}
+				break;
+
+			case 3:
+				while (y < 0 && y > 8) {
+					++y;
+				}
+				break;
 			}
-			break;
-		
-		case 1:
-			while(x < 0 && x > 8){
-				++bullet;
-			}
-			break;
-		
-		case 2:
-			while(y < 0 && y > 8){
-				--bullet;
-			}
-			break;
-		
-		case 3:
-			while(y < 0 && y > 8){
-				++bullet;
-			}
-			break;
 		}
-		
 	}
 
 	private void pickupRadar() {
-		
-		
+
 	}
 
 	private void pickupInvinc() {
