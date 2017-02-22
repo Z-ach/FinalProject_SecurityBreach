@@ -171,7 +171,7 @@ public class GameEngine implements Serializable {
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
-			if(radarFound)
+			if (radarFound)
 				grid.enableCaseLighting(briefcase);
 			ui.printGrid(grid.getBoard(), grid.getLight());
 			move = false;
@@ -196,12 +196,14 @@ public class GameEngine implements Serializable {
 					break;
 				case 2:
 					// shoot goes here
+					shoot(1);
 					moveNinja();
 					break;
 				}
 				break;
 			case 2:
 				// shoot goes here
+				shoot(1);
 				moveNinja();
 				break;
 			case 3:
@@ -398,9 +400,10 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-/*			int row = rand.nextInt(9);
-			int col = rand.nextInt(9);*/
-			
+			/*
+			 * int row = rand.nextInt(9); int col = rand.nextInt(9);
+			 */
+
 			int row = 7;
 			int col = 0;
 
@@ -414,7 +417,7 @@ public class GameEngine implements Serializable {
 
 	public void refreshGrid() {
 		grid.eraseGrid();
-		if(radarFound)
+		if (radarFound)
 			grid.enableCaseLighting(briefcase);
 		if (!bullet.isUsed())
 			grid.assign(bullet.getX(), bullet.getY(), 'b');
@@ -527,8 +530,8 @@ public class GameEngine implements Serializable {
 			y++;
 			break;
 		}
-		
-		if(player.getShield() && (!isPlayer)){
+
+		if (player.getShield() && (!isPlayer)) {
 			return false;
 		}
 
@@ -558,45 +561,62 @@ public class GameEngine implements Serializable {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
 		boolean continueCheck = true;
-
+		System.out.println("has bullet");
 		if (player.getBullets() != 0) {
-
+			System.out.println("No bullet");
 			switch (direction) {
 
-			case 0:
-				while (x < 0 && x > 8 && continueCheck == true) {
-					--x;
-					if (grid.getBoard()[x][y] == 'B') {
-						continueCheck = false;
-					} else if (grid.getBoard()[x][y] == 'R') {
-						continueCheck = false;
-					} else if (grid.getBoard()[x][y] == 'N') {
-						continueCheck = false;
-					}
-
-				}
-				break;
-
 			case 1:
-				while (x < 0 && x > 8) {
-					++x;
+				while (x > 0 && x < 8 && continueCheck == true) {
+					--x;
+					continueCheck = shootCheck(x, y, continueCheck);
 				}
 				break;
 
 			case 2:
-				while (y < 0 && y > 8) {
+				while (x > 0 && x < 8 && continueCheck == true) {
+					++x;
+					continueCheck = shootCheck(x, y, continueCheck);
+				}
+				break;
+			case 3:
+				while (y > 0 && y < 8 && continueCheck == true) {
 					--y;
+					continueCheck = shootCheck(x, y, continueCheck);
 				}
 				break;
 
-			case 3:
-				while (y < 0 && y > 8) {
+			case 4:
+				while (y > 0 && y < 8 && continueCheck == true) {
 					++y;
+					continueCheck = shootCheck(x, y, continueCheck);
 				}
 				break;
 			}
 		}
 
+	}
+
+	private boolean shootCheck(int x, int y, boolean check) {
+		if (grid.getBoard()[x][y] == 'B') {
+			System.out.println("Bullet stopped");
+			check = false;
+		} else if (grid.getBoard()[x][y] == 'R') {
+			System.out.println("Bullet stopped");
+			check = false;
+		} else if (grid.getBoard()[x][y] == 'N') {
+			check = false;
+			for (int i = 0; i < ninjas.length; i++) {
+				System.out.println("Bullet at" + x);
+				if (ninjas[i] != null) {
+					if (ninjas[i].getPositionX() == x && ninjas[i].getPositionY() == y) {
+						ninjas[i] = null;
+						System.out.println("ninja shot");
+					}
+				}
+			}
+		}
+		return check;
 	}
 
 	private void pickupRadar() {
