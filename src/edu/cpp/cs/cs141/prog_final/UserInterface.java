@@ -109,7 +109,7 @@ public class UserInterface implements Serializable {
 	}
 
 	public int gameStartPrompt() {
-		System.out.println("Welcome to Escape from Ninja Island!!!");
+		System.out.println("Welcome to Security Breach!!!");
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
