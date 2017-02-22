@@ -22,7 +22,9 @@ public class Player extends LivingBeing implements Serializable{
 	 * game.
 	 */
 	private static int lives = 3;
+	
 	private boolean shield = false;
+	
 	/**
 	 * This field represents the amount of bullets that the player has in their
 	 * gun. The max amount of bullets a gun can carry is one. Initially

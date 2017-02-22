@@ -553,11 +553,8 @@ public class GameEngine implements Serializable {
 	public void pickupBullet() {
 		if (player.getBullets() == 0) {
 			player.findBullet();
-			bullet.isUsed();
-		} else if (player.getBullets() != 0) {
-			bullet.isUsed();
-		}
-
+		} 
+		bullet.use();
 	}
 
 	public void shoot(int direction) {
@@ -619,7 +616,7 @@ public class GameEngine implements Serializable {
 
 	private void pickupRadar() {
 		radarFound = true;
-		radar.isUsed();
+		radar.use();
 	}
 
 	private void pickupInvinc() {
