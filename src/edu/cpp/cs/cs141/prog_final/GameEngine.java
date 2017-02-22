@@ -225,7 +225,7 @@ public class GameEngine implements Serializable {
 			player = new Player(8, 0);
 		player.setPlayer();
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
-		if(loseLife){
+		if (loseLife) {
 			player.loseLive();
 		}
 	}
@@ -538,36 +538,47 @@ public class GameEngine implements Serializable {
 
 	}
 
-	public void shoot(int bullet) {
+	public void shoot(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
+		boolean continueCheck = true;
 
-		switch (bullet) {
+		if (player.getBullets() != 0) {
 
-		case 0:
-			while (x < 0 && x > 8) {
-				--bullet;
+			switch (direction) {
 
+			case 0:
+				while (x < 0 && x > 8 && continueCheck == true) {
+					--x;
+					if (grid.getBoard()[x][y] == 'B') {
+						continueCheck = false;
+					} else if (grid.getBoard()[x][y] == 'R') {
+						continueCheck = false;
+					} else if (grid.getBoard()[x][y] == 'N') {
+						continueCheck = false;
+					}
+
+				}
+				break;
+
+			case 1:
+				while (x < 0 && x > 8) {
+					++x;
+				}
+				break;
+
+			case 2:
+				while (y < 0 && y > 8) {
+					--y;
+				}
+				break;
+
+			case 3:
+				while (y < 0 && y > 8) {
+					++y;
+				}
+				break;
 			}
-			break;
-
-		case 1:
-			while (x < 0 && x > 8) {
-				++bullet;
-			}
-			break;
-
-		case 2:
-			while (y < 0 && y > 8) {
-				--bullet;
-			}
-			break;
-
-		case 3:
-			while (y < 0 && y > 8) {
-				++bullet;
-			}
-			break;
 		}
 
 	}
