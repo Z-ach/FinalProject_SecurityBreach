@@ -379,10 +379,14 @@ public class GameEngine implements Serializable {
 			while (ninjas[c] == null) {
 				int row = rand.nextInt(9);
 				int col = rand.nextInt(9);
-				if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
+/*				if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
 						&& (grid.getBoard()[row][col] == ' ')) {
 					grid.assign(row, col, 'N');
 					ninjas[c] = new Ninja(row, col);
+				}*/
+				for(int i = 0; i < 6; i++){
+					grid.assign(i, 0, 'N');
+					ninjas[i] = new Ninja(i,0);
 				}
 			}
 		}
@@ -566,11 +570,13 @@ public class GameEngine implements Serializable {
 		if (player.getBullets() != 0) {
 			System.out.println("No bullet");
 			switch (direction) {
-
+			
 			case 1:
-				while (x > 0 && x < 8 && continueCheck == true) {
+				
+				while (x > 0 && x < 9 && continueCheck == true) {
 					--x;
 					continueCheck = shootCheck(x, y, continueCheck);
+					System.out.println("check is " + continueCheck + " at [" + x + "," + y + "]");
 				}
 				break;
 
@@ -608,7 +614,7 @@ public class GameEngine implements Serializable {
 		} else if (grid.getBoard()[x][y] == 'N') {
 			check = false;
 			for (int i = 0; i < ninjas.length; i++) {
-				System.out.println("Bullet at" + x);
+				System.out.println("Bullet at " + x);
 				if (ninjas[i] != null) {
 					if (ninjas[i].getPositionX() == x && ninjas[i].getPositionY() == y) {
 						ninjas[i] = null;
