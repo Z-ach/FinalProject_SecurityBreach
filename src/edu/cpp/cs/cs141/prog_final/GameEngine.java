@@ -197,8 +197,7 @@ public class GameEngine implements Serializable {
 					moveNinja();
 					break;
 				case 2:
-					// shoot goes here
-					shoot(1);
+					shoot(ui.direction());
 					if(player.getShield())
 						invinc.useTurn();
 					moveNinja();
@@ -206,8 +205,7 @@ public class GameEngine implements Serializable {
 				}
 				break;
 			case 2:
-				// shoot goes here
-				shoot(1);
+				shoot(ui.direction());
 				if(player.getShield())
 					invinc.useTurn();
 				moveNinja();
