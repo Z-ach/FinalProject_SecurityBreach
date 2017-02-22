@@ -1,8 +1,9 @@
 user interface prompt - Bryan
-powerups - Bryan
 shooting - Annalyn
 game loop - Zach
 
 
 TEST
 
+bullet powerup
+shooting direction

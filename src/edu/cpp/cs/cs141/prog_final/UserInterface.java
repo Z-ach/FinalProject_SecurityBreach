@@ -30,7 +30,8 @@ package edu.cpp.cs.cs141.prog_final;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 
 /**
  * The UserInterface class represents the game interactions with the player
@@ -179,13 +180,25 @@ public class UserInterface implements Serializable {
 	 * view of the game that will hold each of the objects. The player must
 	 * navigate through the grid in order to play.
 	 */
-	public void printGrid(char[][] board, boolean[][] light) {
+	public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield) {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (light[i][j])
 					System.out.print("[ " + board[i][j] + " ]");
 				else
 					System.out.print("[ X ]");
+			}
+			if(i == 2){
+				System.out.print("\tLives: " + player.getLives());
+			}else if(i == 3){
+				System.out.print("\tBullets: " + player.getBullets());
+			}else if(i == 4){
+				System.out.print("\tShield: ");
+				if(!player.getShield())
+					System.out.print("not in use");
+				else if(player.getShield() && shield != null){
+					System.out.print(shield.getTurns());
+				}
 			}
 			System.out.println("\n");
 		}
@@ -196,7 +209,7 @@ public class UserInterface implements Serializable {
 	 * the user has and notifies the user if any power ups are being used during
 	 * the player's turn.
 	 */
-	public void displayInfo(int lives, int bullets) {
+	public void displayInfo() {
 		System.out.println("Lives:\t ");
 		System.out.println("Bullet:\t ");
 	}
