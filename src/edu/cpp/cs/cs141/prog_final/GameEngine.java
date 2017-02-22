@@ -328,6 +328,8 @@ public class GameEngine implements Serializable {
 	 * {@link java.util.Random}.
 	 */
 	public void assignBriefcase() {
+		grid.assign(7, 1, 'B');
+		briefcase = new Briefcase(7,1);
 		int check = rand.nextInt(9);
 		switch (check) {
 		case 0:
@@ -476,9 +478,9 @@ public class GameEngine implements Serializable {
 	}
 
 	public boolean roomCheck() {
-		int x = player.getPositionX();
+		int x = player.getPositionX() + 1;
 		int y = player.getPositionY();
-		if (grid.getBoard()[x + 1][y] == 'B') {
+		if (briefcase.getX() == x && briefcase.getY() == y) {
 			return true;
 		}
 		return false;
@@ -489,11 +491,11 @@ public class GameEngine implements Serializable {
 		int y = player.getPositionY();
 
 		if ((x % 3 == 0) && (y % 3 == 1)) {
-			ui.errorCheck(true);
-			return false;
+			return true;
 		}
-
-		return true;
+		
+		ui.errorCheck(true);
+		return false;
 	}
 
 	public boolean movementCheck(int direction, LivingBeing being) {
@@ -520,7 +522,7 @@ public class GameEngine implements Serializable {
 			return false;
 		}
 		
-		if(grid.getBoard()[x][y] == 'R'){
+		if(grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B'){
 			return false;
 		}
 		
