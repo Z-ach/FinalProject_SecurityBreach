@@ -226,7 +226,7 @@ public class UserInterface implements Serializable {
 	 */
 	public void saveSuccessful() {
 		System.out.println("The game has successfully been saved under the file: ");
-		//enter the user input file 
+		//enter the user input file 0
 	}
 	
 	/**
@@ -253,7 +253,7 @@ public class UserInterface implements Serializable {
 					.println("The direction you want to move is blocked. \n" + "Please select a different direction.");
 		} else if (room == true) {
 			System.out.println("Sorry you cannot enter from this side of the room"
-					+ "Please enter from the north side of the room");
+					+ "\nPlease enter from the north side of the room");
 
 		}
 
@@ -271,7 +271,7 @@ public class UserInterface implements Serializable {
 		} else if (win == false) {
 			System.out.println(
 					"You have not found the briefcase. You have no lives left." 
-							+ "Please choose what you want to do.");
+							+ "\nPlease choose what you want to do.");
 		}
 	}
 
