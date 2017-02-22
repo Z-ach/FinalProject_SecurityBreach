@@ -133,31 +133,24 @@ public class GameEngine implements Serializable {
 		this.ui = ui;
 		grid = new Grid();
 		rand = new Random();
-		
-		
+
 	}
 
-	
-	
-	public void startPrompt(){
-		
-		
+	public void startPrompt() {
+
 		int answer = ui.gameStartPrompt();
-		
-		if(answer == 1){
-			
+
+		if (answer == 1) {
+
 			run();
 		}
-		 if(answer == 2)
-			
-		 if(answer == 3)
-			System.exit(0); 
-			
-		
-		
+		if (answer == 2)
+
+			if (answer == 3)
+				System.exit(0);
+
 	}
-	
-	
+
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
@@ -167,9 +160,7 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run() {
-		
-		
-		
+
 		createBoard();
 
 		debugMode = false;
@@ -190,10 +181,11 @@ public class GameEngine implements Serializable {
 				case 1:
 					while (!move) {
 						tempDirection = ui.direction() - 1;
-						if(tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
+						if (tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
 							winGame();
 						move = movementCheck(tempDirection, player);
-						if(!move)
+						checkForNinja();
+						if (!move)
 							ui.errorCheck(false);
 					}
 					break;
@@ -212,13 +204,15 @@ public class GameEngine implements Serializable {
 				debugMode = true;
 			}
 			moveNinja();
+			checkForNinja();
 		}
 	}
-	
-	public void winGame(){
+
+	public void winGame() {
 		ui.endMessage(true);
 		System.exit(0);
 	}
+
 	/**
 	 * This method resets the player's position and will place them back into
 	 * the spot where the player began. Which is the 9th row and the first
@@ -226,11 +220,14 @@ public class GameEngine implements Serializable {
 	 * game is desired. If a saved game is not loaded, clicking start in the
 	 * start menu will also call this method.
 	 */
-	public void restartPlayer() {
+	public void restartPlayer(boolean loseLife) {
 		if (player == null)
 			player = new Player(8, 0);
 		player.setPlayer();
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
+		if(loseLife){
+			player.loseLive();
+		}
 	}
 
 	/**
@@ -243,12 +240,28 @@ public class GameEngine implements Serializable {
 		boolean move;
 		int direction;
 		for (Ninja n : ninjas) {
-			move = false;
-			while(!move){
-				direction = rand.nextInt(4);
-				move = movementCheck(direction, n);
+			if (n != null) {
+				move = false;
+				while (!move) {
+					direction = rand.nextInt(4);
+					move = movementCheck(direction, n);
+				}
 			}
 		}
+	}
+
+	public boolean checkForNinja() {
+		for (int i = 0; i < ninjas.length; i++) {
+			if (ninjas[i] != null) {
+				if (ninjas[i].getPositionX() == player.getPositionX()
+						&& ninjas[i].getPositionY() == player.getPositionY()) {
+					ui.loseLife();
+					restartPlayer(true);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -263,19 +276,18 @@ public class GameEngine implements Serializable {
 	 *         space where the player is. {@code null} if none.
 	 */
 	public void checkForItem() {
-		switch(grid.getBoard()[player.getPositionX()][player.getPositionY()]){
+		switch (grid.getBoard()[player.getPositionX()][player.getPositionY()]) {
 		case 'i':
 			pickupInvinc();
-			break;	
+			break;
 		case 'r':
 			pickupRadar();
 			break;
 		case 'b':
 			pickupBullet();
 			break;
-		}	
+		}
 	}
-
 
 	/**
 	 * This method runs through all the necessary calls in order to create
@@ -294,7 +306,7 @@ public class GameEngine implements Serializable {
 		assignBullet();
 		assignInvincibility();
 		assignNinja();
-		restartPlayer();
+		restartPlayer(false);
 	}
 
 	/**
@@ -466,21 +478,22 @@ public class GameEngine implements Serializable {
 		if ((x % 3 == 0) && (y % 3 == 1)) {
 			return true;
 		}
-		
+
 		ui.errorCheck(true);
 		return false;
 	}
 
 	/**
-	 * 	/**
-	 * This method returns a boolean value and checks if the move the player
+	 * /** This method returns a boolean value and checks if the move the player
 	 * wants is a valid move. For example, when the player is in the first
 	 * column, this method would prevent the player from moving further left.
 	 * Also, this method is called after every other method of movePlayer to
 	 * check if the move is valid.
 	 *
-	 * @param direction the direction the being wants to move
-	 * @param being the being trying to move to check conditions on
+	 * @param direction
+	 *            the direction the being wants to move
+	 * @param being
+	 *            the being trying to move to check conditions on
 	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
 	public boolean movementCheck(int direction, LivingBeing being) {
@@ -506,65 +519,61 @@ public class GameEngine implements Serializable {
 		if (x < 0 || x > 8 || y < 0 || y > 8) {
 			return false;
 		}
-		
-		if(grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B'){
+
+		if (grid.getBoard()[x][y] == 'R' || grid.getBoard()[x][y] == 'B') {
 			return false;
 		}
-		
+
 		being.move(direction);
 		return true;
 	}
 
-	public void pickupBullet(){
-		if(player.getBullets() == 0){
+	public void pickupBullet() {
+		if (player.getBullets() == 0) {
 			player.findBullet();
 			bullet.isUsed();
-		}
-		else if(player.getBullets() != 0){
+		} else if (player.getBullets() != 0) {
 			bullet.isUsed();
 		}
-		
+
 	}
-	
-	public void shoot(int bullet){
+
+	public void shoot(int bullet) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
-		
-		
-		
-		switch(bullet){
-		
+
+		switch (bullet) {
+
 		case 0:
-			while(x < 0 && x > 8){
+			while (x < 0 && x > 8) {
 				--bullet;
-			
+
 			}
 			break;
-		
+
 		case 1:
-			while(x < 0 && x > 8){
+			while (x < 0 && x > 8) {
 				++bullet;
 			}
 			break;
-		
+
 		case 2:
-			while(y < 0 && y > 8){
+			while (y < 0 && y > 8) {
 				--bullet;
 			}
 			break;
-		
+
 		case 3:
-			while(y < 0 && y > 8){
+			while (y < 0 && y > 8) {
 				++bullet;
 			}
 			break;
 		}
-		
+
 	}
 
 	private void pickupRadar() {
-		
-		
+
 	}
 
 	private void pickupInvinc() {

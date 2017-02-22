@@ -161,9 +161,11 @@ public class UserInterface implements Serializable {
 	 * player to either save the game or exit. These options will be available
 	 * to the player throughout the game.
 	 */
-	public void exitOptions() {
+	public int exitOptions() {
 		System.out.println("1: LOAD GAME");
-		System.out.println("2: EXIT");
+		System.out.println("2. SAVE GAME");
+		System.out.println("3: EXIT");
+		return takeInput(1, 3);
 	}
 
 	/**
