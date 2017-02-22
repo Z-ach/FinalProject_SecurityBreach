@@ -33,7 +33,19 @@
  */
 package edu.cpp.cs.cs141.prog_final.io;
 
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+import edu.cpp.cs.cs141.prog_final.GameEngine;
+import edu.cpp.cs.cs141.prog_final.Grid;
+import edu.cpp.cs.cs141.prog_final.beings.Ninja;
+import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.items.Bullet;
+import edu.cpp.cs.cs141.prog_final.items.Invincibility;
+import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
  * This class will be responsible for restoring a previously saved game state.
@@ -42,19 +54,6 @@ import java.util.Scanner;
  * to the one that is saved in the file.
  */
 public class LoadGame {
-
-	/**
-	 * This field represents the two dimensional array of integers that
-	 * represent the old state of the game that was stored in the file. The int
-	 * values within this array correspond to different objects within the game.
-	 */
-	private int[][] boardState;
-
-	/**
-	 * This field represents a {@link java.util.Scanner} object that will read
-	 * the file line by line.
-	 */
-	private Scanner reader;
 
 	/**
 	 * This method will initialize the necessary fields that will be required to
@@ -67,28 +66,54 @@ public class LoadGame {
 
 	}
 
-	/**
-	 * This method will read in the state of the game from the file and parse it
-	 * into the two dimensional array represented by {@link #boardState}.
-	 * 
-	 * @return the old board state that was saved in the file, now as a two
-	 *         dimensional array
-	 */
-	public int[][] readBoardState() {
-		return boardState;
-	}
+	private FileInputStream fileStream;
+	private ObjectInputStream objStream;
+	private File file;
 
 	/**
-	 * This method takes in the two dimensional array holding the old state of
-	 * the board and assigns the values in the array that represent various
-	 * objects to actual objects in the game.
+	 * Constructor for {@link SaveGame}. This will make the necessary
+	 * initializations that will be required to save the state of the game.
 	 * 
-	 * @param saveState
-	 *            the old state of the game that will be used to assign objects
-	 *            to the new game board
+	 * @param fileName
+	 *            the name of the file that the game will be saved to
 	 */
-	public void restoreActualGrid(int[][] saveState) {
-
+	public LoadGame(String fileName, GameEngine ge) {
+		try {
+			file = new File(fileName);
+			fileStream = new FileInputStream(file);
+			objStream = new ObjectInputStream(fileStream);
+		}
+		// CHANGE EXCEPTION
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
+	public Ninja[] getNinjas() throws ClassNotFoundException, IOException {
+		return (Ninja[]) objStream.readObject();
+	}
+
+	public Player getPlayer() throws ClassNotFoundException, IOException {
+		return (Player) objStream.readObject();
+	}
+
+	public Radar getRadar() throws ClassNotFoundException, IOException {
+		return (Radar) objStream.readObject();
+	}
+
+	public Invincibility getInv() throws ClassNotFoundException, IOException {
+		return (Invincibility) objStream.readObject();
+	}
+
+	public Briefcase getBrief() throws ClassNotFoundException, IOException {
+		return (Briefcase) objStream.readObject();
+	}
+
+	public Bullet getBullet() throws ClassNotFoundException, IOException {
+		return (Bullet) objStream.readObject();
+	}
+
+	public Grid getGrid() throws ClassNotFoundException, IOException {
+		return (Grid) objStream.readObject();
+	}
 }

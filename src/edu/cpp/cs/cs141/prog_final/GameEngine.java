@@ -27,12 +27,15 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
 
 import edu.cpp.cs.cs141.prog_final.beings.LivingBeing;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.io.LoadGame;
+import edu.cpp.cs.cs141.prog_final.io.SaveGame;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
@@ -143,8 +146,29 @@ public class GameEngine implements Serializable {
 
 			run();
 		}
-		if (answer == 2)
-
+		if (answer == 2){
+			LoadGame load = new LoadGame("filename.dat");
+			try {
+				System.out.println("loading ninjas");
+				ninjas = load.getNinjas();
+				System.out.println("loading player");
+				player = load.getPlayer();
+				System.out.println("loading radar");
+				radar = load.getRadar();
+				invinc = load.getInv();
+				briefcase = load.getBrief();
+				bullet = load.getBullet();
+				grid = load.getGrid();
+				System.out.println("loaded");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
 			if (answer == 3)
 				System.exit(0);
 
@@ -166,7 +190,7 @@ public class GameEngine implements Serializable {
 		boolean move = false;
 		radarFound = false;
 		int tempDirection = 0;
-
+		
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
@@ -211,7 +235,7 @@ public class GameEngine implements Serializable {
 				moveNinja();
 				break;
 			case 3:
-				// exit menu goes here
+				new SaveGame("filename.dat", ninjas, player, radar, invinc, briefcase, bullet, grid);
 				break;
 			case 4:
 				debugMode = !debugMode;
