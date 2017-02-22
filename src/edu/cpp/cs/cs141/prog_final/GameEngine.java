@@ -478,12 +478,10 @@ public class GameEngine implements Serializable {
 	 * column, this method would prevent the player from moving further left.
 	 * Also, this method is called after every other method of movePlayer to
 	 * check if the move is valid.
-	 * 
-	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 *
-	 * @param direction
-	 * @param being
-	 * @return
+	 * @param direction the direction the being wants to move
+	 * @param being the being trying to move to check conditions on
+	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
 	public boolean movementCheck(int direction, LivingBeing being) {
 

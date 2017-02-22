@@ -2,10 +2,7 @@ user interface prompt - Bryan
 powerups - Bryan
 shooting - Annalyn
 game loop - Zach
--conditions for game loop - Annalyn
-->player lives
 
 
 TEST
 
-movement checking / room requirements - Jason
