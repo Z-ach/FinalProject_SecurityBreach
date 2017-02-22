@@ -275,7 +275,9 @@ public class UserInterface implements Serializable {
 	 * grid.
 	 */
 	public void loseLife() {
-
+		System.out.println("You have lost a live.\n"
+				+ "You will respawn in your original spot.\n"
+				+ "Better luck next time.");
 	}
 
 	/**
@@ -284,6 +286,11 @@ public class UserInterface implements Serializable {
 	 * message tells the player that they have successfully found the briefcase.
 	 */
 	public void briefCase(boolean hasCase) {
-
+		if(hasCase == true){
+			System.out.println("There is a briefcase in the room. \nCongratulations!");
+		} else if(hasCase == false){
+			System.out.println("This room does not have the briefcase.\n"
+					+ "Only a few more rooms to go!");
+		}
 	}
 }
