@@ -219,19 +219,6 @@ public class GameEngine implements Serializable {
 		ui.endMessage(true);
 		System.exit(0);
 	}
-
-	/**
-	 * This method is used to move the player. It will be called from the game
-	 * loop, and the arguments will be based on input from the UI
-	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface} and will move the
-	 * player object in the direction the player desires. This method can be
-	 * used to move an integer of spaces in the array, but will be set to 1 as
-	 * the game is further developed.
-	 */
-	public void movePlayer(int direction) {
-
-	}
-
 	/**
 	 * This method resets the player's position and will place them back into
 	 * the spot where the player began. Which is the 9th row and the first
@@ -289,18 +276,6 @@ public class GameEngine implements Serializable {
 		}	
 	}
 
-	/**
-	 * This method returns a boolean value and checks if the move the player
-	 * wants is a valid move. For example, when the player is in the first
-	 * column, this method would prevent the player from moving further left.
-	 * Also, this method is called after every other method of movePlayer to
-	 * check if the move is valid.
-	 * 
-	 * @return {@code true} if the move is valid, {@code false} if invalid
-	 */
-	public boolean isValidMove() {
-		return false;
-	}
 
 	/**
 	 * This method runs through all the necessary calls in order to create
@@ -496,6 +471,20 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
+	/**
+	 * 	/**
+	 * This method returns a boolean value and checks if the move the player
+	 * wants is a valid move. For example, when the player is in the first
+	 * column, this method would prevent the player from moving further left.
+	 * Also, this method is called after every other method of movePlayer to
+	 * check if the move is valid.
+	 * 
+	 * @return {@code true} if the move is valid, {@code false} if invalid
+	 *
+	 * @param direction
+	 * @param being
+	 * @return
+	 */
 	public boolean movementCheck(int direction, LivingBeing being) {
 
 		int x = being.getPositionX();
