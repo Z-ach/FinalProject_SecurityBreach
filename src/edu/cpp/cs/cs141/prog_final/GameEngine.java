@@ -163,7 +163,7 @@ public class GameEngine implements Serializable {
 
 		createBoard();
 
-		debugMode = false;
+		debugMode = true;
 		boolean move = false;
 		radarFound = false;
 		int tempDirection = 0;
@@ -426,7 +426,8 @@ public class GameEngine implements Serializable {
 		if (!invinc.isUsed())
 			grid.assign(invinc.getX(), invinc.getY(), 'i');
 		for (int i = 0; i < ninjas.length; i++) {
-			grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
+			if (ninjas[i] != null)
+				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
 	}
