@@ -162,7 +162,7 @@ public class GameEngine implements Serializable {
 
 		createBoard();
 
-		debugMode = true;
+		debugMode = false;
 		boolean move = false;
 		radarFound = false;
 		int tempDirection = 0;
@@ -184,7 +184,7 @@ public class GameEngine implements Serializable {
 				case 1:
 					while (!move) {
 						tempDirection = ui.direction() - 1;
-						if (tempDirection == 1 && roomCheckRequirement(tempDirection) && roomCheck())
+						if (tempDirection == 1 && roomCheck() && roomCheckRequirement(tempDirection))
 							winGame();
 						move = movementCheck(tempDirection, player, true);
 						if(player.getShield())
@@ -214,7 +214,7 @@ public class GameEngine implements Serializable {
 				// exit menu goes here
 				break;
 			case 4:
-				debugMode = true;
+				debugMode = !debugMode;
 			}
 			checkForNinja();
 		}

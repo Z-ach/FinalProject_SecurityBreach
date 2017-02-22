@@ -5,5 +5,3 @@ game loop - Zach
 
 TEST
 
-bullet powerup
-shooting direction
