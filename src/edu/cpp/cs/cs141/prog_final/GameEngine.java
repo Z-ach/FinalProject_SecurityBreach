@@ -328,8 +328,6 @@ public class GameEngine implements Serializable {
 	 * {@link java.util.Random}.
 	 */
 	public void assignBriefcase() {
-		grid.assign(7, 1, 'B');
-		briefcase = new Briefcase(7,1);
 		int check = rand.nextInt(9);
 		switch (check) {
 		case 0:
