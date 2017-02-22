@@ -145,7 +145,7 @@ public class GameEngine implements Serializable {
 		int answer = ui.gameStartPrompt();
 		
 		if(answer == 1){
-			ui.instruction();
+			
 			run();
 		}
 		 if(answer == 2)
