@@ -172,7 +172,6 @@ public class GameEngine implements Serializable {
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
 				grid.enableCaseLighting(briefcase);
-			System.out.println("game run");
 			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc);
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
@@ -190,15 +189,12 @@ public class GameEngine implements Serializable {
 						move = movementCheck(tempDirection, player, true);
 						if(player.getShield())
 							invinc.useTurn();
-						System.out.println("game case 1/1");
 						checkForNinja();
 						if (!move)
 							ui.errorCheck(false);
 					}
 					checkForItem();
-					System.out.println("game run post item check");
 					moveNinja();
-					System.out.println("game run ninja move");
 					break;
 				case 2:
 					// shoot goes here
@@ -262,7 +258,6 @@ public class GameEngine implements Serializable {
 				move = false;
 				while (!move) {
 					direction = rand.nextInt(4);
-					System.out.println("ninja[" + n + "] trying to move");
 					move = movementCheck(direction, n, false);
 				}
 			}
@@ -630,7 +625,6 @@ public class GameEngine implements Serializable {
 	}
 
 	private void pickupInvinc() {
-		System.out.println("inv picked up");
 		player.setShield(true);
 		invinc.use();
 	}
