@@ -87,8 +87,6 @@ public class GameEngine implements Serializable {
 	 * the 9 by 9 grid of objects.
 	 */
 	private Grid grid;
-	
-	private Room[] room;
 
 	/**
 	 * This field ninjas which will hold the ninjas and randomly distribute them
@@ -315,7 +313,6 @@ public class GameEngine implements Serializable {
 	 * @see #assignInvincibility()
 	 */
 	private void createBoard() {
-		assignRooms();
 		assignBriefcase();
 		assignRadar();
 		assignBullet();
@@ -432,20 +429,6 @@ public class GameEngine implements Serializable {
 				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
-	}
-	
-	private void assignRooms(){
-		room = new Room[9];
-		for(int i = 0; i < 3; i++){
-			for(int j = 0; j < 3; j++){
-				room[(j) + (3*i)] = new Room(3*i + 1, 3*j + 1);
-				grid.assign((3*i) + 1, (3*j) + 1, 'R');
-			}
-		}
-		
-		for(int i = 0; i < 9; i++){
-			System.out.println("[" + room[i].getX() + ", " + room[i].getY() + "]");
-		}
 	}
 
 	/**

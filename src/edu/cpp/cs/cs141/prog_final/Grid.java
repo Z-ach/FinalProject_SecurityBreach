@@ -87,6 +87,15 @@ public class Grid implements Serializable {
 				light[row2][col2] = false;
 			}
 		}
+		board[1][1] = 'R';
+		board[1][4] = 'R';
+		board[1][7] = 'R';
+		board[4][1] = 'R';
+		board[4][4] = 'R';
+		board[4][7] = 'R';
+		board[7][1] = 'R';
+		board[7][4] = 'R';
+		board[7][7] = 'R';
 		roomLighting();
 	}
 
@@ -175,15 +184,16 @@ public class Grid implements Serializable {
 	 * located. It allows the player to see where the rooms are and make their
 	 * way over to them while avoiding enemies
 	 */
-	public void roomLighting(Room[] room) {
-		for(int i = 0; i < 9; i++){
-			for(int j = 0; j < 9; j++){
-				for(int r = 0; r < room.length; r++){
-					if(room[r].getX() == i && room[r].getY() == j)
-						light[i][j] = true;
-				}
-			}
-		}
+	public void roomLighting() {
+		light[1][1] = true;
+		light[1][4] = true;
+		light[1][7] = true;
+		light[4][1] = true;
+		light[4][4] = true;
+		light[4][7] = true;
+		light[7][1] = true;
+		light[7][4] = true;
+		light[7][7] = true;
 	}
 
 	/**
