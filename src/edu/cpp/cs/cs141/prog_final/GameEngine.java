@@ -631,6 +631,7 @@ public class GameEngine implements Serializable {
 				if (ninjas[i] != null) {
 					if (ninjas[i].getPositionX() == x && ninjas[i].getPositionY() == y) {
 						ninjas[i] = null;
+						ui.killedNinja();
 					}
 				}
 			}
