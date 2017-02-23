@@ -33,17 +33,9 @@
  */
 package edu.cpp.cs.cs141.prog_final.io;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 
 import edu.cpp.cs.cs141.prog_final.Grid;
-import edu.cpp.cs.cs141.prog_final.beings.Ninja;
-import edu.cpp.cs.cs141.prog_final.beings.Player;
-import edu.cpp.cs.cs141.prog_final.items.Briefcase;
-import edu.cpp.cs.cs141.prog_final.items.Bullet;
-import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
  * This class is designed to save the state of the game to a file. The state of
@@ -54,40 +46,40 @@ import edu.cpp.cs.cs141.prog_final.items.Radar;
 public class SaveGame {
 
 	/**
+	 * This field represents the what the current state of the game will be
+	 * parsed into. The {@link edu.cpp.cs.cs141.prog_final.Grid} holds the
+	 * state of the game, so it will be parsed into this field.
+	 */
+	private int[][] boardState;
+
+	/**
 	 * This field represents an object of type {@link java.io.PrintWriter} This
 	 * is used to print the state of the game into a file.
 	 */
-	private FileOutputStream fileStream;
-	private ObjectOutputStream objStream;
-	private File file;
+	private PrintWriter writer;
 
 	/**
 	 * Constructor for {@link SaveGame}. This will make the necessary
 	 * initializations that will be required to save the state of the game.
 	 * 
-	 * @param fileName
-	 *            the name of the file that the game will be saved to
+	 * @param fileName the name of the file that the game will be saved to
 	 */
-	public SaveGame(String fileName, Ninja[] n, Player p, Radar r, Invincibility inv, Briefcase b, Bullet bul,
-			Grid grid) {
-		try {
-			file = new File(fileName);
-			fileStream = new FileOutputStream(file);
-			objStream = new ObjectOutputStream(fileStream);
-			
-			objStream.writeObject(n);
-			objStream.writeObject(p);
-			objStream.writeObject(r);
-			objStream.writeObject(inv);
-			objStream.writeObject(b);
-			objStream.writeObject(bul);
-			objStream.writeObject(grid);
-			System.out.println("saved to " + fileName);
-		}
-		// CHANGE EXCEPTION
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+	public SaveGame(String fileName) {
+
+	}
+
+	/**
+	 * This method will take in the game's grid and parse it into a two
+	 * dimensional array with ints that represents specific objects within the
+	 * game.
+	 * 
+	 * @param grid
+	 *            the game's grid
+	 * @return a two dimensional array with the current state of the game
+	 */
+	private int[][] parseState(Grid grid) {
+
+		return boardState;
 	}
 
 	/**
@@ -96,10 +88,9 @@ public class SaveGame {
 	 * {@link #parseState(Grid)}. The method will then print all data into a
 	 * file.
 	 * 
-	 * @param grid
-	 *            the game's grid
+	 * @param grid the game's grid
 	 */
-	public void writeToFile() {
+	public void writeToFile(Grid grid) {
 
 	}
 
