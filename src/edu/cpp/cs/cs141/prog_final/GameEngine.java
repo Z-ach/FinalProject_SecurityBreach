@@ -158,7 +158,7 @@ public class GameEngine implements Serializable {
 	 * {@code false}. While the condition will be set here for the loop, it will
 	 * be checked in the later method.
 	 */
-	public void run() {
+	private void run() {
 
 		createBoard();
 
@@ -220,7 +220,7 @@ public class GameEngine implements Serializable {
 		}
 	}
 
-	public void winGame() {
+	private void winGame() {
 		ui.endMessage(true);
 		System.exit(0);
 	}
@@ -232,7 +232,7 @@ public class GameEngine implements Serializable {
 	 * game is desired. If a saved game is not loaded, clicking start in the
 	 * start menu will also call this method.
 	 */
-	public void restartPlayer(boolean loseLife) {
+	private void restartPlayer(boolean loseLife) {
 		if (player == null)
 			player = new Player(8, 0);
 		player.setPlayer();
@@ -248,7 +248,7 @@ public class GameEngine implements Serializable {
 	 * after the player is settled in a spot. It will incorporate the random
 	 * number generator that will randomize the movement of each ninja.
 	 */
-	public void moveNinja() {
+	private void moveNinja() {
 		boolean move;
 		int direction;
 		for (Ninja n : ninjas) {
@@ -262,7 +262,7 @@ public class GameEngine implements Serializable {
 		}
 	}
 
-	public boolean checkForNinja() {
+	private boolean checkForNinja() {
 		for (int i = 0; i < ninjas.length; i++) {
 			if (ninjas[i] != null && (!player.getShield())) {
 				if (ninjas[i].getPositionX() == player.getPositionX()
@@ -287,7 +287,7 @@ public class GameEngine implements Serializable {
 	 * @return the {@link edu.cpp.cs.cs141.prog_final.items.Item} on the grid
 	 *         space where the player is. {@code null} if none.
 	 */
-	public void checkForItem() {
+	private void checkForItem() {
 		switch (grid.getBoard()[player.getPositionX()][player.getPositionY()]) {
 		case 'i':
 			pickupInvinc();
@@ -312,7 +312,7 @@ public class GameEngine implements Serializable {
 	 * @see #assignNinja()
 	 * @see #assignInvincibility()
 	 */
-	public void createBoard() {
+	private void createBoard() {
 		assignBriefcase();
 		assignRadar();
 		assignBullet();
@@ -326,7 +326,7 @@ public class GameEngine implements Serializable {
 	 * denoted as a 'B' in debug mode. The randomization is based on
 	 * {@link java.util.Random}.
 	 */
-	public void assignBriefcase() {
+	private void assignBriefcase() {
 		int check = rand.nextInt(9);
 		switch (check) {
 		case 0:
@@ -376,7 +376,7 @@ public class GameEngine implements Serializable {
 	 * spot that was not previously occupied. The ninjas must also spawn 3 away
 	 * from the player's initial position.
 	 */
-	public void assignNinja() {
+	private void assignNinja() {
 		ninjas = new Ninja[6];
 		for (int c = 0; c < 6; c++) {
 			while (ninjas[c] == null) {
@@ -398,7 +398,7 @@ public class GameEngine implements Serializable {
 	 * it is an empty space, it will place the item on that specific (x,y)
 	 * coordinate.
 	 */
-	public void assignRadar() {
+	private void assignRadar() {
 		boolean valid = false;
 
 		while (!valid) {
@@ -414,7 +414,7 @@ public class GameEngine implements Serializable {
 		}
 	}
 
-	public void refreshGrid() {
+	private void refreshGrid() {
 		grid.eraseGrid();
 		if (radarFound)
 			grid.enableCaseLighting(briefcase);
@@ -437,7 +437,7 @@ public class GameEngine implements Serializable {
 	 * another item(s), player or room that exist on the spot. If it is an empty
 	 * space on the grid, it will place the item there.
 	 */
-	public void assignBullet() {
+	private void assignBullet() {
 
 		boolean valid = false;
 
@@ -460,7 +460,7 @@ public class GameEngine implements Serializable {
 	 * room is on the selected coordinate. If it is an empty space, it will
 	 * place it there.
 	 */
-	public void assignInvincibility() {
+	private void assignInvincibility() {
 
 		boolean valid = false;
 
@@ -480,7 +480,7 @@ public class GameEngine implements Serializable {
 		}
 	}
 
-	public boolean roomCheck() {
+	private boolean roomCheck() {
 		int x = player.getPositionX() + 1;
 		int y = player.getPositionY();
 		if (briefcase.getX() == x && briefcase.getY() == y) {
@@ -489,7 +489,7 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
-	public boolean roomCheckRequirement(int direction) {
+	private boolean roomCheckRequirement(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
 
@@ -514,7 +514,7 @@ public class GameEngine implements Serializable {
 	 *            the being trying to move to check conditions on
 	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
-	public boolean movementCheck(int direction, LivingBeing being, boolean isPlayer) {
+	private boolean movementCheck(int direction, LivingBeing being, boolean isPlayer) {
 
 		int x = being.getPositionX();
 		int y = being.getPositionY();
@@ -550,14 +550,14 @@ public class GameEngine implements Serializable {
 		return true;
 	}
 
-	public void pickupBullet() {
+	private void pickupBullet() {
 		if (player.getBullets() == 0) {
 			player.findBullet();
 		} 
 		bullet.use();
 	}
 
-	public void shoot(int direction) {
+	private void shoot(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
 		boolean continueCheck = true;
