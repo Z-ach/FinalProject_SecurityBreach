@@ -1,7 +1,6 @@
 user interface prompt - Bryan
-shooting - Annalyn
-game loop - Zach
 
-
-TEST
-
+TODO FOR 3/3:
+-SAVING
+-LOADING
+-TESTING
