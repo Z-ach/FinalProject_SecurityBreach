@@ -99,8 +99,19 @@ public class Grid implements Serializable {
 		roomLighting();
 	}
 
+	/**
+	 * This method looks in a specified direction to reveal the spaces that are
+	 * two ahead of the player.
+	 * 
+	 * @param x
+	 *            the x coord of the player
+	 * @param y
+	 *            the y coord of the player
+	 * @param direction
+	 *            the direction to look
+	 */
 	public void look(int x, int y, int direction) {
-		//System.out.println("looking " + direction  + " from " + x + "," + y);
+		// System.out.println("looking " + direction + " from " + x + "," + y);
 		switch (direction) {
 		case 0:
 			if (x - 2 >= 0) {
@@ -162,19 +173,28 @@ public class Grid implements Serializable {
 		}
 	}
 
+	/**
+	 * This method is used to update the grid. It erases everything currently on
+	 * the grid with the exception of the rooms.
+	 */
 	public void eraseGrid() {
 		for (int row = 0; row < DIMENSION; row++) {
 			for (int col = 0; col < DIMENSION; col++) {
-				if (row % 3 == 1 && col % 3 == 1){
-				}
-				else{
+				if (row % 3 == 1 && col % 3 == 1) {
+				} else {
 					board[row][col] = ' ';
 				}
 			}
 		}
 	}
-	
-	public void enableCaseLighting(Briefcase briefcase){
+
+	/**
+	 * This method is used for the radar, and makes it so that the grid prints
+	 * out the location of the briefcase.
+	 * 
+	 * @param briefcase the briefcase object
+	 */
+	public void enableCaseLighting(Briefcase briefcase) {
 		light[briefcase.getX()][briefcase.getY()] = true;
 		board[briefcase.getX()][briefcase.getY()] = 'B';
 	}

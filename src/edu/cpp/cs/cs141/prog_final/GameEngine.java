@@ -265,13 +265,14 @@ public class GameEngine implements Serializable {
 	 */
 	private void moveNinja() {
 		boolean move;
-		int direction;
+		int direction, tries = 0;;
 		for (Ninja n : ninjas) {
 			if (n != null) {
 				move = false;
-				while (!move) {
+				while (!move && tries < 4) {
 					direction = rand.nextInt(4);
 					move = movementCheck(direction, n, false);
+					tries++;
 				}
 			}
 		}
