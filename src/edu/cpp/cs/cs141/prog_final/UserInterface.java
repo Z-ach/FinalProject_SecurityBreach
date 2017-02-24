@@ -132,6 +132,11 @@ public class UserInterface implements Serializable {
 		}
 	}
 
+	/**
+	 * This method represents {@link #direction()}, which is the movement option for the 
+	 * player. The user will press the corresponding number (1,2,3,4) to move the player 
+	 * around the grid. 
+	 */
 	public int direction() {
 		System.out.println("1: UP");
 		System.out.println("2: DOWN");
