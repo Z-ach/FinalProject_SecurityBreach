@@ -8,7 +8,7 @@ import java.io.Serializable;
  * constructor that spawns and creates a player based on a location on the grid.
  * It inherits properties from the living being super class.
  */
-public class Player extends LivingBeing implements Serializable{
+public class Player extends LivingBeing implements Serializable {
 
 	/**
 	 * 
@@ -22,9 +22,9 @@ public class Player extends LivingBeing implements Serializable{
 	 * game.
 	 */
 	private static int lives = 3;
-	
+
 	private boolean shield = false;
-	
+
 	/**
 	 * This field represents the amount of bullets that the player has in their
 	 * gun. The max amount of bullets a gun can carry is one. Initially
@@ -45,7 +45,8 @@ public class Player extends LivingBeing implements Serializable{
 	public Player(int x, int y) {
 		super(x, y);
 	}
-	public void setPlayer(){
+
+	public void setPlayer() {
 		x = 8;
 		y = 0;
 	}
@@ -69,9 +70,11 @@ public class Player extends LivingBeing implements Serializable{
 	public int getBullets() {
 		return bullet;
 	}
-	public void loseLive(){
-		lives--; 
+
+	public void loseLive() {
+		lives--;
 	}
+
 	/**
 	 * This is the getLives method. It returns the number of lives left that the
 	 * player has back to the User Interface class and displays it for the
@@ -80,10 +83,11 @@ public class Player extends LivingBeing implements Serializable{
 	public int getLives() {
 		return lives;
 	}
+
 	/**
 	 * This is the alive class. Its main purpose is to check if the player has
-	 * over {@code 0} lives left. If there are no lives left, the game is over and the
-	 * player has lost.
+	 * over {@code 0} lives left. If there are no lives left, the game is over
+	 * and the player has lost.
 	 * 
 	 * @return {@code true} if the playefr is alive. If the player is dead, the
 	 *         method will return {@code false}
@@ -95,13 +99,32 @@ public class Player extends LivingBeing implements Serializable{
 			return false;
 		}
 	}
-	public void findBullet(){
+
+	/**
+	 * This method adds a bullet to the player. It will be called when the
+	 * player picks up the bullet power up.
+	 */
+	public void findBullet() {
 		bullet++;
 	}
-	public void setShield(boolean hasShield){
+
+	/**
+	 * This method sets the shield the whatever the parameter being passed in
+	 * is. Used when the power up is picked up, and when it expires.
+	 * 
+	 * @param hasShield
+	 *            whether or not the player should have a shield
+	 */
+	public void setShield(boolean hasShield) {
 		shield = hasShield;
 	}
-	public boolean getShield(){
+
+	/**
+	 * Gets whether or not the player currently has a shield
+	 * 
+	 * @return {@code true} if the shield is active, {@code false} if not
+	 */
+	public boolean getShield() {
 		return shield;
 	}
 }
