@@ -187,7 +187,7 @@ public class GameEngine implements Serializable {
 						if (tempDirection == 1 && roomCheck() && roomCheckRequirement(tempDirection))
 							winGame();
 						move = movementCheck(tempDirection, player, true);
-						if(player.getShield())
+						if (player.getShield())
 							invinc.useTurn();
 						checkForNinja();
 						if (!move)
@@ -198,7 +198,7 @@ public class GameEngine implements Serializable {
 					break;
 				case 2:
 					shoot(ui.direction());
-					if(player.getShield())
+					if (player.getShield())
 						invinc.useTurn();
 					moveNinja();
 					break;
@@ -206,7 +206,7 @@ public class GameEngine implements Serializable {
 				break;
 			case 2:
 				shoot(ui.direction());
-				if(player.getShield())
+				if (player.getShield())
 					invinc.useTurn();
 				moveNinja();
 				break;
@@ -403,7 +403,7 @@ public class GameEngine implements Serializable {
 
 		while (!valid) {
 
-			int row = rand.nextInt(9); 
+			int row = rand.nextInt(9);
 			int col = rand.nextInt(9);
 
 			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
@@ -468,9 +468,6 @@ public class GameEngine implements Serializable {
 
 			int row = rand.nextInt(9);
 			int col = rand.nextInt(9);
-			
-			row = 7;
-			col = 0;
 
 			if (grid.getBoard()[row][col] == ' ' && (!(row == 8 && col == 0))) {
 				grid.assign(row, col, 'i');
@@ -553,7 +550,7 @@ public class GameEngine implements Serializable {
 	private void pickupBullet() {
 		if (player.getBullets() == 0) {
 			player.findBullet();
-		} 
+		}
 		bullet.use();
 	}
 
@@ -564,30 +561,28 @@ public class GameEngine implements Serializable {
 		if (player.getBullets() != 0) {
 			player.shoot();
 			switch (direction) {
-			
 			case 1:
-				
-				while (x > 0 && x < 9 && continueCheck == true) {
+
+				while (x > 0 && continueCheck) {
 					--x;
 					continueCheck = shootCheck(x, y);
-					}
+				}
 				break;
 
 			case 2:
-				while (x > 0 && x < 8 && continueCheck == true) {
+				while (x < 8 && continueCheck) {
 					++x;
 					continueCheck = shootCheck(x, y);
 				}
 				break;
 			case 3:
-				while (y > 0 && y < 8 && continueCheck == true) {
+				while (y > 0 && continueCheck) {
 					--y;
 					continueCheck = shootCheck(x, y);
 				}
 				break;
-
 			case 4:
-				while (y > 0 && y < 8 && continueCheck == true) {
+				while (y < 8 && continueCheck) {
 					++y;
 					continueCheck = shootCheck(x, y);
 				}
