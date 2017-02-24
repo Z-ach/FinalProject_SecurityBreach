@@ -118,6 +118,11 @@ public class GameEngine implements Serializable {
 
 	private boolean debugMode, radarFound;
 
+	/**
+	 * This field represents the briefcase in the game. When this is found, the
+	 * game has been won. The briefcase is placed in the same coordinates of a
+	 * room, but randomly.
+	 */
 	private Briefcase briefcase;
 
 	/**
@@ -135,6 +140,11 @@ public class GameEngine implements Serializable {
 
 	}
 
+	/**
+	 * This method is used to make calls to the ui to prompt the user to decide
+	 * what to do in the beginning of the game. The user can start the game,
+	 * load a game, or exit the game.
+	 */
 	public void startPrompt() {
 
 		int answer = ui.gameStartPrompt();
@@ -220,6 +230,11 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method is called if the briefcase is found. When this is called, it
+	 * uses the ui to print out a message indicating the player has won the
+	 * game, and then exits the program.
+	 */
 	private void winGame() {
 		ui.endMessage(true);
 		System.exit(0);
@@ -262,6 +277,16 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method checks the current board state to see if the ninja has
+	 * touched a player, or if a player has run into a ninja. If either of these
+	 * is true, the player loses a life and is reset back to the starting
+	 * position.
+	 * 
+	 * @return whether or not a ninja and player are in the same spot.
+	 *         {@code true} indicates same spot, {@code false} indicates no
+	 *         collision
+	 */
 	private boolean checkForNinja() {
 		for (int i = 0; i < ninjas.length; i++) {
 			if (ninjas[i] != null && (!player.getShield())) {
@@ -414,6 +439,12 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method updates the current state of the character representation of
+	 * the game, also known as the grid. The method wipes the current state of
+	 * the grid, then iterates through each item to see if it should still be
+	 * printed to the grid.
+	 */
 	private void refreshGrid() {
 		grid.eraseGrid();
 		if (radarFound)
@@ -477,6 +508,13 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method checks the room below the player to see if the briefcase is
+	 * in that location. If it is, return {@code true}. If not, {@code false}.
+	 * 
+	 * @return {@code true} if the room being checked contains the briefcase,
+	 *         {@code false} if it doesn't.
+	 */
 	private boolean roomCheck() {
 		int x = player.getPositionX() + 1;
 		int y = player.getPositionY();
@@ -486,6 +524,16 @@ public class GameEngine implements Serializable {
 		return false;
 	}
 
+	/**
+	 * This method checks to make sure that the player is trying to enter the
+	 * room from the north side. If it is, then the room can be checked, if not,
+	 * then the room will not be checked.
+	 * 
+	 * @param direction
+	 *            the direction the player is trying to move
+	 * @return {@code true} if the player is trying to enter from the north,
+	 *         {@code false} if not
+	 */
 	private boolean roomCheckRequirement(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
@@ -547,6 +595,11 @@ public class GameEngine implements Serializable {
 		return true;
 	}
 
+	/**
+	 * This method is used to pick the bullet up. If the player already has a
+	 * bullet, the player does not gain the bullet, if it doesn't, then the
+	 * player picks up the bullet. Either way, the bullet is used.
+	 */
 	private void pickupBullet() {
 		if (player.getBullets() == 0) {
 			player.findBullet();
@@ -554,6 +607,14 @@ public class GameEngine implements Serializable {
 		bullet.use();
 	}
 
+	/**
+	 * This method shoots the bullet the player has in a direction specified in
+	 * the parameter. The bullet will keep moving until it hits a solid object
+	 * such as a room or wall.
+	 * 
+	 * @param direction
+	 *            the direction to shoot
+	 */
 	private void shoot(int direction) {
 		int x = player.getPositionX();
 		int y = player.getPositionY();
@@ -592,6 +653,18 @@ public class GameEngine implements Serializable {
 
 	}
 
+	/**
+	 * This method checks to see if the bullet being shot has hit anything. If
+	 * it hits a ninja, then the ninja is killed. If it hits a wall or a room,
+	 * then the bullet will stop.
+	 * 
+	 * @param x
+	 *            the row of the bullet
+	 * @param y
+	 *            the column of the bullet
+	 * @return {@code true} if the bullet can keep moving, {@code false} if it
+	 *         has hit a solid object.
+	 */
 	private boolean shootCheck(int x, int y) {
 		if (grid.getBoard()[x][y] == 'B') {
 			return false;
@@ -610,11 +683,21 @@ public class GameEngine implements Serializable {
 		return true;
 	}
 
+	/**
+	 * This method picks up the radar for the player. The radar is then
+	 * classified as used, and is removed from the board.
+	 */
 	private void pickupRadar() {
 		radarFound = true;
 		radar.use();
 	}
 
+	/**
+	 * This method picks up the invincibility power up for the player. Once
+	 * picked up, it has 5 turns where it is active, and after that it is
+	 * disabled. The power up is removed from the board as soon as it is picked
+	 * up.
+	 */
 	private void pickupInvinc() {
 		player.setShield(true);
 		invinc.use();
