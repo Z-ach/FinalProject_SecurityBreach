@@ -292,7 +292,6 @@ public class UserInterface implements Serializable {
 	 */
 	public void loseLife() {
 		System.out.println("You have lost a live.\n"
-				+ "You will respawn in your original spot.\n"
 				+ "Better luck next time.");
 	}
 
