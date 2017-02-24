@@ -269,6 +269,20 @@ public class GameEngine implements Serializable {
 		for (Ninja n : ninjas) {
 			if (n != null) {
 				move = false;
+				
+				if(n.getPositionX() - 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+					move = movementCheck(0, n, false);
+					continue;
+				}else if(n.getPositionX() + 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+					move = movementCheck(1, n, false);
+					continue;
+				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() + 1){
+					move = movementCheck(2, n, false);
+					continue;
+				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() - 1){
+					move = movementCheck(3, n, false);
+					continue;
+				}
 				while (!move && tries < 4) {
 					direction = rand.nextInt(4);
 					move = movementCheck(direction, n, false);
