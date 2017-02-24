@@ -305,6 +305,11 @@ public class UserInterface implements Serializable {
 		}
 	}
 	
+	/**
+	 * This method will display a kill message to the user when the user shoots the bullet
+	 * and kills the ninja. This method will be passed into the Game Engine under
+	 * {@link #shootCheck()}
+	 */
 	public void killedNinja(){
 		System.out.println("You have succesfully killed a ninja!");
 	}
