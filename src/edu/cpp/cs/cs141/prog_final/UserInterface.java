@@ -258,6 +258,10 @@ public class UserInterface implements Serializable {
 		}
 
 	}
+	
+	public void noCase(){
+		System.out.println("There is no briefcase in this room. Keep checking.");
+	}
 
 	/**
 	 * This method is {@code true} if the character has found the briefcase and
