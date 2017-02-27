@@ -604,7 +604,7 @@ public class GameEngine implements Serializable {
 
 		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
 			if(isPlayer && direction == 1){
-				ui.noCase();;
+				ui.noCase();
 				return true;
 			}
 			return false;
