@@ -33,6 +33,7 @@ import java.util.Random;
 import edu.cpp.cs.cs141.prog_final.beings.LivingBeing;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.io.SaveGame;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
@@ -151,7 +152,7 @@ public class GameEngine implements Serializable {
 
 		if (answer == 1) {
 
-			run();
+			// run();
 		}
 		if (answer == 2)
 
@@ -159,6 +160,10 @@ public class GameEngine implements Serializable {
 				System.exit(0);
 
 	}
+
+	// temp stuff
+	boolean move = false;
+	int tempDirection = 0;
 
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
@@ -168,15 +173,10 @@ public class GameEngine implements Serializable {
 	 * {@code false}. While the condition will be set here for the loop, it will
 	 * be checked in the later method.
 	 */
-	private void run() {
-
-		createBoard();
-
-		debugMode = false;
-		boolean move = false;
-		radarFound = false;
-		int tempDirection = 0;
-
+	public void run(boolean loading) {
+		if (!loading) {
+			createBoard();
+		}
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
@@ -221,7 +221,7 @@ public class GameEngine implements Serializable {
 				moveNinja();
 				break;
 			case 3:
-				// exit menu goes here
+				new SaveGame("save.dat", this);
 				break;
 			case 4:
 				debugMode = !debugMode;
@@ -265,21 +265,21 @@ public class GameEngine implements Serializable {
 	 */
 	private void moveNinja() {
 		boolean move;
-		int direction, tries = 0;;
+		int direction, tries = 0;
 		for (Ninja n : ninjas) {
 			if (n != null) {
 				move = false;
-				
-				if(n.getPositionX() - 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+
+				if (n.getPositionX() - 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()) {
 					move = movementCheck(0, n, false);
 					continue;
-				}else if(n.getPositionX() + 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+				} else if (n.getPositionX() + 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()) {
 					move = movementCheck(1, n, false);
 					continue;
-				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() + 1){
+				} else if (n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() + 1) {
 					move = movementCheck(2, n, false);
 					continue;
-				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() - 1){
+				} else if (n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() - 1) {
 					move = movementCheck(3, n, false);
 					continue;
 				}
@@ -603,8 +603,8 @@ public class GameEngine implements Serializable {
 		}
 
 		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
-			if(isPlayer && direction == 1){
-				ui.noCase();;
+			if (isPlayer && direction == 1) {
+				ui.noCase();
 				return true;
 			}
 			return false;

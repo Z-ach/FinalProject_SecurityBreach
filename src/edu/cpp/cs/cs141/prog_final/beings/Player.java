@@ -21,7 +21,7 @@ public class Player extends LivingBeing implements Serializable {
 	 * player loses all 3 lives, the game is over, and the player has lost the
 	 * game.
 	 */
-	private static int lives = 3;
+	private int lives = 3;
 
 	private boolean shield = false;
 
@@ -31,7 +31,7 @@ public class Player extends LivingBeing implements Serializable {
 	 * {@code 1}, will decrease by {@code 1} whenever a shot is taken. If the
 	 * player has no bullets, then no shot can be taken.
 	 */
-	private static int bullet = 1;
+	private int bullet = 1;
 
 	/**
 	 * This is the constructor for the player subclass. Its parameter is is a

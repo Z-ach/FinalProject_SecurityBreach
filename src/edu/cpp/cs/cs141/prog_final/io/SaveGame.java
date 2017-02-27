@@ -33,9 +33,12 @@
  */
 package edu.cpp.cs.cs141.prog_final.io;
 
-import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
-import edu.cpp.cs.cs141.prog_final.Grid;
+import edu.cpp.cs.cs141.prog_final.GameEngine;
 
 /**
  * This class is designed to save the state of the game to a file. The state of
@@ -45,18 +48,10 @@ import edu.cpp.cs.cs141.prog_final.Grid;
  */
 public class SaveGame {
 
-	/**
-	 * This field represents the what the current state of the game will be
-	 * parsed into. The {@link edu.cpp.cs.cs141.prog_final.Grid} holds the
-	 * state of the game, so it will be parsed into this field.
-	 */
-	private int[][] boardState;
-
-	/**
-	 * This field represents an object of type {@link java.io.PrintWriter} This
-	 * is used to print the state of the game into a file.
-	 */
-	private PrintWriter writer;
+	private File saveFile;
+	private FileOutputStream fos;
+	private ObjectOutputStream oos;
+	
 
 	/**
 	 * Constructor for {@link SaveGame}. This will make the necessary
@@ -64,34 +59,20 @@ public class SaveGame {
 	 * 
 	 * @param fileName the name of the file that the game will be saved to
 	 */
-	public SaveGame(String fileName) {
-
+	public SaveGame(String fileName, GameEngine game) {
+		try{
+			saveFile = new File(fileName);
+			
+			fos = new FileOutputStream(saveFile);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(game);
+			
+			fos.close();
+			oos.close();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
-	/**
-	 * This method will take in the game's grid and parse it into a two
-	 * dimensional array with ints that represents specific objects within the
-	 * game.
-	 * 
-	 * @param grid
-	 *            the game's grid
-	 * @return a two dimensional array with the current state of the game
-	 */
-	private int[][] parseState(Grid grid) {
-
-		return boardState;
-	}
-
-	/**
-	 * This method will do the physical writing to the file. The grid will be
-	 * passed in as an argument, which will be used in the method call to
-	 * {@link #parseState(Grid)}. The method will then print all data into a
-	 * file.
-	 * 
-	 * @param grid the game's grid
-	 */
-	public void writeToFile(Grid grid) {
-
-	}
+	
 
 }

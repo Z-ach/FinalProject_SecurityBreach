@@ -33,7 +33,12 @@
  */
 package edu.cpp.cs.cs141.prog_final.io;
 
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+import edu.cpp.cs.cs141.prog_final.GameEngine;
 
 /**
  * This class will be responsible for restoring a previously saved game state.
@@ -43,52 +48,30 @@ import java.util.Scanner;
  */
 public class LoadGame {
 
-	/**
-	 * This field represents the two dimensional array of integers that
-	 * represent the old state of the game that was stored in the file. The int
-	 * values within this array correspond to different objects within the game.
-	 */
-	private int[][] boardState;
+	private File saveFile;
+	private FileInputStream fis;
+	private ObjectInputStream ois;
 
-	/**
-	 * This field represents a {@link java.util.Scanner} object that will read
-	 * the file line by line.
-	 */
-	private Scanner reader;
-
-	/**
-	 * This method will initialize the necessary fields that will be required to
-	 * restore the game to the previous state that was stored in the file.
-	 * 
-	 * @param fileName
-	 *            the name of the file the game will be loaded from
-	 */
 	public LoadGame(String fileName) {
+		saveFile = new File(fileName);
 
+		restoreGame();
 	}
 
-	/**
-	 * This method will read in the state of the game from the file and parse it
-	 * into the two dimensional array represented by {@link #boardState}.
-	 * 
-	 * @return the old board state that was saved in the file, now as a two
-	 *         dimensional array
-	 */
-	public int[][] readBoardState() {
-		return boardState;
-	}
+	public GameEngine restoreGame() {
+		GameEngine game = new GameEngine(null);
+		try {
+			fis = new FileInputStream(saveFile);
+			ois = new ObjectInputStream(fis);
 
-	/**
-	 * This method takes in the two dimensional array holding the old state of
-	 * the board and assigns the values in the array that represent various
-	 * objects to actual objects in the game.
-	 * 
-	 * @param saveState
-	 *            the old state of the game that will be used to assign objects
-	 *            to the new game board
-	 */
-	public void restoreActualGrid(int[][] saveState) {
+			game = (GameEngine) ois.readObject();
 
+			fis.close();
+			ois.close();
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return game;
 	}
 
 }
