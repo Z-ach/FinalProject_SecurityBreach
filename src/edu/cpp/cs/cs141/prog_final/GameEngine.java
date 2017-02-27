@@ -266,7 +266,6 @@ public class GameEngine implements Serializable {
 	private void moveNinja() {
 		boolean move;
 		int direction, tries = 0;
-		;
 		for (Ninja n : ninjas) {
 			if (n != null) {
 				move = false;
