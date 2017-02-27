@@ -33,6 +33,7 @@ import java.util.Random;
 import edu.cpp.cs.cs141.prog_final.beings.LivingBeing;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.io.SaveGame;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
@@ -104,7 +105,7 @@ public class GameEngine implements Serializable {
 	 * forth. Therefore, it would allow the player to make decisions and game to
 	 * run at the same time.
 	 */
-	private UserInterface ui;
+	public UserInterface ui;
 
 	/**
 	 * This field is the player object from the player
@@ -151,7 +152,7 @@ public class GameEngine implements Serializable {
 
 		if (answer == 1) {
 
-			run();
+			//run();
 		}
 		if (answer == 2)
 
@@ -160,6 +161,14 @@ public class GameEngine implements Serializable {
 
 	}
 
+	
+	
+	//temp stuff
+	boolean move = false;
+	int tempDirection = 0;
+	
+	
+	
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
@@ -168,14 +177,10 @@ public class GameEngine implements Serializable {
 	 * {@code false}. While the condition will be set here for the loop, it will
 	 * be checked in the later method.
 	 */
-	private void run() {
-
+	public void run(boolean loading) {
+		if(!loading){
 		createBoard();
-
-		debugMode = false;
-		boolean move = false;
-		radarFound = false;
-		int tempDirection = 0;
+		}
 
 		while (player.alive()) {
 			refreshGrid();
@@ -221,7 +226,7 @@ public class GameEngine implements Serializable {
 				moveNinja();
 				break;
 			case 3:
-				// exit menu goes here
+				new SaveGame("save.dat", this);
 				break;
 			case 4:
 				debugMode = !debugMode;
@@ -604,7 +609,7 @@ public class GameEngine implements Serializable {
 
 		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
 			if(isPlayer && direction == 1){
-				ui.noCase();;
+				ui.noCase();
 				return true;
 			}
 			return false;
