@@ -71,8 +71,6 @@ public class LoadGame {
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (game.ui == null)
-			System.out.println("load failed.");
 		return game;
 	}
 

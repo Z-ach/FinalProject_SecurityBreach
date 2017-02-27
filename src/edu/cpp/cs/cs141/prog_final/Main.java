@@ -54,6 +54,9 @@ public class Main {
 		case 2:
 			LoadGame load = new LoadGame("save.dat");
 			load.restoreGame().run(true);
+			break;
+		case 3:
+			System.exit(0);
 		}
 	}
 

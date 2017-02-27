@@ -105,7 +105,7 @@ public class GameEngine implements Serializable {
 	 * forth. Therefore, it would allow the player to make decisions and game to
 	 * run at the same time.
 	 */
-	public UserInterface ui;
+	private UserInterface ui;
 
 	/**
 	 * This field is the player object from the player
@@ -152,7 +152,7 @@ public class GameEngine implements Serializable {
 
 		if (answer == 1) {
 
-			//run();
+			// run();
 		}
 		if (answer == 2)
 
@@ -161,14 +161,10 @@ public class GameEngine implements Serializable {
 
 	}
 
-	
-	
-	//temp stuff
+	// temp stuff
 	boolean move = false;
 	int tempDirection = 0;
-	
-	
-	
+
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
@@ -178,10 +174,9 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run(boolean loading) {
-		if(!loading){
-		createBoard();
+		if (!loading) {
+			createBoard();
 		}
-
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
@@ -270,21 +265,22 @@ public class GameEngine implements Serializable {
 	 */
 	private void moveNinja() {
 		boolean move;
-		int direction, tries = 0;;
+		int direction, tries = 0;
+		;
 		for (Ninja n : ninjas) {
 			if (n != null) {
 				move = false;
-				
-				if(n.getPositionX() - 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+
+				if (n.getPositionX() - 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()) {
 					move = movementCheck(0, n, false);
 					continue;
-				}else if(n.getPositionX() + 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()){
+				} else if (n.getPositionX() + 1 == player.getPositionX() && n.getPositionY() == player.getPositionY()) {
 					move = movementCheck(1, n, false);
 					continue;
-				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() + 1){
+				} else if (n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() + 1) {
 					move = movementCheck(2, n, false);
 					continue;
-				}else if(n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() - 1){
+				} else if (n.getPositionX() == player.getPositionX() && n.getPositionY() == player.getPositionY() - 1) {
 					move = movementCheck(3, n, false);
 					continue;
 				}
@@ -608,7 +604,7 @@ public class GameEngine implements Serializable {
 		}
 
 		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
-			if(isPlayer && direction == 1){
+			if (isPlayer && direction == 1) {
 				ui.noCase();
 				return true;
 			}
