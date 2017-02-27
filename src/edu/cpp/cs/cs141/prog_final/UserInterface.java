@@ -291,7 +291,7 @@ public class UserInterface implements Serializable {
 	 * grid.
 	 */
 	public void loseLife() {
-		System.out.println("You have lost a live.\n"
+		System.out.println("You have lost a life.\n"
 				+ "Better luck next time.");
 	}
 
