@@ -117,8 +117,12 @@ public class GameEngine implements Serializable {
 	 */
 	private Player player;
 
-	private boolean debugMode, radarFound;
+	private boolean debugMode;
+	
+	private boolean radarFound;
 
+	private boolean hardMode;
+	
 	/**
 	 * This field represents the briefcase in the game. When this is found, the
 	 * game has been won. The briefcase is placed in the same coordinates of a
@@ -152,6 +156,7 @@ public class GameEngine implements Serializable {
 	public void run(boolean loading) {
 		if (!loading) {
 			createBoard();
+			hardMode = ui.hardAI() == 2;
 		}
 		
 		boolean move = false;
@@ -162,14 +167,14 @@ public class GameEngine implements Serializable {
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
 				grid.enableCaseLighting(briefcase);
-			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc);
+			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
-				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc);
+				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {

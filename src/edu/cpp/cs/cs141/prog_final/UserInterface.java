@@ -156,6 +156,13 @@ public class UserInterface implements Serializable {
 		System.out.println("3: EXIT");
 		return takeInput(1, 3);
 	}
+	
+	public int hardAI(){
+		System.out.println("Please select the difficulty:");
+		System.out.println("1: EASY MODE");
+		System.out.println("2: HARD MODE");
+		return takeInput(1, 2);
+	}
 
 	/**
 	 * This method will {@link takeInput()} from the player through asking the
@@ -190,13 +197,20 @@ public class UserInterface implements Serializable {
 	 * the player's turn.
 	 */
 
-	public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield) {
+	public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield, boolean hardMode) {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (light[i][j])
 					System.out.print("[ " + board[i][j] + " ]");
 				else
 					System.out.print("[ X ]");
+			}
+			if(i == 1){
+				System.out.print("\tGame Difficulty: ");
+				if(hardMode)
+					System.out.print("HARD");
+				else
+					System.out.print("EASY");
 			}
 			if(i == 2){
 				System.out.print("\tLives: " + player.getLives());
