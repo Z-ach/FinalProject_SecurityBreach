@@ -111,9 +111,12 @@ public class Grid implements Serializable {
 	 *            the direction to look
 	 */
 	public void look(int x, int y, int direction) {
-		// System.out.println("looking " + direction + " from " + x + "," + y);
+
 		switch (direction) {
 		case 0:
+			if (board[x - 1][y] == 'R') {
+				return;
+			}
 			if (x - 2 >= 0) {
 				light[x - 2][y] = true;
 				light[x - 1][y] = true;
@@ -121,6 +124,9 @@ public class Grid implements Serializable {
 				light[x - 1][y] = true;
 			break;
 		case 1:
+			if (board[x + 1][y] == 'R') {
+				return;
+			}
 			if (x + 2 <= 8) {
 				light[x + 2][y] = true;
 				light[x + 1][y] = true;
@@ -128,6 +134,9 @@ public class Grid implements Serializable {
 				light[x + 1][y] = true;
 			break;
 		case 2:
+			if (board[x][y - 1] == 'R') {
+				return;
+			}
 			if (y - 2 >= 0) {
 				light[x][y - 2] = true;
 				light[x][y - 1] = true;
@@ -135,6 +144,9 @@ public class Grid implements Serializable {
 				light[x][y - 1] = true;
 			break;
 		case 3:
+			if (board[x][y + 1] == 'R') {
+				return;
+			}
 			if (y + 2 <= 8) {
 				light[x][y + 2] = true;
 				light[x][y + 1] = true;
@@ -192,7 +204,8 @@ public class Grid implements Serializable {
 	 * This method is used for the radar, and makes it so that the grid prints
 	 * out the location of the briefcase.
 	 * 
-	 * @param briefcase the briefcase object
+	 * @param briefcase
+	 *            the briefcase object
 	 */
 	public void enableCaseLighting(Briefcase briefcase) {
 		light[briefcase.getX()][briefcase.getY()] = true;
