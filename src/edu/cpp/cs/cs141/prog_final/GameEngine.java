@@ -142,30 +142,6 @@ public class GameEngine implements Serializable {
 	}
 
 	/**
-	 * This method is used to make calls to the ui to prompt the user to decide
-	 * what to do in the beginning of the game. The user can start the game,
-	 * load a game, or exit the game.
-	 */
-	public void startPrompt() {
-
-		int answer = ui.gameStartPrompt();
-
-		if (answer == 1) {
-
-			// run();
-		}
-		if (answer == 2)
-
-			if (answer == 3)
-				System.exit(0);
-
-	}
-
-	// temp stuff
-	boolean move = false;
-	int tempDirection = 0;
-
-	/**
 	 * This method runs the game. It will have a loop with a condition of a
 	 * boolean value to check if the game is able to continue. It will be in a
 	 * while loop, and in the beginning of the game, the boolean value from the
@@ -177,6 +153,10 @@ public class GameEngine implements Serializable {
 		if (!loading) {
 			createBoard();
 		}
+		
+		boolean move = false;
+		int tempDirection = 0;
+		
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
