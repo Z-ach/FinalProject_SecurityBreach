@@ -270,36 +270,7 @@ public class GameEngine implements Serializable {
 				}
 
 				if (hardMode) {
-					System.out.println("hard mode enabled, trying..");
-					if (n.getPositionX() > player.getPositionX()) {
-						move = movementCheck(0, n, false);
-						if (move){
-							System.out.println("ninja x is more than player, moving up");
-							continue;
-						}
-					}
-					if (n.getPositionX() < player.getPositionX()) {
-						move = movementCheck(1, n, false);
-						if (move){
-							System.out.println("ninja x is less than player, moving down");
-							continue;
-						}
-					}
-					if (n.getPositionY() > player.getPositionY()) {
-						move = movementCheck(2, n, false);
-						if (move){
-							System.out.println("ninja y is more than player, moving left");
-							continue;
-						}
-					}
-					if (n.getPositionY() < player.getPositionY()) {
-						move = movementCheck(3, n, false);
-						if (move){
-							System.out.println("ninja y is less than player, moving right");
-							continue;
-						}
-					}
-					System.out.println("no moves possible for ninja at " + n.getPositionX() + ", " + n.getPositionY());
+					move = moveHardNinja(n);
 				}
 
 				while (!move && tries < 4) {
@@ -310,22 +281,48 @@ public class GameEngine implements Serializable {
 			}
 		}
 	}
+	private boolean moveHardNinja(Ninja n) {
+		boolean move = false;
+		System.out.println("hard mode enabled, trying..");
 
-	private void moveEasyNinja() {
+		int xDist = Math.abs(player.getPositionX() - n.getPositionX());
+		int yDist = Math.abs(player.getPositionY() - n.getPositionY());
 		
-	}
 
-	private void moveHardNinja() {
-		boolean move;
-		int direction, tries = 0;
-
-		for (Ninja n : ninjas) {
-			if (n != null) {
-				move = false;
-
+		
+		if (xDist >= yDist) {
+			System.out.println("x dist greater.");
+			if (n.getPositionX() > player.getPositionX()) {
+				move = movementCheck(0, n, false);
+				if (move) {
+					System.out.println("ninja x is more than player, moving up");
+				}
+			}
+			if (n.getPositionX() < player.getPositionX()) {
+				move = movementCheck(1, n, false);
+				if (move) {
+					System.out.println("ninja x is less than player, moving down");
+				}
+			}
+		} else {
+			System.out.println("y dist greater.");
+			if (n.getPositionY() > player.getPositionY()) {
+				move = movementCheck(2, n, false);
+				if (move) {
+					System.out.println("ninja y is more than player, moving left");
+				}
+			}
+			if (n.getPositionY() < player.getPositionY()) {
+				move = movementCheck(3, n, false);
+				if (move) {
+					System.out.println("ninja y is less than player, moving right");
+				}
 			}
 		}
-
+		if(move)
+			return move;
+		System.out.println("no moves possible for ninja at " + n.getPositionX() + ", " + n.getPositionY());
+		return move;
 	}
 
 	/**
