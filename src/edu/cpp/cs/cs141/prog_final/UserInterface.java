@@ -151,8 +151,8 @@ public class UserInterface implements Serializable {
 	 * to the player throughout the game.
 	 */
 	public int exitOptions() {
-		System.out.println("1: LOAD GAME");
-		System.out.println("2. SAVE GAME");
+		System.out.println("1: SAVE GAME");
+		System.out.println("2. LOAD GAME");
 		System.out.println("3: EXIT");
 		return takeInput(1, 3);
 	}
