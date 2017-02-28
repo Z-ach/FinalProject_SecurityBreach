@@ -118,11 +118,11 @@ public class GameEngine implements Serializable {
 	private Player player;
 
 	private boolean debugMode;
-	
+
 	private boolean radarFound;
 
 	private boolean hardMode;
-	
+
 	/**
 	 * This field represents the briefcase in the game. When this is found, the
 	 * game has been won. The briefcase is placed in the same coordinates of a
@@ -158,10 +158,10 @@ public class GameEngine implements Serializable {
 			createBoard();
 			hardMode = ui.hardAI() == 2;
 		}
-		
+
 		boolean move = false;
 		int tempDirection = 0;
-		
+
 		while (player.alive()) {
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
@@ -268,6 +268,40 @@ public class GameEngine implements Serializable {
 					move = movementCheck(3, n, false);
 					continue;
 				}
+
+				if (hardMode) {
+					System.out.println("hard mode enabled, trying..");
+					if (n.getPositionX() > player.getPositionX()) {
+						move = movementCheck(0, n, false);
+						if (move){
+							System.out.println("ninja x is more than player, moving up");
+							continue;
+						}
+					}
+					if (n.getPositionX() < player.getPositionX()) {
+						move = movementCheck(1, n, false);
+						if (move){
+							System.out.println("ninja x is less than player, moving down");
+							continue;
+						}
+					}
+					if (n.getPositionY() > player.getPositionY()) {
+						move = movementCheck(2, n, false);
+						if (move){
+							System.out.println("ninja y is more than player, moving left");
+							continue;
+						}
+					}
+					if (n.getPositionY() < player.getPositionY()) {
+						move = movementCheck(3, n, false);
+						if (move){
+							System.out.println("ninja y is less than player, moving right");
+							continue;
+						}
+					}
+					System.out.println("no moves possible for ninja at " + n.getPositionX() + ", " + n.getPositionY());
+				}
+
 				while (!move && tries < 4) {
 					direction = rand.nextInt(4);
 					move = movementCheck(direction, n, false);
@@ -275,6 +309,23 @@ public class GameEngine implements Serializable {
 				}
 			}
 		}
+	}
+
+	private void moveEasyNinja() {
+		
+	}
+
+	private void moveHardNinja() {
+		boolean move;
+		int direction, tries = 0;
+
+		for (Ninja n : ninjas) {
+			if (n != null) {
+				move = false;
+
+			}
+		}
+
 	}
 
 	/**
@@ -590,10 +641,10 @@ public class GameEngine implements Serializable {
 		if (grid.getBoard()[x][y] == 'R' || (x == briefcase.getX() && y == briefcase.getY())) {
 
 			if (isPlayer && direction == 1)
-			if(isPlayer && direction == 1){
-				ui.noCase();
-				return true;
-			}
+				if (isPlayer && direction == 1) {
+					ui.noCase();
+					return true;
+				}
 			return false;
 		}
 
