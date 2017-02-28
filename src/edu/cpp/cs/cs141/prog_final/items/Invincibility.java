@@ -32,21 +32,23 @@ import java.io.Serializable;
 
 /**
  * This class represents the Invincibilty item in the game. This class will also
- * inherit all attributes from the {@link Item} superclass. The Invicibility item will
- * grant the player a shield that will protect him or herself from the
+ * inherit all attributes from the {@link Item} superclass. The Invicibility
+ * item will grant the player a shield that will protect him or herself from the
  * ninja-assassin's stabbing for five turns.
  * 
  * @author We Showed Up
  */
-public class Invincibility extends Item implements Serializable{
+public class Invincibility extends Item implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1545837670490087076L;
 
+	/**
+	 * This field is used to keep track of how many turns the shield has left.
+	 * It will only start decrementing when the shield power up is used.
+	 * Otherwise, it will start at 5.
+	 */
 	private int turns = 5;
-	
+
 	/**
 	 * This constructor will represent the actual position of the Invincibility
 	 * drop in the array.
@@ -55,15 +57,22 @@ public class Invincibility extends Item implements Serializable{
 		super(x, y);
 	}
 
+	/**
+	 * This method is used to print out the turns the shield has left. It will
+	 * only be printed when the shield is used. Other than that, a message will
+	 * tell the player that the shield has not been found yet.
+	 */
 	public int getTurns() {
 		return turns;
 	}
 
+	/**
+	 * This method is to decrement the turns from 5. When the integer turns goes
+	 * to 0, it will stop decrementing and it will allow the player to lose a
+	 * life when touching a ninja.
+	 */
 	public void useTurn() {
 		turns--;
 	}
 
-	
-	
-	
 }

@@ -47,6 +47,13 @@ public class Grid implements Serializable {
 	 */
 	public final int DIMENSION = 9;
 
+	/**
+	 * This is the second 9x9 2D array that represents the debugged grid. There
+	 * will be a method that prints both the objects onto the board and the
+	 * light board will be shown when the player enters debug mode. It differs
+	 * from the normal grid because a blank light grid will display where the
+	 * briefcase is and the normal grid will not.
+	 */
 	private boolean[][] light;
 	/**
 	 * This field represents the building that the player starts in. This is a

@@ -118,10 +118,31 @@ public class GameEngine implements Serializable {
 	 */
 	private Player player;
 
+	/**
+	 * This field is used to keep track of debug mode. When starting the game,
+	 * debug mode will automatically be set to false. The player has a choice to
+	 * use debug mode as on of the options. It will toggle debug mode without
+	 * using up a turn.
+	 */
 	private boolean debugMode;
 
+	/**
+	 * This field is used to keep track of the radar. Starting the game will
+	 * initialize its value to false and when the radarFound is turned to true.
+	 * It will call a method in the item class and turn the isUsed field to
+	 * true. As well as use up the item removing it from the grid and displaying
+	 * the location of the briefcase.
+	 */
 	private boolean radarFound;
 
+	/**
+	 * This field is used as a game difficulty. Starting the game the player
+	 * will have two options. One being easy mode, which will turn this value to
+	 * false, and the other being hard mode, which will make the value of this
+	 * boolean true. When this boolean is true, the player will be playing
+	 * against ninjas that will be operated from a different method. Which
+	 * increases the difficulty of the game.
+	 */
 	private boolean hardMode;
 
 	/**
@@ -665,7 +686,7 @@ public class GameEngine implements Serializable {
 		if (!isPlayer) {
 			for (Ninja n : ninjas) {
 				if (n != null) {
-					if(n.getPositionX() == x & n.getPositionY() == y){
+					if (n.getPositionX() == x & n.getPositionY() == y) {
 						return false;
 					}
 				}
