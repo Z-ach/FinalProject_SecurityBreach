@@ -30,51 +30,56 @@ package edu.cpp.cs.cs141.prog_final.items;
 import java.io.Serializable;
 
 /**
- * This class represents the items used in the game. The item class is a superclass 
- * that all the other item subclasses will inherit. (Radar, bullet, invincibility, briefcase)
+ * This class represents the items used in the game. The item class is a
+ * superclass that all the other item subclasses will inherit. (Radar, bullet,
+ * invincibility, briefcase)
  * 
  * @author We Showed Up
  *
  */
-public abstract class Item implements Serializable{
+public abstract class Item implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5052440763064610297L;
-	
+
 	/**
-	 * This field will represent and hold the position of any of the 
-	 * items in the array. (Radar, Bullet, Invincibility, Briefcase) 
+	 * This field will represent and hold the position of any of the items in
+	 * the array. (Radar, Bullet, Invincibility, Briefcase)
 	 */
 	private int x, y;
-	
-	private boolean used;
-	
+
 	/**
-	 * This constructor will show the actual position of any of the
-	 * items used in the game. It will be located on a (x,y) coordinate 
-	 * on the 9x9 grid. 
+	 * This field is used to keep track of the power ups on the board. This
+	 * field is not toggled, but instead it is just turned off. When an item is
+	 * turned off, it will be turned to null and it will also.
+	 */
+	private boolean used;
+
+	/**
+	 * This constructor will show the actual position of any of the items used
+	 * in the game. It will be located on a (x,y) coordinate on the 9x9 grid.
 	 */
 	public Item(int x, int y) {
 		used = false;
 		this.x = x;
 		this.y = y;
 	}
-	
-	public boolean isUsed(){
+
+	public boolean isUsed() {
 		return used;
 	}
-	
-	public void use(){
+
+	public void use() {
 		used = true;
 	}
-	
-	public int getX(){
+
+	public int getX() {
 		return x;
 	}
-	
-	public int getY(){
+
+	public int getY() {
 		return y;
 	}
 
