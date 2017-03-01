@@ -23,6 +23,11 @@ public class Player extends LivingBeing implements Serializable {
 	 */
 	private int lives = 3;
 
+	/**
+	 * This field is used to show if the player has the invincibility power up
+	 * used. It will also have an initial value of false so that the turn does
+	 * not start counting down.
+	 */
 	private boolean shield = false;
 
 	/**
@@ -46,6 +51,11 @@ public class Player extends LivingBeing implements Serializable {
 		super(x, y);
 	}
 
+	/**
+	 * This method is used to reset the player's position to the spawn point of
+	 * column 1 row 9. It will be called in the beginning of the game and when
+	 * the player dies. It will be called at most 3 times.
+	 */
 	public void setPlayer() {
 		x = 8;
 		y = 0;
@@ -71,6 +81,12 @@ public class Player extends LivingBeing implements Serializable {
 		return bullet;
 	}
 
+	/**
+	 * This method is called when the player makes contacts with a ninja. It
+	 * will be called in the engine first then the method of setPlayer() will be
+	 * called to reset the position. When the amount of lives reaches 0, the
+	 * game will stop and display an end game message for losing.
+	 */
 	public void loseLive() {
 		lives--;
 	}
