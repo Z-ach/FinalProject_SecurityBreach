@@ -121,7 +121,7 @@ public class Grid implements Serializable {
 
 		switch (direction) {
 		case 0:
-			if (board[x - 1][y] == 'R') {
+			if (x - 1 >= 0 && (board[x - 1][y] == 'R' || board[x - 1][y] == 'B')) {
 				return;
 			}
 			if (x - 2 >= 0) {
@@ -131,7 +131,7 @@ public class Grid implements Serializable {
 				light[x - 1][y] = true;
 			break;
 		case 1:
-			if (board[x + 1][y] == 'R') {
+			if (x + 1 <= 8 && (board[x + 1][y] == 'R' || board[x + 1][y] == 'B')) {
 				return;
 			}
 			if (x + 2 <= 8) {
@@ -141,7 +141,7 @@ public class Grid implements Serializable {
 				light[x + 1][y] = true;
 			break;
 		case 2:
-			if (board[x][y - 1] == 'R') {
+			if (y - 1 >= 0 && (board[x][y - 1] == 'R' || board[x][y - 1] == 'B')) {
 				return;
 			}
 			if (y - 2 >= 0) {
@@ -151,7 +151,7 @@ public class Grid implements Serializable {
 				light[x][y - 1] = true;
 			break;
 		case 3:
-			if (board[x][y + 1] == 'R') {
+			if (y + 1 <= 8 && (board[x][y + 1] == 'R' || board[x][y + 1] == 'B')) {
 				return;
 			}
 			if (y + 2 <= 8) {

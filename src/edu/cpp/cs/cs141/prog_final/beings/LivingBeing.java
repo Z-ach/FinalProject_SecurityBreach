@@ -56,6 +56,14 @@ public abstract class LivingBeing implements Serializable {
 	public int getPositionY() {
 		return y;
 	}
+	
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	public void setY(int y){
+		this.y = y;
+	}
 
 	/**
 	 * This is the move class. It receives a parameter, direction, and passes it

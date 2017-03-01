@@ -276,6 +276,20 @@ public class GameEngine implements Serializable {
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
 		if (loseLife) {
 			player.loseLive();
+			for (int i = 0; i < ninjas.length; i++) {
+				while (ninjas[i] != null && ((ninjas[i].getPositionX() - 3 > 2) && (ninjas[i].getPositionY() < 3))) {
+					int row = rand.nextInt(9);
+					int col = rand.nextInt(9);
+					if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
+							&& (grid.getBoard()[row][col] == ' ')) {
+						System.out.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						ninjas[i].setX(row);
+						ninjas[i].setY(col);
+						System.out.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						grid.assign(row, col, 'N');
+					}
+				}
+			}
 		}
 	}
 
