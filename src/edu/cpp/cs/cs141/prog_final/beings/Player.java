@@ -10,10 +10,7 @@ import java.io.Serializable;
  */
 public class Player extends LivingBeing implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8275985798947223662L;
+	private static final long serialVersionUID = 1944010931443879594L;
 
 	/**
 	 * This field represents the amount of lives that the player has. The player

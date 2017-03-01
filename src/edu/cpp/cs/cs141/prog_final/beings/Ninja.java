@@ -9,10 +9,7 @@ import java.io.Serializable;
  * It inherits properties from the living being super class.
  */
 public class Ninja extends LivingBeing implements Serializable{
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -9162275870812989861L;
 
 	/**

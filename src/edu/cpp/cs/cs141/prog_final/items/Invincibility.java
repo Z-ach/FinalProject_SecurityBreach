@@ -40,8 +40,8 @@ import java.io.Serializable;
  */
 public class Invincibility extends Item implements Serializable {
 
-	private static final long serialVersionUID = -1545837670490087076L;
-
+	private static final long serialVersionUID = 4659229807082088829L;
+	
 	/**
 	 * This field is used to keep track of how many turns the shield has left.
 	 * It will only start decrementing when the shield power up is used.

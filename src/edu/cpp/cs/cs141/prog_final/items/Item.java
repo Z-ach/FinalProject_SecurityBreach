@@ -39,10 +39,7 @@ import java.io.Serializable;
  */
 public abstract class Item implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5052440763064610297L;
+	private static final long serialVersionUID = 3920686873651878925L;
 
 	/**
 	 * This field will represent and hold the position of any of the items in

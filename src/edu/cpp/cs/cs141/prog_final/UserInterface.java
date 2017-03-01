@@ -42,11 +42,8 @@ import edu.cpp.cs.cs141.prog_final.items.Invincibility;
  */
 public class UserInterface implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7625972601335457659L;
-
+	private static final long serialVersionUID = -5408848313550426100L;
+	
 	/**
 	 * This field represents the {@link java.util.Scanner} object that creates
 	 * the scanner that will take the user input to play the game and to print

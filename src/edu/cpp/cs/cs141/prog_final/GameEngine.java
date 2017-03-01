@@ -48,10 +48,7 @@ import edu.cpp.cs.cs141.prog_final.items.Radar;
  */
 public class GameEngine implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 98574817743469133L;
+	private static final long serialVersionUID = -2496518892115630362L;
 
 	/**
 	 * This field of Random allows the object "rand" created from the imported

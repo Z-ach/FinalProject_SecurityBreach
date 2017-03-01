@@ -39,7 +39,7 @@ import edu.cpp.cs.cs141.prog_final.items.Briefcase;
  */
 public class Grid implements Serializable {
 
-	private static final long serialVersionUID = 7922732579776384853L;
+	private static final long serialVersionUID = 2229073517795270773L;
 
 	/**
 	 * The dimension of the board. Useful so that if this needs to change, each
