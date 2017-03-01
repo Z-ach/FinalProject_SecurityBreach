@@ -49,6 +49,7 @@ public class Main {
 		switch(ui.gameStartPrompt()){
 		case 1:
 			GameEngine game = new GameEngine(ui);
+			
 			game.run(false);
 			break;
 		case 2:
