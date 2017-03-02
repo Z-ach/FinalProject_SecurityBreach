@@ -155,7 +155,7 @@ public class GameEngine implements Serializable {
 	 * instances of the new objects but does not use them. Therefore, when the
 	 * Main method calls this, it creates a new object to represent the engine,
 	 * the game would be able to run based on the user input taken from
-	 * {@link edu.cpp.cs.cs141.prog_final.UserInterface}
+	 * {@link edu.cpp.cs.cs141.prog_final.TextUserInterface}
 	 */
 	public GameEngine(UserInterface ui) {
 		this.ui = ui;

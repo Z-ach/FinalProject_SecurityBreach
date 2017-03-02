@@ -27,6 +27,8 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import javax.swing.JFrame;
+
 import edu.cpp.cs.cs141.prog_final.io.LoadGame;
 
 /**
@@ -47,16 +49,22 @@ public class Main {
 	 *            the command line arguments to pass in
 	 */
 	public static void main(String[] args) {
-		UserInterface ui = new UserInterface();
+		UserInterface ui = null;
+		GameEngine game = null;
 		
 		if(args.length > 0 && args[0].equals("-g")){
-			
+			JFrame frame = new JFrame("Security Breach");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
+			frame.setLocationRelativeTo(null);
+			frame.add(new GUI());
+			frame.setVisible(true);
+			game = new GameEngine(ui);
 		}
 		
-		switch(ui.gameStartPrompt()){
+/*		switch(ui.gameStartPrompt()){
 		case 1:
-			GameEngine game = new GameEngine(ui);
-			
+			game = new GameEngine(ui);
 			game.run(false);
 			break;
 		case 2:
@@ -65,7 +73,7 @@ public class Main {
 			break;
 		case 3:
 			System.exit(0);
-		}
+		}*/
 	}
 
 }
