@@ -4,11 +4,15 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.gui.GridDrawing;
 import edu.cpp.cs.cs141.prog_final.gui.NinjaDrawing;
 import edu.cpp.cs.cs141.prog_final.gui.PlayerDrawing;
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
+import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 public class GUI extends JPanel implements UserInterface {
 
@@ -17,13 +21,21 @@ public class GUI extends JPanel implements UserInterface {
 	public static final int WIDTH = 800, HEIGHT = 670;
 	
 	private PlayerDrawing playerD;
-	private NinjaDrawing ninjaD;
+	private NinjaDrawing[] ninjaD;
 	private GridDrawing gridD;
 	
 	public GUI(){
 		this.requestFocus();
-		gridD = new GridDrawing();
 		update();
+	}
+	
+	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield){
+		gridD = new GridDrawing(grid);
+/*		playerD = new PlayerDrawing(player);
+		ninjaD = new NinjaDrawing[6];
+		for(int i = 0; i < 6; i++){
+			ninjaD[i] = new NinjaDrawing(ninjas[i]);
+		}*/
 	}
 	
 	public void update(){
@@ -45,8 +57,12 @@ public class GUI extends JPanel implements UserInterface {
 		}*/
 		
 		super.paintComponent(g);
+		
 		gridD.paint(g);
-
+/*		playerD.paint(g);
+		for(int i = 0; i < 6; i++)
+			ninjaD[i].paint(g);
+*/
 		
 	}
 

@@ -1,7 +1,11 @@
 package edu.cpp.cs.cs141.prog_final;
 
+import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
+import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 public interface UserInterface {
 	
@@ -22,6 +26,9 @@ public interface UserInterface {
 	public void	loseLife();
 	public void	briefCase(boolean hasCase);
 	public void	killedNinja();
+	
+	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield);
+
 	
 	public void repaint();
 	

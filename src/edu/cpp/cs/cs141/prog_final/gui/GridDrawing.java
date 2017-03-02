@@ -1,23 +1,30 @@
 package edu.cpp.cs.cs141.prog_final.gui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 import edu.cpp.cs.cs141.prog_final.GUI;
+import edu.cpp.cs.cs141.prog_final.Grid;
 
 public class GridDrawing extends JPanel {
 
-	public GridDrawing() {
+	private Grid grid;
+	
+	
+	private int beingRadius = 60, beingRowSpacer = 5, beingColSpacer = 160;
+	private Color playerColor = Color.BLUE;
+	private Color ninjaColor = Color.RED;
 
+	public GridDrawing(Grid grid) {
+		this.grid = grid;
 	}
-
-	int x = 85;
 
 	public void paint(Graphics g) {
 		super.paint(g);
 		for (int i = 1; i <= 10; i++) {
-			g.drawLine(x + 70 * i, 0, x + 70 * i, GUI.HEIGHT);
+			g.drawLine(85 + 70 * i, 0, 85 + 70 * i, GUI.HEIGHT);
 			g.drawLine(155, 70 * i, GUI.WIDTH, 70 * i);
 		}
 
@@ -25,6 +32,36 @@ public class GridDrawing extends JPanel {
 			for (int j = 0; j < 9; j++) {
 				g.drawString((165 + 70 * j) + ", " + (40 + 70*i), (165 + 70 * j), (40 + 70*i));
 				//System.out.println("ran " + (120 + 70 * j) + ", " + (35 + 70*i));
+			}
+		}
+		
+		for(int row = 0; row < 9; row++){
+			for(int col = 0; col < 9; col++){
+				switch(grid.getBoard()[row][col]){
+				case 'B':
+					
+					break;
+				case 'P':
+					g.setColor(playerColor);
+					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+					break;
+				case 'N':
+					g.setColor(ninjaColor);
+					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+					break;
+				case 'R':
+					
+					break;
+				case 'i':
+					
+					break;
+				case 'b':
+					
+					break;
+				case 'r':
+					
+					break;
+				}
 			}
 		}
 		

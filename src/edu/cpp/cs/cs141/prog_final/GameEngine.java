@@ -38,6 +38,7 @@ import edu.cpp.cs.cs141.prog_final.io.SaveGame;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
+import edu.cpp.cs.cs141.prog_final.items.Item;
 import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
@@ -183,7 +184,10 @@ public class GameEngine implements Serializable {
 		boolean move = false;
 		int tempDirection = 0;
 
+		System.out.println("run");
+		
 		while (player.alive()) {
+			System.out.println("running");
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
@@ -453,6 +457,8 @@ public class GameEngine implements Serializable {
 		assignInvincibility();
 		assignNinja();
 		restartPlayer(false);
+		guiCall();
+		System.out.println("created");
 	}
 
 	/**
@@ -826,5 +832,38 @@ public class GameEngine implements Serializable {
 	private void pickupInvinc() {
 		player.setShield(true);
 		invinc.use();
+	}
+	
+	private void guiCall(){
+		ui.setObjects(player, briefcase, ninjas, grid, radar, bullet, invinc);
+	}
+	
+	public Player getPlayer(){
+		return player;
+	}
+	
+	public Ninja[] getNinjas(){
+		return ninjas;
+	}
+	
+	public Briefcase getCase(){
+		return briefcase;
+	}
+	
+	public Invincibility getShield(){
+		return invinc;
+	}
+	
+	public Item[] getItems(){
+		Item[] item = new Item[4];
+		item[0] = briefcase;
+		item[1] = bullet;
+		item[2] = invinc;
+		item[3] = radar;
+		return item;
+	}
+	
+	public Grid getGrid(){
+		return grid;
 	}
 }

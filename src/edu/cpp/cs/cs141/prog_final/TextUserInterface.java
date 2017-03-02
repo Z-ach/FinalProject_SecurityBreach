@@ -30,8 +30,12 @@ package edu.cpp.cs.cs141.prog_final;
 import java.io.Serializable;
 import java.util.Scanner;
 
+import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.items.Briefcase;
+import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
+import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
  * The TextUserInterface class represents the game interactions with the player
@@ -61,6 +65,9 @@ public class TextUserInterface implements Serializable, UserInterface {
 	 */
 	public TextUserInterface() {
 		input = new Scanner(System.in);
+	}
+	
+	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield){
 	}
 
 	/**
