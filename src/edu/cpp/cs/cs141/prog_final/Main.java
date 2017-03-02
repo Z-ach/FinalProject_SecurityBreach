@@ -35,6 +35,8 @@ import edu.cpp.cs.cs141.prog_final.io.LoadGame;
  */
 public class Main {
 
+	private static final long serialVersionUID = -109254806068843554L;
+
 	/**
 	 * This method creates an instance of the
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object and uses it to
@@ -46,6 +48,11 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		UserInterface ui = new UserInterface();
+		
+		if(args.length > 0 && args[0].equals("-g")){
+			
+		}
+		
 		switch(ui.gameStartPrompt()){
 		case 1:
 			GameEngine game = new GameEngine(ui);
