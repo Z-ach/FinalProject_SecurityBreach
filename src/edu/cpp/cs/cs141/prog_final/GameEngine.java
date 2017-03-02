@@ -184,10 +184,8 @@ public class GameEngine implements Serializable {
 		boolean move = false;
 		int tempDirection = 0;
 
-		System.out.println("run");
 		
 		while (player.alive()) {
-			System.out.println("running");
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
@@ -837,33 +835,5 @@ public class GameEngine implements Serializable {
 	private void guiCall(){
 		ui.setObjects(player, briefcase, ninjas, grid, radar, bullet, invinc);
 	}
-	
-	public Player getPlayer(){
-		return player;
-	}
-	
-	public Ninja[] getNinjas(){
-		return ninjas;
-	}
-	
-	public Briefcase getCase(){
-		return briefcase;
-	}
-	
-	public Invincibility getShield(){
-		return invinc;
-	}
-	
-	public Item[] getItems(){
-		Item[] item = new Item[4];
-		item[0] = briefcase;
-		item[1] = bullet;
-		item[2] = invinc;
-		item[3] = radar;
-		return item;
-	}
-	
-	public Grid getGrid(){
-		return grid;
-	}
+
 }

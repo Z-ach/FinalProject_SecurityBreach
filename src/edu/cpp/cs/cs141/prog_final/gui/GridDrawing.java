@@ -14,8 +14,15 @@ public class GridDrawing extends JPanel {
 	
 	
 	private int beingRadius = 60, beingRowSpacer = 5, beingColSpacer = 160;
+	
+	private int powerupRadius = 40, powerupRowSpacer = 15, powerupColSpacer = 170;
+	
 	private Color playerColor = Color.BLUE;
 	private Color ninjaColor = Color.RED;
+	private Color roomColor = Color.GREEN;
+	private Color briefcaseColor = Color.BLUE;
+	private Color powerupColor = Color.ORANGE;
+
 
 	public GridDrawing(Grid grid) {
 		this.grid = grid;
@@ -39,7 +46,8 @@ public class GridDrawing extends JPanel {
 			for(int col = 0; col < 9; col++){
 				switch(grid.getBoard()[row][col]){
 				case 'B':
-					
+					g.setColor(briefcaseColor);
+					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
 					break;
 				case 'P':
 					g.setColor(playerColor);
@@ -50,16 +58,20 @@ public class GridDrawing extends JPanel {
 					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
 					break;
 				case 'R':
-					
+					g.setColor(roomColor);
+					g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
 					break;
 				case 'i':
-					
+					g.setColor(powerupColor);
+					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius, powerupRadius);
 					break;
 				case 'b':
-					
+					g.setColor(powerupColor);
+					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius, powerupRadius);
 					break;
 				case 'r':
-					
+					g.setColor(powerupColor);
+					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius, powerupRadius);
 					break;
 				}
 			}
