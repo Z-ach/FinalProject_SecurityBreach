@@ -27,6 +27,8 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.awt.Component;
+
 import javax.swing.JFrame;
 
 import edu.cpp.cs.cs141.prog_final.io.LoadGame;
@@ -57,9 +59,13 @@ public class Main {
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
 			frame.setLocationRelativeTo(null);
-			frame.add(new GUI());
+			ui = new GUI();
+			frame.add((Component) ui);
 			frame.setVisible(true);
+			System.out.println("new game");
 			game = new GameEngine(ui);
+			game.run(false);
+			System.out.println("gm");
 		}
 		
 /*		switch(ui.gameStartPrompt()){

@@ -23,4 +23,6 @@ public interface UserInterface {
 	public void	briefCase(boolean hasCase);
 	public void	killedNinja();
 	
+	public void repaint();
+	
 }

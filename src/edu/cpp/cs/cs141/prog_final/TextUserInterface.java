@@ -171,6 +171,10 @@ public class TextUserInterface implements Serializable, UserInterface {
 		System.out.println("2: HARD MODE");
 		return takeInput(1, 2);
 	}
+	
+	public void repaint(){
+		
+	}
 
 	/**
 	 * This method will {@link takeInput()} from the player through asking the

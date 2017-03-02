@@ -5,28 +5,49 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import edu.cpp.cs.cs141.prog_final.beings.Player;
+import edu.cpp.cs.cs141.prog_final.gui.GridDrawing;
+import edu.cpp.cs.cs141.prog_final.gui.NinjaDrawing;
+import edu.cpp.cs.cs141.prog_final.gui.PlayerDrawing;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 
 public class GUI extends JPanel implements UserInterface {
 
 	private static final long serialVersionUID = -1901275594602421699L;
 	
-	protected static final int WIDTH = 800, HEIGHT = 670;
+	public static final int WIDTH = 800, HEIGHT = 670;
+	
+	private PlayerDrawing playerD;
+	private NinjaDrawing ninjaD;
+	private GridDrawing gridD;
 	
 	public GUI(){
 		this.requestFocus();
+		gridD = new GridDrawing();
+		update();
 	}
 	
-	private void drawLines(){
-		
+	public void update(){
+		repaint();
 	}
-	
+
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+/*		super.paintComponent(g);
 		for (int i = 1; i <= 10; i++) {
 			g.drawLine(85 + 70 * i, 0, 85 + 70 * i, HEIGHT);
 			g.drawLine(155, 70 * i, WIDTH, 70 * i);
 		}
+		
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				g.drawString((165 + 70 * j) + ", " + (40 + 70*i), (165 + 70 * j), (40 + 70*i));
+				//System.out.println("ran " + (120 + 70 * j) + ", " + (35 + 70*i));
+			}
+		}*/
+		
+		super.paintComponent(g);
+		gridD.paint(g);
+
+		
 	}
 
 	@Override
