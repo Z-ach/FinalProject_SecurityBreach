@@ -184,7 +184,6 @@ public class GameEngine implements Serializable {
 		int tempDirection = 0;
 
 		while (player.alive()) {
-			ui.update();
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
@@ -195,6 +194,7 @@ public class GameEngine implements Serializable {
 			System.out.println("taking player input for look clause");
 			switch (ui.playerOptions(true)) {
 			case 1:
+				System.out.println("directino about to be asked");
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
 				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);

@@ -8,7 +8,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.CountDownLatch;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
@@ -21,15 +23,15 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	private static final long serialVersionUID = -1901275594602421699L;
 
-	public static final int WIDTH = 790, HEIGHT = 660;
+	public static final int WIDTH = 900, HEIGHT = 660;
 
 	private Grid grid;
 
-	private int darknessRadius = 70, darknessRowSpacer = 0, darknessColSpacer = 155;
+	private int darknessRadius = 70, darknessRowSpacer = 0, darknessColSpacer = 265;
 
-	private int beingRadius = 60, beingRowSpacer = 5, beingColSpacer = 160;
+	private int beingRadius = 60, beingRowSpacer = 5, beingColSpacer = 270;
 
-	private int powerupRadius = 40, powerupRowSpacer = 15, powerupColSpacer = 170;
+	private int powerupRadius = 40, powerupRowSpacer = 15, powerupColSpacer = 280;
 
 	private Color playerColor = Color.BLUE;
 	private Color ninjaColor = Color.RED;
@@ -42,6 +44,8 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	CountDownLatch latch = null;
 
+	JTextArea textArea;
+
 	int input = -1;
 
 	public GUI() {
@@ -51,7 +55,19 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 				inputHandle(e);
 			}
 		});
+		textInit();
 		update();
+	}
+
+	private void textInit() {
+		setLayout(null);
+		textArea = new JTextArea(5, 5);
+		textArea.setText("");
+		textArea.setBounds(10, 10, 245, 610);
+		textArea.setLineWrap(true);
+		textArea.setVisible(true);
+		textArea.setEditable(false);
+		add(textArea);
 	}
 
 	public void addNotify() {
@@ -69,7 +85,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	 */
 
 	public void update() {
-		input = -1;
 		this.repaint();
 		this.revalidate();
 	}
@@ -77,17 +92,16 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (int i = 0; i < 10; i++) {
-			g.drawLine(155 + 70 * i, 0, 155 + 70 * i, GUI.HEIGHT);
-			g.drawLine(155, 70 * i, GUI.WIDTH, 70 * i);
+			g.drawLine(darknessColSpacer + 70 * i, 0, darknessColSpacer + 70 * i, GUI.HEIGHT);
+			g.drawLine(darknessColSpacer, 70 * i, GUI.WIDTH, 70 * i);
 		}
 
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				g.drawString((165 + 70 * j) + ", " + (40 + 70 * i), (165 + 70 * j), (40 + 70 * i));
-				// System.out.println("ran " + (120 + 70 * j) + ", " + (35 +
-				// 70*i));
-			}
-		}
+		/*
+		 * for (int i = 0; i < 9; i++) { for (int j = 0; j < 9; j++) {
+		 * g.drawString((165 + 70 * j) + ", " + (40 + 70 * i), (165 + 70 * j),
+		 * (40 + 70 * i)); // System.out.println("ran " + (120 + 70 * j) + ", "
+		 * + (35 + // 70*i)); } }
+		 */
 		boolean printHere = false;
 		for (int row = 0; row < 9; row++) {
 			for (int col = 0; col < 9; col++) {
@@ -177,12 +191,30 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public int playerOptions(boolean looking) {
+		if (textArea.getText().charAt(0) != '1')
+			textArea.setText(textArea.getText() + "\n\nChoose one of the following options:\n");
+		else
+			textArea.setText("Choose one of the following options:\n");
+		if (!looking) {
+			textArea.setText(textArea.getText() + "\n1: MOVE");
+			textArea.setText(textArea.getText() + "\n2: SHOOT");
+		} else {
+			textArea.setText(textArea.getText() + "\n1: LOOK");
+			textArea.setText(textArea.getText() + "\n2: SHOOT");
+			textArea.setText(textArea.getText() + "\n3: EXIT MENU");
+			textArea.setText(textArea.getText() + "\n4: DEBUG MODE");
+		}
 		return takeInput(1, 4, !looking);
 	}
 
 	@Override
 	public int direction() {
-		return takeInput(1, 4, true);
+		textArea.setText("1: UP");
+		textArea.setText(textArea.getText() + "\n2: DOWN");
+		textArea.setText(textArea.getText() + "\n3: LEFT");
+		textArea.setText(textArea.getText() + "\n4: RIGHT");
+		System.out.println("direction");
+		return takeInput(1, 4, false);
 	}
 
 	@Override
@@ -198,7 +230,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	}
 
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
-
+		input = -1;
 		System.out.println("waiting for key input");
 		while (input < lowerBound || input > upperBound) {
 			System.out.println("input currently " + input);
@@ -231,12 +263,28 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 			System.out.println("input was: " + input);
 		}
+		System.out.println("input returned as " + input);
 		return input;
 	}
 
 	@Override
 	public void printGrid(char[][] grid, boolean[][] lighting, Player player, Invincibility shield, boolean hardMode) {
 
+		update();
+		textArea.setText(textArea.getText() + "\n\n\n\n\n\n");
+		textArea.setText(textArea.getText() + "Game Difficulty: ");
+		if(hardMode)
+			textArea.setText(textArea.getText() + "HARD");
+		else
+			textArea.setText(textArea.getText() + "EASY");
+		textArea.setText(textArea.getText() + "\nLives: " + player.getLives());
+		textArea.setText(textArea.getText() + "\nBullets: " + player.getBullets());
+		textArea.setText(textArea.getText() + "\nShield: ");
+		if (!player.getShield())
+			textArea.setText(textArea.getText() + "not in use");
+		else if (player.getShield() && shield != null) {
+			textArea.setText(textArea.getText() + shield.getTurns());
+		}
 	}
 
 	@Override
@@ -277,8 +325,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public void loseLife() {
-		// TODO Auto-generated method stub
-
+		textArea.setText("You have lost a life.");
 	}
 
 	@Override
