@@ -44,7 +44,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	CountDownLatch latch = null;
 
-	JTextArea textArea;
+	JTextArea textArea, stats;
 
 	int input = -1;
 
@@ -63,11 +63,33 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		setLayout(null);
 		textArea = new JTextArea(5, 5);
 		textArea.setText("");
-		textArea.setBounds(10, 10, 245, 610);
+		textArea.setBounds(10, 10, 245, 180);
 		textArea.setLineWrap(true);
 		textArea.setVisible(true);
 		textArea.setEditable(false);
 		add(textArea);
+		
+		stats = new JTextArea();
+		stats.setText("");
+		stats.setBounds(10, 210, 245, 65);
+		stats.setLineWrap(true);
+		stats.setVisible(true);
+		stats.setEditable(false);
+		add(stats);
+		
+/*		textInit(textArea, "", 10, 10, 245, 400);
+		textInit(stats, "", 10, 300, 245, 300);*/
+		
+	}
+	
+	private void textInit(JTextArea text, String defaultText, int x, int y, int width, int height){
+		text = new JTextArea();
+		text.setText(defaultText);
+		text.setBounds(x, y, width, height);
+		text.setLineWrap(true);
+		text.setVisible(true);
+		text.setEditable(false);
+		add(text);
 	}
 
 	public void addNotify() {
@@ -75,9 +97,13 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		requestFocus();
 	}
 
+	boolean gridTaken = false;
+	
 	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet,
 			Invincibility shield) {
 		this.grid = grid;
+		gridTaken = true;
+		
 	}
 	/*
 	 * playerD = new PlayerDrawing(player); ninjaD = new NinjaDrawing[6];
@@ -91,10 +117,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		for (int i = 0; i < 10; i++) {
-			g.drawLine(darknessColSpacer + 70 * i, 0, darknessColSpacer + 70 * i, GUI.HEIGHT);
-			g.drawLine(darknessColSpacer, 70 * i, GUI.WIDTH, 70 * i);
-		}
+
 
 		/*
 		 * for (int i = 0; i < 9; i++) { for (int j = 0; j < 9; j++) {
@@ -102,69 +125,81 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		 * (40 + 70 * i)); // System.out.println("ran " + (120 + 70 * j) + ", "
 		 * + (35 + // 70*i)); } }
 		 */
-		boolean printHere = false;
-		for (int row = 0; row < 9; row++) {
-			for (int col = 0; col < 9; col++) {
-				printHere = false;
-				if (!grid.getLight()[row][col]) {
-					g.setColor(Color.BLACK);
-					g.fillRect(darknessColSpacer + (col * 70), darknessRowSpacer + (row * 70), darknessRadius,
-							darknessRadius);
-					continue;
+		if (grid != null) {
+			
+			
+			
+			for (int i = 0; i < 10; i++) {
+				g.drawLine(darknessColSpacer + 70 * i, 0, darknessColSpacer + 70 * i, GUI.HEIGHT);
+				g.drawLine(darknessColSpacer, 70 * i, GUI.WIDTH, 70 * i);
+			}
+			
+			
+			System.out.println("printing");
+			boolean printHere = false;
+			for (int row = 0; row < 9; row++) {
+				for (int col = 0; col < 9; col++) {
+					printHere = false;
+					if (!grid.getLight()[row][col]) {
+						g.setColor(Color.BLACK);
+						g.fillRect(darknessColSpacer + (col * 70), darknessRowSpacer + (row * 70), darknessRadius,
+								darknessRadius);
+						continue;
+					}
+					switch (grid.getBoard()[row][col]) {
+					case 'B':
+						g.setColor(briefcaseColor);
+						g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+						// System.out.println("bcase at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'P':
+						g.setColor(playerColor);
+						g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+						// System.out.println("player at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'R':
+						g.setColor(roomColor);
+						g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+						// System.out.println("room at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'i':
+						g.setColor(shieldColor);
+						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
+								powerupRadius);
+						// System.out.println("shield at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'b':
+						g.setColor(bulletColor);
+						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
+								powerupRadius);
+						// System.out.println("bullet at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'r':
+						g.setColor(radarColor);
+						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
+								powerupRadius);
+						// System.out.println("radar at " + row + ", " + col);
+						printHere = true;
+						break;
+					case 'N':
+						g.setColor(ninjaColor);
+						g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
+						// System.out.println("ninja at " + row + ", " + col);
+						printHere = true;
+						break;
+					}
+					// System.out.println("Just checked row: " + row + ", col: "
+					// +
+					// col + "\tValue at this location is: " +
+					// grid.getBoard()[row][col]);
+					// System.out.println();
+					// System.out.println("Printed here? " + printHere);
 				}
-				switch (grid.getBoard()[row][col]) {
-				case 'B':
-					g.setColor(briefcaseColor);
-					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-					// System.out.println("bcase at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'P':
-					g.setColor(playerColor);
-					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-					// System.out.println("player at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'R':
-					g.setColor(roomColor);
-					g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-					// System.out.println("room at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'i':
-					g.setColor(shieldColor);
-					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
-							powerupRadius);
-					// System.out.println("shield at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'b':
-					g.setColor(bulletColor);
-					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
-							powerupRadius);
-					// System.out.println("bullet at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'r':
-					g.setColor(radarColor);
-					g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
-							powerupRadius);
-					// System.out.println("radar at " + row + ", " + col);
-					printHere = true;
-					break;
-				case 'N':
-					g.setColor(ninjaColor);
-					g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-					// System.out.println("ninja at " + row + ", " + col);
-					printHere = true;
-					break;
-				}
-				// System.out.println("Just checked row: " + row + ", col: " +
-				// col + "\tValue at this location is: " +
-				// grid.getBoard()[row][col]);
-				// System.out.println();
-				// System.out.println("Printed here? " + printHere);
-				
 			}
 		}
 
@@ -178,8 +213,8 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public int gameStartPrompt() {
-		// TODO Auto-generated method stub
 		return 0;
+
 	}
 
 	public void inputHandle(KeyEvent e) {
@@ -199,13 +234,16 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		if (!looking) {
 			textArea.setText(textArea.getText() + "\n1: MOVE");
 			textArea.setText(textArea.getText() + "\n2: SHOOT");
+			textArea.setText(textArea.getText() + "\n\nPress any arrow key to select move.");
 		} else {
 			textArea.setText(textArea.getText() + "\n1: LOOK");
 			textArea.setText(textArea.getText() + "\n2: SHOOT");
 			textArea.setText(textArea.getText() + "\n3: EXIT MENU");
 			textArea.setText(textArea.getText() + "\n4: DEBUG MODE");
+			textArea.setText(textArea.getText() + "\n\nPress any arrow key to select look.");
 		}
-		return takeInput(1, 4, !looking);
+		textStats();
+		return takeInput(1, 4, false);
 	}
 
 	@Override
@@ -215,23 +253,27 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		textArea.setText(textArea.getText() + "\n3: LEFT");
 		textArea.setText(textArea.getText() + "\n4: RIGHT");
 		System.out.println("direction");
+		textStats();
 		return takeInput(1, 4, true);
 	}
 
 	@Override
 	public int exitOptions() {
-		// TODO Auto-generated method stub
-		return 0;
+		textArea.setText("1: SAVE GAME");
+		textArea.setText(textArea.getText() + "\n2. LOAD GAME");
+		textArea.setText(textArea.getText() + "\n3: EXIT");
+		return takeInput(1, 3, false);
 	}
 
 	@Override
 	public int hardAI() {
-		// TODO Auto-generated method stub
-		return 1;
+		textArea.setText("Please select the difficulty:");
+		textArea.setText(textArea.getText() + "\n1: EASY MODE");
+		textArea.setText(textArea.getText() + "\n2: HARD MODE");
+		return takeInput(1, 2, false);
 	}
 
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
-		textStats();
 		input = -1;
 		System.out.println("waiting for key input");
 		while (input < lowerBound || input > upperBound) {
@@ -247,18 +289,26 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 				switch (input) {
 				case KeyEvent.VK_UP:
 					System.out.println("up entered");
-					return 1;
+					input = 1;
+					break;
 				case KeyEvent.VK_DOWN:
 					System.out.println("down entered");
-					return 2;
+					input = 2;
+					break;
 				case KeyEvent.VK_LEFT:
 					System.out.println("left entered");
-					return 3;
+					input = 3;
+					break;
 				case KeyEvent.VK_RIGHT:
 					System.out.println("right entered");
-					return 4;
+					input = 4;
+					break;
 				}
 			}
+
+			if (!keys && (input >= 37 && input <= 40))
+				input = 1;
+
 			System.out.println("input " + input);
 			if (input > 40)
 				input -= 48;
@@ -266,10 +316,10 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 			System.out.println("input was: " + input);
 		}
 		System.out.println("input returned as " + input);
-
+		textArea.setText("");
 		return input;
 	}
-	
+
 	Player player;
 	Invincibility shield;
 	boolean hardMode;
@@ -282,21 +332,20 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		update();
 
 	}
-	
-	private void textStats(){
-		textArea.setText(textArea.getText() + "\n\n\n\n\n\n");
-		textArea.setText(textArea.getText() + "Game Difficulty: ");
-		if(hardMode)
-			textArea.setText(textArea.getText() + "HARD");
+
+	private void textStats() {
+		stats.setText("Game Difficulty: ");
+		if (hardMode)
+			stats.setText(stats.getText() + "HARD");
 		else
-			textArea.setText(textArea.getText() + "EASY");
-		textArea.setText(textArea.getText() + "\nLives: " + player.getLives());
-		textArea.setText(textArea.getText() + "\nBullets: " + player.getBullets());
-		textArea.setText(textArea.getText() + "\nShield: ");
+			stats.setText(stats.getText() + "EASY");
+		stats.setText(stats.getText() + "\nLives: " + player.getLives());
+		stats.setText(stats.getText() + "\nBullets: " + player.getBullets());
+		stats.setText(stats.getText() + "\nShield: ");
 		if (!player.getShield())
-			textArea.setText(textArea.getText() + "not in use");
+			stats.setText(stats.getText() + "not in use");
 		else if (player.getShield() && shield != null) {
-			textArea.setText(textArea.getText() + shield.getTurns());
+			stats.setText(stats.getText() + shield.getTurns());
 		}
 	}
 
@@ -320,14 +369,17 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public void errorCheck(boolean room) {
-		// TODO Auto-generated method stub
-
+		if (room == false) {
+			textArea.setText("The direction you want to move is blocked. \n" + "Please select a different direction.");
+		} else if (room == true) {
+			textArea.setText("Sorry you cannot enter from this side of the room"
+					+ "\nPlease enter from the north side of the room");
+		}
 	}
 
 	@Override
 	public void noCase() {
-		// TODO Auto-generated method stub
-
+		textArea.setText("There is no briefcase in this room.\nKeep checking.");
 	}
 
 	@Override
@@ -343,7 +395,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public void briefCase(boolean hasCase) {
-		// TODO Auto-generated method stub
 
 	}
 

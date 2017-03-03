@@ -175,9 +175,8 @@ public class GameEngine implements Serializable {
 	 */
 	public void run(boolean loading) {
 		if (!loading) {
+			hardMode = ui.hardAI() == 2;
 			createBoard();
-			// hardMode = ui.hardAI() == 2;
-			hardMode = true;
 		}
 
 		boolean move = false;
@@ -333,7 +332,7 @@ public class GameEngine implements Serializable {
 					move = moveHardNinja(n, false);
 				}
 
-				while (!move && tries < 4) {
+				while (!move && tries < 15) {
 					direction = rand.nextInt(4);
 					move = movementCheck(direction, n, false);
 					tries++;
