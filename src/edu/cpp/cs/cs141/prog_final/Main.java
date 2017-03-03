@@ -55,7 +55,7 @@ public class Main {
 		UserInterface ui = null;
 		GameEngine game = null;
 		
-		if(args.length > 0 && args[0].equals("-g")){
+		//if(args.length > 0 && args[0].equals("-g")){
 			JFrame frame = new JFrame("Security Breach");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
@@ -71,7 +71,7 @@ public class Main {
 			game = new GameEngine(ui);
 			game.run(false);
 			System.out.println("gm");
-		}
+		//}
 		
 /*		switch(ui.gameStartPrompt()){
 		case 1:
