@@ -212,18 +212,26 @@ public class GameEngine implements Serializable {
 					moveNinja();
 					break;
 				case 2:
-					shoot(ui.direction());
-					if (player.getShield())
-						invinc.useTurn();
-					moveNinja();
+					if (player.getBullets() > 0) {
+						shoot(ui.direction());
+						if (player.getShield())
+							invinc.useTurn();
+						moveNinja();
+					}else{
+						ui.noBullet();
+					}
 					break;
 				}
 				break;
 			case 2:
-				shoot(ui.direction());
-				if (player.getShield())
-					invinc.useTurn();
-				moveNinja();
+				if (player.getBullets() > 0) {
+						shoot(ui.direction());
+						if (player.getShield())
+							invinc.useTurn();
+						moveNinja();
+					}else{
+						ui.noBullet();
+					}
 				break;
 			case 3:
 				switch (ui.exitOptions()) {

@@ -367,4 +367,9 @@ public class TextUserInterface implements Serializable, UserInterface {
 	public void killedNinja() {
 		System.out.println("You have succesfully killed a ninja!");
 	}
+
+	@Override
+	public void noBullet() {
+		System.out.println("No bullet. Try again.");
+	}
 }

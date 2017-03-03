@@ -26,6 +26,7 @@ public interface UserInterface {
 	public void	loseLife();
 	public void	briefCase(boolean hasCase);
 	public void	killedNinja();
+	public void noBullet();
 	
 	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield);
 

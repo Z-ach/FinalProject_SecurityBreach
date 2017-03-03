@@ -411,6 +411,10 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void noBullet(){
+		textArea.setText("No bullet. Try again.");
+	}
 
 	public void actionPerformed(ActionEvent action) {
 		if (action.getID() == KeyEvent.KEY_TYPED) {
