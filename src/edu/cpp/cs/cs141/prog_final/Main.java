@@ -67,13 +67,14 @@ public class Main {
 			frame.pack();
 			frame.setVisible(true);
 
-			System.out.println("new game");
 			game = new GameEngine(ui);
 			game.run(false);
-			System.out.println("gm");
 		//}
 		
-/*		switch(ui.gameStartPrompt()){
+/*		ui = new TextUserInterface();
+		game = new GameEngine(ui);
+		
+		switch(ui.gameStartPrompt()){
 		case 1:
 			game = new GameEngine(ui);
 			game.run(false);
