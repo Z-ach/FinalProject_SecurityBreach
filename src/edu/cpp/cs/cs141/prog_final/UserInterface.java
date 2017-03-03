@@ -98,7 +98,7 @@ public class UserInterface implements Serializable {
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
-		System.out.println("3. Exit \n");
+		System.out.println("3. Exit");
 
 		int answer = input.nextInt();
 

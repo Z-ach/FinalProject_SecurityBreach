@@ -235,12 +235,9 @@ public class GameEngine implements Serializable {
 			case 3:
 				switch (ui.exitOptions()) {
 				case 1:
-					System.out.println(debugMode);
 					new SaveGame("save.dat", this);
 					break;
 				case 2:
-					System.out.println(debugMode);
-
 					LoadGame load = new LoadGame("save.dat");
 					load.restoreGame().run(true);
 					break;
