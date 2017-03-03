@@ -164,6 +164,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 				// grid.getBoard()[row][col]);
 				// System.out.println();
 				// System.out.println("Printed here? " + printHere);
+				
 			}
 		}
 
@@ -191,7 +192,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public int playerOptions(boolean looking) {
-		if (textArea.getText().charAt(0) != '1')
+		if (textArea.getText().length() > 0 && textArea.getText().charAt(0) != '1')
 			textArea.setText(textArea.getText() + "\n\nChoose one of the following options:\n");
 		else
 			textArea.setText("Choose one of the following options:\n");
@@ -214,7 +215,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		textArea.setText(textArea.getText() + "\n3: LEFT");
 		textArea.setText(textArea.getText() + "\n4: RIGHT");
 		System.out.println("direction");
-		return takeInput(1, 4, false);
+		return takeInput(1, 4, true);
 	}
 
 	@Override
@@ -230,6 +231,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	}
 
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
+		textStats();
 		input = -1;
 		System.out.println("waiting for key input");
 		while (input < lowerBound || input > upperBound) {
@@ -264,13 +266,24 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 			System.out.println("input was: " + input);
 		}
 		System.out.println("input returned as " + input);
+
 		return input;
 	}
+	
+	Player player;
+	Invincibility shield;
+	boolean hardMode;
 
 	@Override
 	public void printGrid(char[][] grid, boolean[][] lighting, Player player, Invincibility shield, boolean hardMode) {
-
+		this.player = player;
+		this.shield = shield;
+		this.hardMode = hardMode;
 		update();
+
+	}
+	
+	private void textStats(){
 		textArea.setText(textArea.getText() + "\n\n\n\n\n\n");
 		textArea.setText(textArea.getText() + "Game Difficulty: ");
 		if(hardMode)
