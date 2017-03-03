@@ -338,4 +338,8 @@ public class UserInterface implements Serializable {
 	public void killedNinja() {
 		System.out.println("You have succesfully killed a ninja!");
 	}
+	
+	public void noBullet(){
+		System.out.println("No bullet. Try again.");
+	}
 }

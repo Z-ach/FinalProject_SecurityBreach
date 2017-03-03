@@ -216,6 +216,8 @@ public class GameEngine implements Serializable {
 						if (player.getShield())
 							invinc.useTurn();
 						moveNinja();
+					}else{
+						ui.noBullet();
 					}
 					break;
 				}
@@ -226,6 +228,8 @@ public class GameEngine implements Serializable {
 					if (player.getShield())
 						invinc.useTurn();
 					moveNinja();
+				}else{
+					ui.noBullet();
 				}
 				break;
 			case 3:
