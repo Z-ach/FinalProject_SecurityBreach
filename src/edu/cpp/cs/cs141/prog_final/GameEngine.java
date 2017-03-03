@@ -211,18 +211,22 @@ public class GameEngine implements Serializable {
 					moveNinja();
 					break;
 				case 2:
-					shoot(ui.direction());
-					if (player.getShield())
-						invinc.useTurn();
-					moveNinja();
+					if (player.getBullets() > 0) {
+						shoot(ui.direction());
+						if (player.getShield())
+							invinc.useTurn();
+						moveNinja();
+					}
 					break;
 				}
 				break;
 			case 2:
-				shoot(ui.direction());
-				if (player.getShield())
-					invinc.useTurn();
-				moveNinja();
+				if (player.getBullets() > 0) {
+					shoot(ui.direction());
+					if (player.getShield())
+						invinc.useTurn();
+					moveNinja();
+				}
 				break;
 			case 3:
 				switch (ui.exitOptions()) {
@@ -279,10 +283,12 @@ public class GameEngine implements Serializable {
 					int col = rand.nextInt(9);
 					if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
 							&& (grid.getBoard()[row][col] == ' ')) {
-						System.out.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						System.out
+								.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						ninjas[i].setX(row);
 						ninjas[i].setY(col);
-						System.out.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						System.out
+								.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						grid.assign(row, col, 'N');
 					}
 				}
