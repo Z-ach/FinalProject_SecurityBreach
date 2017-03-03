@@ -285,6 +285,9 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(lowerBound == 0 && upperBound == 0){
+				return 0;
+			}
 			if (keys) {
 				switch (input) {
 				case KeyEvent.VK_UP:
@@ -384,8 +387,14 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public void endMessage(boolean win) {
-		// TODO Auto-generated method stub
-
+		if(win){
+			textArea.setText("Congratulations!\nYou have won the game!\nPress any key to exit.");
+		}else{
+			textArea.setText("You have lost the game.\nPress any key to exit.");
+		}
+		System.out.println("endmessage");
+		//takeInput(0, 0, true);
+		System.out.println("endmessage done" + takeInput(0,0,true));
 	}
 
 	@Override

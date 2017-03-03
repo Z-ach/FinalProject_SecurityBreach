@@ -190,19 +190,14 @@ public class GameEngine implements Serializable {
 			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
-			System.out.println("taking player input for look clause");
 			switch (ui.playerOptions(true)) {
 			case 1:
-				System.out.println("directino about to be asked");
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
 				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
-				System.out.println("s2");
-				System.out.println("taking player input for move/shoot clause");
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {
-						System.out.println("waitn");
 						tempDirection = ui.direction() - 1;
 						if (tempDirection == 1 && roomCheck() && roomCheckRequirement(tempDirection))
 							winGame();
@@ -253,6 +248,8 @@ public class GameEngine implements Serializable {
 			}
 			checkForNinja();
 		}
+		ui.endMessage(false);
+		System.exit(0);
 	}
 
 	/**
