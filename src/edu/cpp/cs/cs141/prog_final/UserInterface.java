@@ -15,7 +15,7 @@ public interface UserInterface {
 	public int direction();
 	public int exitOptions();
 	public int hardAI();
-	public int takeInput(int lowBound, int highBound);
+	public int takeInput(int lowBound, int highBound, boolean keys);
 	public void	printGrid(char[][] grid, boolean[][] lighting, Player player, Invincibility shield, boolean hardMode);
 	public void	saveGame();
 	public void	saveSuccessful();
@@ -30,6 +30,6 @@ public interface UserInterface {
 	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield);
 
 	
-	public void repaint();
+	public void update();
 	
 }

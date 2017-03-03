@@ -28,6 +28,7 @@
 package edu.cpp.cs.cs141.prog_final;
 
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
@@ -58,10 +59,14 @@ public class Main {
 			JFrame frame = new JFrame("Security Breach");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
+			frame.setMinimumSize(new Dimension(GUI.WIDTH, GUI.HEIGHT));
 			frame.setLocationRelativeTo(null);
 			ui = new GUI();
+			frame.setResizable(false);
 			frame.add((Component) ui);
+			frame.pack();
 			frame.setVisible(true);
+
 			System.out.println("new game");
 			game = new GameEngine(ui);
 			game.run(false);

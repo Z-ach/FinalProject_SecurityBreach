@@ -176,16 +176,15 @@ public class GameEngine implements Serializable {
 	public void run(boolean loading) {
 		if (!loading) {
 			createBoard();
-			//hardMode = ui.hardAI() == 2;
+			// hardMode = ui.hardAI() == 2;
 			hardMode = true;
 		}
-		
-		ui.repaint();
+
 		boolean move = false;
 		int tempDirection = 0;
 
-		
 		while (player.alive()) {
+			ui.update();
 			refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
@@ -193,14 +192,18 @@ public class GameEngine implements Serializable {
 			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
+			System.out.println("taking player input for look clause");
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
 				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
+				System.out.println("s2");
+				System.out.println("taking player input for move/shoot clause");
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {
+						System.out.println("waitn");
 						tempDirection = ui.direction() - 1;
 						if (tempDirection == 1 && roomCheck() && roomCheckRequirement(tempDirection))
 							winGame();
@@ -283,10 +286,12 @@ public class GameEngine implements Serializable {
 					int col = rand.nextInt(9);
 					if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
 							&& (grid.getBoard()[row][col] == ' ')) {
-						System.out.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						System.out
+								.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						ninjas[i].setX(row);
 						ninjas[i].setY(col);
-						System.out.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
+						System.out
+								.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						grid.assign(row, col, 'N');
 					}
 				}
@@ -456,8 +461,90 @@ public class GameEngine implements Serializable {
 		assignNinja();
 		restartPlayer(false);
 		guiCall();
+		//test();
+		printGrid(grid.getBoard(), grid.getLight(), this.player, invinc, hardMode);
 		System.out.println("created");
 	}
+
+	public void test() {
+		System.out.println("test--------------------------------------------------------");
+		int bullet = 0, briefcase = 0, player = 0, room = 0, inv = 0, radar = 0, ninja = 0;
+		for (int row = 0; row < 9; row++) {
+			for (int col = 0; col < 9; col++) {
+				switch (grid.getBoard()[row][col]) {
+				case 'B':
+					briefcase++;
+					System.out.println("bcase at " + row + ", " + col);
+					break;
+				case 'P':
+					player++;
+					System.out.println("player at " + row + ", " + col);
+					break;
+				case 'R':
+					room++;
+					System.out.println("room at " + row + ", " + col);
+					break;
+				case 'i':
+					inv++;
+					System.out.println("inv at " + row + ", " + col);
+					break;
+				case 'b':
+					bullet++;
+					System.out.println("bullet at " + row + ", " + col);
+					break;
+				case 'r':
+					radar++;
+					System.out.println("radar at " + row + ", " + col);
+					break;
+				case 'N':
+					ninja++;
+					System.out.println("ninja at " + row + ", " + col);
+					break;
+				}
+			}
+		}
+		System.out.println("briefcase: " + briefcase);
+		System.out.println("players: " + player);
+		System.out.println("rooms: " + room);
+		System.out.println("inv: " + inv);
+		System.out.println("bullets: " + bullet);
+		System.out.println("radars: " + radar);
+		System.out.println("ninjas: " + ninja);
+		System.out.println("END TEST--------------------------------------------------------");
+		
+	}
+		public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield, boolean hardMode) {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
+					if (true)
+						System.out.print("[ " + board[i][j] + " ]");
+					else
+						System.out.print("[ X ]");
+				}
+				if (i == 1) {
+					System.out.print("\tGame Difficulty: ");
+					if (hardMode)
+						System.out.print("HARD");
+					else
+						System.out.print("EASY");
+				}
+				if (i == 2) {
+					System.out.print("\tLives: " + player.getLives());
+				} else if (i == 3) {
+					System.out.print("\tBullets: " + player.getBullets());
+				} else if (i == 4) {
+					System.out.print("\tShield: ");
+					if (!player.getShield())
+						System.out.print("not in use");
+					else if (player.getShield() && shield != null) {
+						System.out.print(shield.getTurns());
+					}
+				}
+				System.out.println("\n");
+			}
+		}
+		
+	
 
 	/**
 	 * This method assigns a briefcase to a room at random. The briefcase is
@@ -573,6 +660,7 @@ public class GameEngine implements Serializable {
 				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
+		ui.update();
 	}
 
 	/**
@@ -720,6 +808,10 @@ public class GameEngine implements Serializable {
 			return false;
 		}
 
+		if(isPlayer){
+			System.out.println("trying to move " + direction);
+		}
+		
 		being.move(direction);
 		return true;
 	}
@@ -831,8 +923,8 @@ public class GameEngine implements Serializable {
 		player.setShield(true);
 		invinc.use();
 	}
-	
-	private void guiCall(){
+
+	private void guiCall() {
 		ui.setObjects(player, briefcase, ninjas, grid, radar, bullet, invinc);
 	}
 

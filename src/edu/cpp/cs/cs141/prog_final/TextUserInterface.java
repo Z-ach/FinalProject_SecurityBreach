@@ -179,7 +179,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 		return takeInput(1, 2);
 	}
 	
-	public void repaint(){
+	public void update(){
 		
 	}
 
@@ -188,6 +188,24 @@ public class TextUserInterface implements Serializable, UserInterface {
 	 * player to enter their desired options of looking, shooting, debugging,
 	 * saving the game, loading a game, or exiting.
 	 */
+	public int takeInput(int lowerBound, int upperBound, boolean keys) {
+		int validInput = -1;
+		boolean valid = false;
+		while (validInput == -1) {
+			if (input.hasNextInt()) {
+				validInput = input.nextInt();
+				valid = true;
+			}
+			if (validInput < lowerBound || validInput > upperBound) {
+				System.out.println("Input is not a valid number!");
+				if (!valid)
+					input.next();
+				validInput = -1;
+			}
+		}
+		return validInput;
+	}
+	
 	public int takeInput(int lowerBound, int upperBound) {
 		int validInput = -1;
 		boolean valid = false;
