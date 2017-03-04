@@ -1,4 +1,4 @@
-package edu.cpp.cs.cs141.prog_final;
+package edu.cpp.cs.cs141.prog_final.ui;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,11 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import edu.cpp.cs.cs141.prog_final.Grid;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
@@ -18,7 +20,7 @@ import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 import edu.cpp.cs.cs141.prog_final.items.Radar;
 
-public class GUI extends JPanel implements UserInterface, ActionListener {
+public class GUI extends JPanel implements UserInterface, ActionListener, Serializable {
 
 	private static final long serialVersionUID = -1901275594602421699L;
 
@@ -41,7 +43,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	private Color radarColor = Color.MAGENTA;
 	private Color bulletColor = Color.PINK;
 
-	CountDownLatch latch = null;
+	static CountDownLatch latch = null;
 
 	JTextArea textArea, stats;
 
@@ -80,30 +82,12 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		textInit(stats, "", 10, 300, 245, 300);*/
 		
 	}
-	
-	private void textInit(JTextArea text, String defaultText, int x, int y, int width, int height){
-		text = new JTextArea();
-		text.setText(defaultText);
-		text.setBounds(x, y, width, height);
-		text.setLineWrap(true);
-		text.setVisible(true);
-		text.setEditable(false);
-		add(text);
-	}
 
 	public void addNotify() {
 		super.addNotify();
 		requestFocus();
 	}
 
-	boolean gridTaken = false;
-	
-	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet,
-			Invincibility shield) {
-		this.grid = grid;
-		gridTaken = true;
-		
-	}
 	/*
 	 * playerD = new PlayerDrawing(player); ninjaD = new NinjaDrawing[6];
 	 * for(int i = 0; i < 6; i++){ ninjaD[i] = new NinjaDrawing(ninjas[i]); }
@@ -247,7 +231,10 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 
 	@Override
 	public int direction() {
-		textArea.setText("1: UP");
+		if (textArea.getText().length() > 0 && textArea.getText().charAt(0) != '1')
+			textArea.setText(textArea.getText() + "\n1: UP");
+		else
+			textArea.setText("1: UP");
 		textArea.setText(textArea.getText() + "\n2: DOWN");
 		textArea.setText(textArea.getText() + "\n3: LEFT");
 		textArea.setText(textArea.getText() + "\n4: RIGHT");
@@ -327,10 +314,11 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 	boolean hardMode;
 
 	@Override
-	public void printGrid(char[][] grid, boolean[][] lighting, Player player, Invincibility shield, boolean hardMode) {
+	public void printGrid(Grid grid, Player player, Invincibility shield, boolean hardMode) {
 		this.player = player;
 		this.shield = shield;
 		this.hardMode = hardMode;
+		this.grid = grid;
 		update();
 
 	}
@@ -351,28 +339,11 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		}
 	}
 
-	@Override
-	public void saveGame() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void saveSuccessful() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void loadGame() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void errorCheck(boolean room) {
 		if (room == false) {
-			textArea.setText("The direction you want to move is blocked. \n" + "Please select a different direction.");
+			textArea.setText("The direction you want to move is\nblocked.\n" + "Please select a different direction.");
 		} else if (room == true) {
 			textArea.setText("Sorry you cannot enter from this side of the room"
 					+ "\nPlease enter from the north side of the room");
@@ -401,15 +372,10 @@ public class GUI extends JPanel implements UserInterface, ActionListener {
 		textArea.setText("You have lost a life.");
 	}
 
-	@Override
-	public void briefCase(boolean hasCase) {
-
-	}
 
 	@Override
 	public void killedNinja() {
-		// TODO Auto-generated method stub
-
+		textArea.setText("You have killed a ninja!");
 	}
 	
 	public void noBullet(){

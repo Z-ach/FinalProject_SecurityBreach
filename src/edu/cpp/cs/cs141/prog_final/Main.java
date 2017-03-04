@@ -33,6 +33,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 import edu.cpp.cs.cs141.prog_final.io.LoadGame;
+import edu.cpp.cs.cs141.prog_final.ui.GUI;
+import edu.cpp.cs.cs141.prog_final.ui.TextUserInterface;
+import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This is the main class. It is the first thing that is run in the program, and
@@ -55,7 +58,7 @@ public class Main {
 		UserInterface ui = null;
 		GameEngine game = null;
 		
-		//if(args.length > 0 && args[0].equals("-g")){
+		if(args.length > 0 && args[0].equals("-g")){
 			JFrame frame = new JFrame("Security Breach");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
@@ -69,9 +72,9 @@ public class Main {
 
 			game = new GameEngine(ui);
 			game.run(false);
-		//}
+		}
 		
-/*		ui = new TextUserInterface();
+		ui = new TextUserInterface();
 		game = new GameEngine(ui);
 		
 		switch(ui.gameStartPrompt()){
@@ -85,7 +88,7 @@ public class Main {
 			break;
 		case 3:
 			System.exit(0);
-		}*/
+		}
 	}
 
 }

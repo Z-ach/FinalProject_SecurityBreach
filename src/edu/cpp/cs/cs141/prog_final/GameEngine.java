@@ -38,8 +38,8 @@ import edu.cpp.cs.cs141.prog_final.io.SaveGame;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Item;
 import edu.cpp.cs.cs141.prog_final.items.Radar;
+import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This class runs the game based on what the player inputs. It incorporates the
@@ -156,7 +156,7 @@ public class GameEngine implements Serializable {
 	 * instances of the new objects but does not use them. Therefore, when the
 	 * Main method calls this, it creates a new object to represent the engine,
 	 * the game would be able to run based on the user input taken from
-	 * {@link edu.cpp.cs.cs141.prog_final.TextUserInterface}
+	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}
 	 */
 	public GameEngine(UserInterface ui) {
 		this.ui = ui;
@@ -187,14 +187,14 @@ public class GameEngine implements Serializable {
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
 				grid.enableCaseLighting(briefcase);
-			ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
+			ui.printGrid(grid, player, invinc, hardMode);
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
-				ui.printGrid(grid.getBoard(), grid.getLight(), player, invinc, hardMode);
+				ui.printGrid(grid, player, invinc, hardMode);
 				switch (ui.playerOptions(false)) {
 				case 1:
 					while (!move) {
@@ -236,12 +236,9 @@ public class GameEngine implements Serializable {
 			case 3:
 				switch (ui.exitOptions()) {
 				case 1:
-					System.out.println(debugMode);
 					new SaveGame("save.dat", this);
 					break;
 				case 2:
-					System.out.println(debugMode);
-
 					LoadGame load = new LoadGame("save.dat");
 					load.restoreGame().run(true);
 					break;
@@ -464,90 +461,7 @@ public class GameEngine implements Serializable {
 		assignInvincibility();
 		assignNinja();
 		restartPlayer(false);
-		guiCall();
-		//test();
-		printGrid(grid.getBoard(), grid.getLight(), this.player, invinc, hardMode);
-		System.out.println("created");
-	}
-
-	public void test() {
-		System.out.println("test--------------------------------------------------------");
-		int bullet = 0, briefcase = 0, player = 0, room = 0, inv = 0, radar = 0, ninja = 0;
-		for (int row = 0; row < 9; row++) {
-			for (int col = 0; col < 9; col++) {
-				switch (grid.getBoard()[row][col]) {
-				case 'B':
-					briefcase++;
-					System.out.println("bcase at " + row + ", " + col);
-					break;
-				case 'P':
-					player++;
-					System.out.println("player at " + row + ", " + col);
-					break;
-				case 'R':
-					room++;
-					System.out.println("room at " + row + ", " + col);
-					break;
-				case 'i':
-					inv++;
-					System.out.println("inv at " + row + ", " + col);
-					break;
-				case 'b':
-					bullet++;
-					System.out.println("bullet at " + row + ", " + col);
-					break;
-				case 'r':
-					radar++;
-					System.out.println("radar at " + row + ", " + col);
-					break;
-				case 'N':
-					ninja++;
-					System.out.println("ninja at " + row + ", " + col);
-					break;
-				}
-			}
-		}
-		System.out.println("briefcase: " + briefcase);
-		System.out.println("players: " + player);
-		System.out.println("rooms: " + room);
-		System.out.println("inv: " + inv);
-		System.out.println("bullets: " + bullet);
-		System.out.println("radars: " + radar);
-		System.out.println("ninjas: " + ninja);
-		System.out.println("END TEST--------------------------------------------------------");
-		
-	}
-		public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield, boolean hardMode) {
-			for (int i = 0; i < 9; i++) {
-				for (int j = 0; j < 9; j++) {
-					if (true)
-						System.out.print("[ " + board[i][j] + " ]");
-					else
-						System.out.print("[ X ]");
-				}
-				if (i == 1) {
-					System.out.print("\tGame Difficulty: ");
-					if (hardMode)
-						System.out.print("HARD");
-					else
-						System.out.print("EASY");
-				}
-				if (i == 2) {
-					System.out.print("\tLives: " + player.getLives());
-				} else if (i == 3) {
-					System.out.print("\tBullets: " + player.getBullets());
-				} else if (i == 4) {
-					System.out.print("\tShield: ");
-					if (!player.getShield())
-						System.out.print("not in use");
-					else if (player.getShield() && shield != null) {
-						System.out.print(shield.getTurns());
-					}
-				}
-				System.out.println("\n");
-			}
-		}
-		
+	}	
 	
 
 	/**
@@ -926,10 +840,6 @@ public class GameEngine implements Serializable {
 	private void pickupInvinc() {
 		player.setShield(true);
 		invinc.use();
-	}
-
-	private void guiCall() {
-		ui.setObjects(player, briefcase, ninjas, grid, radar, bullet, invinc);
 	}
 
 }

@@ -25,11 +25,13 @@
  * Zachary Kaufman, Michael Jason Yan
  * 
  */
-package edu.cpp.cs.cs141.prog_final;
+package edu.cpp.cs.cs141.prog_final.ui;
 
 import java.io.Serializable;
 import java.util.Scanner;
 
+import edu.cpp.cs.cs141.prog_final.GameEngine;
+import edu.cpp.cs.cs141.prog_final.Grid;
 import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Briefcase;
@@ -66,16 +68,8 @@ public class TextUserInterface implements Serializable, UserInterface {
 	public TextUserInterface() {
 		input = new Scanner(System.in);
 	}
-	
-	public void setObjects(Player player, Briefcase briefcase, Ninja[] ninjas, Grid grid, Radar radar, Bullet bullet, Invincibility shield){
-	}
 
-	/**
-	 * This method represents the {@link #instruction()} of how to play the game
-	 * to the user. The field will explain to the user what keys to use to play
-	 * the game, what the powerups do, and the end objective to find the hidden
-	 * briefcase through describing the setting.
-	 */
+
 	public void instruction() {
 		System.out.print("This game is called Security Breach.\n");
 		System.out.print("-----------------OBJECTIVE-----------------\n");
@@ -93,12 +87,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 				
 	
 
-
-	/**
-	 * This method represents the {link {@link #gameStartPrompt()} that will
-	 * give the player three options of starting a game, loading a game, or
-	 * exiting the game.
-	 */
 
 	public int gameStartPrompt() {
 		System.out.println("Welcome to Security Breach!!!");
@@ -120,11 +108,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 
 	}
 
-	/**
-	 * This method represents the {@link #playerOptions()} prints out the
-	 * player's options of looking, shooting, and debugging. These options will
-	 * be displayed
-	 */
 	public int playerOptions(boolean look) {
 		System.out.println("Choose one of the following options:");
 		if (!look) {
@@ -140,11 +123,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		}
 	}
 
-	/**
-	 * This method represents {@link #direction()}, which is the movement option
-	 * for the player. The user will press the corresponding number (1,2,3,4) to
-	 * move the player around the grid.
-	 */
 	public int direction() {
 		System.out.println("1: UP");
 		System.out.println("2: DOWN");
@@ -153,11 +131,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		return takeInput(1, 4);
 	}
 
-	/**
-	 * This method represents the {@link #exitOptions()} that will allow for the
-	 * player to either save the game or exit. These options will be available
-	 * to the player throughout the game.
-	 */
 	public int exitOptions() {
 		System.out.println("1: SAVE GAME");
 		System.out.println("2. LOAD GAME");
@@ -165,13 +138,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 		return takeInput(1, 3);
 	}
 
-	/**
-	 * This method is called in the beginning of the game right after the "start
-	 * game" option is chosen. It allows the player to choose which mode the
-	 * player wishes to play in. When returning hard mode, it will call a method
-	 * which moves the ninjas differently compared to easy mode.
-	 * It will return only 1 or 2. @return
-	 */
+
 	public int hardAI() {
 		System.out.println("Please select the difficulty:");
 		System.out.println("1: EASY MODE");
@@ -183,11 +150,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 		
 	}
 
-	/**
-	 * This method will {@link takeInput()} from the player through asking the
-	 * player to enter their desired options of looking, shooting, debugging,
-	 * saving the game, loading a game, or exiting.
-	 */
+
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
 		int validInput = -1;
 		boolean valid = false;
@@ -224,21 +187,12 @@ public class TextUserInterface implements Serializable, UserInterface {
 		return validInput;
 	}
 
-	/**
-	 * This method represents the {@link #printGrid()} which serves as the base
-	 * view of the game that will hold each of the objects. The player must
-	 * navigate through the grid in order to play.
-	 * 
-	 * This method {@link #displayInfo()} represents the status of lives that
-	 * the user has and notifies the user if any power ups are being used during
-	 * the player's turn.
-	 */
 
-	public void printGrid(char[][] board, boolean[][] light, Player player, Invincibility shield, boolean hardMode) {
+	public void printGrid(Grid grid, Player player, Invincibility shield, boolean hardMode) {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				if (light[i][j])
-					System.out.print("[ " + board[i][j] + " ]");
+				if (grid.getLight()[i][j])
+					System.out.print("[ " + grid.getBoard()[i][j] + " ]");
 				else
 					System.out.print("[ X ]");
 			}
@@ -265,42 +219,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		}
 	}
 
-	/**
-	 * The method of {@link #saveGame()} represents what the system will ask
-	 * after they choose the option to save the game. The input for a file name
-	 * will be asked from the player in order to successfully save it.
-	 */
-	public void saveGame() {
-		System.out.println(
-				"The Save Game option has been selected.\n" + "Please enter a file name to save the game as: ");
-	}
-
-	/**
-	 * The method of {@link #saveSuccessful()} is displayed after the user has
-	 * successfully saved the game into a a proper file type.
-	 */
-	public void saveSuccessful() {
-		System.out.println("The game has successfully been saved under the file: ");
-		// enter the user input file 0
-	}
-
-	/**
-	 * The method of {@link #loadGame()} represents the system asking the user
-	 * to enter the file name of the previous game that has been saved. If the
-	 * file name entered does not exist, the system will display to the user
-	 * that it is an invalid file.
-	 */
-	public void loadGame() {
-		System.out.println("Please enter the file name where the game is saved: ");
-
-	}
-
-	/**
-	 * This method represents the {@link #errorCheck()} to display an error
-	 * message when the user attempts to move in directions that are outside the
-	 * grid space, or when the player tries to move into a room from the wrong
-	 * direction
-	 */
 	public void errorCheck(boolean room) {
 		if (room == false) {
 			System.out
@@ -311,21 +229,10 @@ public class TextUserInterface implements Serializable, UserInterface {
 		}
 	}
 
-	/**
-	 * This method displays a message letting the player know that the player
-	 * has looked into the empty room and used up their turn. The purpose of
-	 * this method is to notify the player that there is nothing in the room and
-	 * the turn has been used up.
-	 */
 	public void noCase() {
 		System.out.println("There is no briefcase in this room. Keep checking.");
 	}
 
-	/**
-	 * This method is {@code true} if the character has found the briefcase and
-	 * the message telling the character has won. If {@code false}, the system
-	 * tells the user that the game is over.
-	 */
 	public void endMessage(boolean win) {
 		if (win == true) {
 			System.out.println("You have found the briefcase and escaped the 6 deadly ninjas.\n"
@@ -336,34 +243,12 @@ public class TextUserInterface implements Serializable, UserInterface {
 		}
 	}
 
-	/**
-	 * The method represents when the character will {@link #loseLife()} when
-	 * they are stabbed by a ninja. The system will tell the character that they
-	 * have lost a life and have respawned to their initial placement on the
-	 * grid.
-	 */
+
 	public void loseLife() {
 		System.out.println("You have lost a life.\n" + "Better luck next time.");
 	}
 
-	/**
-	 * This method represents the {@link #briefCase(boolean)} that needs to be
-	 * found by the player in order to win the game. If {@code true} then the
-	 * message tells the player that they have successfully found the briefcase.
-	 */
-	public void briefCase(boolean hasCase) {
-		if (hasCase == true) {
-			System.out.println("There is a briefcase in the room. \nCongratulations!");
-		} else if (hasCase == false) {
-			System.out.println("This room does not have the briefcase.\n" + "Only a few more rooms to go!");
-		}
-	}
 
-	/**
-	 * This method will display a kill message to the user when the user shoots
-	 * the bullet and kills the ninja. This method will be passed into the Game
-	 * Engine under {@link #shootCheck()}
-	 */
 	public void killedNinja() {
 		System.out.println("You have succesfully killed a ninja!");
 	}
