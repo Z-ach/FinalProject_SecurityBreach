@@ -247,7 +247,6 @@ public class Grid implements Serializable {
 	}
 
 	/**
-	 * This method assigns objects to certain sections on the gird so that they
 	 * may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
 	 * 
 	 * @param x
