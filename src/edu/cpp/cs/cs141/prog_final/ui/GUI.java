@@ -1,6 +1,7 @@
 package edu.cpp.cs.cs141.prog_final.ui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,12 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import edu.cpp.cs.cs141.prog_final.Grid;
-import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
-import edu.cpp.cs.cs141.prog_final.items.Briefcase;
-import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 public class GUI extends JPanel implements UserInterface, ActionListener, Serializable {
 
@@ -45,7 +42,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	static CountDownLatch latch = null;
 
-	JTextArea textArea, stats;
+	JTextArea textArea, stats, legend;
 
 	int input = -1;
 
@@ -69,29 +66,23 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		textArea.setVisible(true);
 		textArea.setEditable(false);
 		add(textArea);
-		
+
 		stats = new JTextArea();
 		stats.setText("");
-		stats.setBounds(10, 210, 245, 65);
+		stats.setBounds(10, 200, 245, 65);
 		stats.setLineWrap(true);
 		stats.setVisible(true);
 		stats.setEditable(false);
 		add(stats);
 		
-/*		textInit(textArea, "", 10, 10, 245, 400);
-		textInit(stats, "", 10, 300, 245, 300);*/
-		
+		setLegendText();
+
 	}
 
 	public void addNotify() {
 		super.addNotify();
 		requestFocus();
 	}
-
-	/*
-	 * playerD = new PlayerDrawing(player); ninjaD = new NinjaDrawing[6];
-	 * for(int i = 0; i < 6; i++){ ninjaD[i] = new NinjaDrawing(ninjas[i]); }
-	 */
 
 	public void update() {
 		this.repaint();
@@ -101,28 +92,17 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		paintLegend(g);
 
-		/*
-		 * for (int i = 0; i < 9; i++) { for (int j = 0; j < 9; j++) {
-		 * g.drawString((165 + 70 * j) + ", " + (40 + 70 * i), (165 + 70 * j),
-		 * (40 + 70 * i)); // System.out.println("ran " + (120 + 70 * j) + ", "
-		 * + (35 + // 70*i)); } }
-		 */
 		if (grid != null) {
-			
-			
-			
+			g.setColor(Color.BLACK);
 			for (int i = 0; i < 10; i++) {
 				g.drawLine(darknessColSpacer + 70 * i, 0, darknessColSpacer + 70 * i, GUI.HEIGHT);
 				g.drawLine(darknessColSpacer, 70 * i, GUI.WIDTH, 70 * i);
 			}
-			
-			
-			System.out.println("printing");
-			boolean printHere = false;
+
 			for (int row = 0; row < 9; row++) {
 				for (int col = 0; col < 9; col++) {
-					printHere = false;
 					if (!grid.getLight()[row][col]) {
 						g.setColor(Color.BLACK);
 						g.fillRect(darknessColSpacer + (col * 70), darknessRowSpacer + (row * 70), darknessRadius,
@@ -133,58 +113,170 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 					case 'B':
 						g.setColor(briefcaseColor);
 						g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-						// System.out.println("bcase at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'P':
 						g.setColor(playerColor);
 						g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-						// System.out.println("player at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'R':
 						g.setColor(roomColor);
 						g.fillRect(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-						// System.out.println("room at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'i':
 						g.setColor(shieldColor);
 						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
 								powerupRadius);
-						// System.out.println("shield at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'b':
 						g.setColor(bulletColor);
 						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
 								powerupRadius);
-						// System.out.println("bullet at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'r':
 						g.setColor(radarColor);
 						g.fillRect(powerupColSpacer + (col * 70), powerupRowSpacer + (row * 70), powerupRadius,
 								powerupRadius);
-						// System.out.println("radar at " + row + ", " + col);
-						printHere = true;
 						break;
 					case 'N':
 						g.setColor(ninjaColor);
 						g.fillOval(beingColSpacer + (col * 70), beingRowSpacer + (row * 70), beingRadius, beingRadius);
-						// System.out.println("ninja at " + row + ", " + col);
-						printHere = true;
 						break;
 					}
-					// System.out.println("Just checked row: " + row + ", col: "
-					// +
-					// col + "\tValue at this location is: " +
-					// grid.getBoard()[row][col]);
-					// System.out.println();
-					// System.out.println("Printed here? " + printHere);
+
 				}
 			}
 		}
+
+	}
+
+	private void paintLegend(Graphics g) {
+		super.paintComponent(g);
+		
+		int legendBeing = (beingRadius*4)/5;
+		int legendPowerup = (powerupRadius*4)/5;
+		
+		int initSpace = 280;
+		int xDist = 40;
+		int spacing = 0;
+
+		g.setColor(playerColor);
+		g.fillOval(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
+		spacing++;
+		
+		g.setColor(ninjaColor);
+		g.fillOval(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
+		spacing++;
+
+		g.setColor(roomColor);
+		g.fillRect(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
+		spacing++;
+		
+		g.setColor(briefcaseColor);
+		g.fillRect(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
+		spacing+=2;
+
+		g.setColor(shieldColor);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		spacing++;
+
+		g.setColor(bulletColor);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		spacing++;
+
+		g.setColor(radarColor);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		spacing++;
+	}
+	
+	private void setLegendText(){
+		
+		JTextArea legendPlayer, legendNinja, legendRoom, legendBriefcase, legendShield, legendBullet, legendRadar;
+		
+		int legendBeing = (beingRadius*4)/5;
+		legendBeing+=4;
+		int legendPowerup = (powerupRadius*4)/5;
+		legendPowerup+=8;
+		
+		int x = 120;
+		int y = 292;
+		int w = 135;
+		int h = 25;
+		
+		legendPlayer = new JTextArea();
+		legendNinja = new JTextArea();
+		legendRoom = new JTextArea();
+		legendBriefcase = new JTextArea();
+		legendShield = new JTextArea();
+		legendBullet = new JTextArea();
+		legendRadar = new JTextArea();
+
+
+		legendPlayer.setText("");
+		legendPlayer.setBounds(x, y, w, h);
+		legendPlayer.setLineWrap(true);
+		legendPlayer.setVisible(true);
+		legendPlayer.setEditable(false);
+		add(legendPlayer);
+		
+		legendNinja.setText("");
+		legendNinja.setBounds(x, y + (1 * (legendBeing)), w, h);
+		legendNinja.setLineWrap(true);
+		legendNinja.setVisible(true);
+		legendNinja.setEditable(false);
+		add(legendNinja);
+		
+		legendRoom.setText("");
+		legendRoom.setBounds(x, y + (2 * (legendBeing+2)), w, h);
+		legendRoom.setLineWrap(true);
+		legendRoom.setVisible(true);
+		legendRoom.setEditable(false);
+		add(legendRoom);
+		
+		legendBriefcase.setText("");
+		legendBriefcase.setBounds(x, y + (3 * (legendBeing+2)), w, h);
+		legendBriefcase.setLineWrap(true);
+		legendBriefcase.setVisible(true);
+		legendBriefcase.setEditable(false);
+		add(legendBriefcase);
+		
+		legendShield.setText("");
+		legendShield.setBounds(x, y + (5 * (legendPowerup + 2)), w, h);
+		legendShield.setLineWrap(true);
+		legendShield.setVisible(true);
+		legendShield.setEditable(false);
+		add(legendShield);
+		
+		legendBullet.setText("");
+		legendBullet.setBounds(x, y + (6 * (legendPowerup + 2)), w, h);
+		legendBullet.setLineWrap(true);
+		legendBullet.setVisible(true);
+		legendBullet.setEditable(false);
+		add(legendBullet);
+		
+		legendRadar.setText("");
+		legendRadar.setBounds(x, y + (7 * (legendPowerup + 2)), w, h);
+		legendRadar.setLineWrap(true);
+		legendRadar.setVisible(true);
+		legendRadar.setEditable(false);
+		add(legendRadar);
+		
+		Font font = new Font(legendPlayer.getFont().getFontName(), Font.BOLD, 18);
+		
+		legendPlayer.setFont(font);
+		legendNinja.setFont(font);
+		legendRoom.	setFont(font);
+		legendBriefcase.setFont(font);
+		legendShield.setFont(font);
+		legendBullet.setFont(font);
+		legendRadar.setFont(font);
+		
+		legendPlayer.setText("Player");
+		legendNinja.setText("Ninja");
+		legendRoom.setText("Room");
+		legendBriefcase.setText("Briefcase");
+		legendShield.setText("Invincibility");
+		legendBullet.setText("Bullet");
+		legendRadar.setText("Radar");
 
 	}
 
@@ -271,7 +363,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(lowerBound == 0 && upperBound == 0){
+			if (lowerBound == 0 && upperBound == 0) {
 				return 0;
 			}
 			if (keys) {
@@ -339,7 +431,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		}
 	}
 
-
 	@Override
 	public void errorCheck(boolean room) {
 		if (room == false) {
@@ -357,14 +448,14 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	@Override
 	public void endMessage(boolean win) {
-		if(win){
+		if (win) {
 			textArea.setText("Congratulations!\nYou have won the game!\nPress any key to exit.");
-		}else{
+		} else {
 			textArea.setText("You have lost the game.\nPress any key to exit.");
 		}
 		System.out.println("endmessage");
-		//takeInput(0, 0, true);
-		System.out.println("endmessage done" + takeInput(0,0,true));
+		// takeInput(0, 0, true);
+		System.out.println("endmessage done" + takeInput(0, 0, true));
 	}
 
 	@Override
@@ -372,13 +463,12 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		textArea.setText("You have lost a life.");
 	}
 
-
 	@Override
 	public void killedNinja() {
 		textArea.setText("You have killed a ninja!");
 	}
-	
-	public void noBullet(){
+
+	public void noBullet() {
 		textArea.setText("No bullet. Try again.");
 	}
 
