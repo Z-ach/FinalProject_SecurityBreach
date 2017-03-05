@@ -80,7 +80,7 @@ public class UserInterface implements Serializable {
 				+ "to begin stabbed by a ninja. Radar allows you to know the exact location of the briefcase.\n"
 				+ "An extra bullet may be found to shoot after the first bullet has been used. A door to a room\n"
 				+ "is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose\n"
-				+ "one life. You are given three lives to obtain the briefcase. Goodluck!");
+				+ "one life. You are given three lives to obtain the briefcase. Goodluck! \n");
 	}
 
 				
