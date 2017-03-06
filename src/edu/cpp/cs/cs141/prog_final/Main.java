@@ -43,8 +43,6 @@ import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
  */
 public class Main {
 
-	private static final long serialVersionUID = -109254806068843554L;
-
 	/**
 	 * This method creates an instance of the
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object and uses it to

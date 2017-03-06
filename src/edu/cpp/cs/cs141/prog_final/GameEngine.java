@@ -288,12 +288,8 @@ public class GameEngine implements Serializable {
 					int col = rand.nextInt(9);
 					if (!((row - 3 > 2) && (col < 3)) && (row % 3 != 1 && col % 3 != 1)
 							&& (grid.getBoard()[row][col] == ' ')) {
-						System.out
-								.println("ninja was at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						ninjas[i].setX(row);
 						ninjas[i].setY(col);
-						System.out
-								.println("ninja now at " + ninjas[i].getPositionX() + ", " + ninjas[i].getPositionY());
 						grid.assign(row, col, 'N');
 					}
 				}
@@ -579,7 +575,6 @@ public class GameEngine implements Serializable {
 				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
-		ui.update();
 	}
 
 	/**
@@ -725,10 +720,6 @@ public class GameEngine implements Serializable {
 					return true;
 				}
 			return false;
-		}
-
-		if(isPlayer){
-			System.out.println("trying to move " + direction);
 		}
 		
 		being.move(direction);

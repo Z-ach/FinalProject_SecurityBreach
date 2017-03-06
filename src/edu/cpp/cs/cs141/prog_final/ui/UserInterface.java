@@ -123,6 +123,5 @@ public interface UserInterface {
 	 * {@link TextUserInterface}. It is used to repaint the game screen after
 	 * conditions on the board have changed.
 	 */
-	public void update();
 
 }

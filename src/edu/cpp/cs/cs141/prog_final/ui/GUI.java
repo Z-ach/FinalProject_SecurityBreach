@@ -18,7 +18,7 @@ import edu.cpp.cs.cs141.prog_final.Grid;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 
-public class GUI extends JPanel implements UserInterface, ActionListener, Serializable {
+public class GUI extends JPanel implements UserInterface, Serializable {
 
 	private static final long serialVersionUID = -1901275594602421699L;
 
@@ -297,12 +297,9 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		
 		Font title = new Font("Arial", Font.TRUETYPE_FONT, 16);
 		
-		System.out.println(instructions.getFont().getFontName());
-
 		instructions.setFont(title);
 		instructions.setText(instructions.getText() + "Welcome to Security Breach.\n\n");
 		
-		System.out.println(instructions.getFont().getFontName());
 		instructions.setText(instructions.getText() + "\nThis is a turn-based game."
 				+ "\n\nYou are a spy tasked with retrieving a briefcase from one of nine rooms."
 				+ "\n\nThe building is pitch black, only the location of rooms are visible."
@@ -326,8 +323,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 	}
 
 	public void inputHandle(KeyEvent e) {
-
-		System.out.println("keypress detected: " + e.getKeyCode());
 		input = e.getKeyCode();
 		latch.countDown();
 
@@ -363,7 +358,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		textArea.setText(textArea.getText() + "\n2: DOWN");
 		textArea.setText(textArea.getText() + "\n3: LEFT");
 		textArea.setText(textArea.getText() + "\n4: RIGHT");
-		System.out.println("direction");
 		textStats();
 		return takeInput(1, 4, true);
 	}
@@ -386,9 +380,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
 		input = -1;
-		System.out.println("waiting for key input");
 		while (input < lowerBound || input > upperBound) {
-			System.out.println("input currently " + input);
 			latch = new CountDownLatch(1);
 			try {
 				latch.await();
@@ -402,19 +394,15 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 			if (keys) {
 				switch (input) {
 				case KeyEvent.VK_UP:
-					System.out.println("up entered");
 					input = 1;
 					break;
 				case KeyEvent.VK_DOWN:
-					System.out.println("down entered");
 					input = 2;
 					break;
 				case KeyEvent.VK_LEFT:
-					System.out.println("left entered");
 					input = 3;
 					break;
 				case KeyEvent.VK_RIGHT:
-					System.out.println("right entered");
 					input = 4;
 					break;
 				}
@@ -423,13 +411,9 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 			if (!keys && (input >= 37 && input <= 40))
 				input = 1;
 
-			System.out.println("input " + input);
 			if (input > 40)
 				input -= 48;
-
-			System.out.println("input was: " + input);
 		}
-		System.out.println("input returned as " + input);
 		textArea.setText("");
 		return input;
 	}
@@ -486,9 +470,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		} else {
 			textArea.setText("You have lost the game.\nPress any key to exit.");
 		}
-		System.out.println("endmessage");
 		// takeInput(0, 0, true);
-		System.out.println("endmessage done" + takeInput(0, 0, true));
 	}
 
 	@Override
@@ -503,12 +485,6 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	public void noBullet() {
 		textArea.setText("No bullet. Try again.");
-	}
-
-	public void actionPerformed(ActionEvent action) {
-		if (action.getID() == KeyEvent.KEY_TYPED) {
-			System.out.println("key typed ");
-		}
 	}
 
 }
