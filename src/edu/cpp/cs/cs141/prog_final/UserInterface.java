@@ -77,7 +77,7 @@ public class UserInterface implements Serializable {
 				+ "in your gun. This is a turn-based game. You have a flash light that can see 2 spaces\n"
 				+ "in a desired direction and must be used before movement. Three items exist within\n "
 				+ "the grid to assist you with your mission. Invincibility allows you to be invulnerable\n"
-				+ "to begin stabbed by a ninja. Radar allows you to know the exact location of the briefcase.\n"
+				+ "to being stabbed by a ninja. Radar allows you to know the exact location of the briefcase.\n"
 				+ "An extra bullet may be found to shoot after the first bullet has been used. A door to a room\n"
 				+ "is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose\n"
 				+ "one life. You are given three lives to obtain the briefcase. Goodluck! \n");
