@@ -27,6 +27,7 @@
  */
 package edu.cpp.cs.cs141.prog_final.items;
 
+import java.awt.ItemSelectable;
 import java.io.Serializable;
 
 /**
@@ -64,18 +65,42 @@ public abstract class Item implements Serializable {
 		this.y = y;
 	}
 
+	/**
+	 * This method is called to check the value of the field "used". When the
+	 * value of used for an item is true, the object that is representing that
+	 * class will be turned to null. This method is also inherited by the
+	 * subclasses so that they can be checked. It returns the value of the
+	 * used. @return
+	 */
 	public boolean isUsed() {
 		return used;
 	}
 
+	/**
+	 * This method is called to use the item which turns the boolean value that
+	 * keeps track of it to true. Therefore, when this method is called, the
+	 * item will be removed from the grid and applied into the game.
+	 */
 	public void use() {
 		used = true;
 	}
 
+	/**
+	 * This is used to check the position of the items. More specifically, this
+	 * method is inherited by the subclasses which are classified as items. It
+	 * returns the column that the item is located. @return
+	 */
 	public int getX() {
 		return x;
 	}
 
+	/**
+	 * This method is similar to the method getX(), however, is used to retrieve
+	 * the row that the item is located on. @return Together with the method which
+	 * returns the column, it is used to check if the player is on the item. If
+	 * the position of the player and the position of the item match, the
+	 * effects of the items will implemented in the game engine.
+	 */
 	public int getY() {
 		return y;
 	}

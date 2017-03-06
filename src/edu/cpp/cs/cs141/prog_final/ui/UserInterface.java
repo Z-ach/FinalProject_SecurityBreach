@@ -112,9 +112,9 @@ public interface UserInterface {
 	public void killedNinja();
 
 	/**
-	 * This method notifies the user that there is no bullet, and that they
-	 * cannot fire the gun. This will only be called when the player is trying
-	 * to fire a bullet that they do not have.
+	 * This method is called whenever the player tries to shoot and has no
+	 * bullets. It will display a message telling the player to try again; which
+	 * means the player cannot fire and is required to do something else.
 	 */
 	public void noBullet();
 

@@ -30,14 +30,9 @@ package edu.cpp.cs.cs141.prog_final.ui;
 import java.io.Serializable;
 import java.util.Scanner;
 
-import edu.cpp.cs.cs141.prog_final.GameEngine;
 import edu.cpp.cs.cs141.prog_final.Grid;
-import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
-import edu.cpp.cs.cs141.prog_final.items.Briefcase;
-import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 /**
  * The TextUserInterface class represents the game interactions with the player
@@ -49,7 +44,7 @@ import edu.cpp.cs.cs141.prog_final.items.Radar;
 public class TextUserInterface implements Serializable, UserInterface {
 
 	private static final long serialVersionUID = -5408848313550426100L;
-	
+
 	/**
 	 * This field represents the {@link java.util.Scanner} object that creates
 	 * the scanner that will take the user input to play the game and to print
@@ -57,14 +52,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 	 */
 	private static Scanner input;
 
-	/**
-	 * The default constructor for the class {@link TextUserInterface}. This
-	 * constructor will allow for the
-	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} to display the game
-	 * outputs to the user. Necessary things will be initialized here, such as
-	 * {@link #input}
-	 * 
-	 */
+
 	public TextUserInterface() {
 		input = new Scanner(System.in);
 	}
@@ -89,10 +77,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 				+ "\nIf you lose all three lives before obtaining the briefcase, you lose.");
 		System.out.println("\nGood Luck!\n\n");
 	}
-
-				
-	
-
 
 	public int gameStartPrompt() {
 		System.out.println("Please choose what you would like to do");
@@ -142,7 +126,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		System.out.println("3: EXIT");
 		return takeInput(1, 3);
 	}
-
 
 	public int hardAI() {
 		System.out.println("Please select the difficulty:");
@@ -258,7 +241,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		System.out.println("You have succesfully killed a ninja!");
 	}
 
-	@Override
 	public void noBullet() {
 		System.out.println("No bullet. Try again.");
 	}
