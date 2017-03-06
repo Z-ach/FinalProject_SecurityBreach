@@ -27,7 +27,6 @@
  */
 package edu.cpp.cs.cs141.prog_final.items;
 
-import java.awt.ItemSelectable;
 import java.io.Serializable;
 
 /**

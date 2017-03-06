@@ -39,7 +39,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import edu.cpp.cs.cs141.prog_final.GameEngine;
-import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This class will be responsible for restoring a previously saved game state.

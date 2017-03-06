@@ -32,7 +32,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import edu.cpp.cs.cs141.prog_final.io.LoadGame;
 import edu.cpp.cs.cs141.prog_final.ui.GUI;
 import edu.cpp.cs.cs141.prog_final.ui.TextUserInterface;
 import edu.cpp.cs.cs141.prog_final.ui.UserInterface;

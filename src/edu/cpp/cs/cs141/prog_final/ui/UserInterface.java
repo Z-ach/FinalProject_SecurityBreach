@@ -1,12 +1,8 @@
 package edu.cpp.cs.cs141.prog_final.ui;
 
 import edu.cpp.cs.cs141.prog_final.Grid;
-import edu.cpp.cs.cs141.prog_final.beings.Ninja;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
-import edu.cpp.cs.cs141.prog_final.items.Briefcase;
-import edu.cpp.cs.cs141.prog_final.items.Bullet;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
-import edu.cpp.cs.cs141.prog_final.items.Radar;
 
 public interface UserInterface {
 
