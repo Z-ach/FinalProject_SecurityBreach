@@ -94,7 +94,8 @@ public class UserInterface implements Serializable {
 	 */
 
 	public int gameStartPrompt() {
-		System.out.println("Welcome to Security Breach!!!");
+		instruction();
+		System.out.println("\nWelcome to Security Breach!!!");
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");

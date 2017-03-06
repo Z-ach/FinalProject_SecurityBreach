@@ -174,10 +174,8 @@ public class GameEngine implements Serializable {
 	 */
 	public void run(boolean loading) {
 		if (!loading) {
-			
 			createBoard();
 			hardMode = ui.hardAI() == 2;
-			ui.instruction();
 		}
 
 		boolean move = false;
