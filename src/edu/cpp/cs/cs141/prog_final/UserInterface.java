@@ -43,7 +43,7 @@ import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 public class UserInterface implements Serializable {
 
 	private static final long serialVersionUID = -5408848313550426100L;
-	
+
 	/**
 	 * This field represents the {@link java.util.Scanner} object that creates
 	 * the scanner that will take the user input to play the game and to print
@@ -82,10 +82,6 @@ public class UserInterface implements Serializable {
 				+ "is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose\n"
 				+ "one life. You are given three lives to obtain the briefcase. Goodluck! \n");
 	}
-
-				
-	
-
 
 	/**
 	 * This method represents the {link {@link #gameStartPrompt()} that will
@@ -163,8 +159,8 @@ public class UserInterface implements Serializable {
 	 * This method is called in the beginning of the game right after the "start
 	 * game" option is chosen. It allows the player to choose which mode the
 	 * player wishes to play in. When returning hard mode, it will call a method
-	 * which moves the ninjas differently compared to easy mode.
-	 * It will return only 1 or 2. @return
+	 * which moves the ninjas differently compared to easy mode. It will return
+	 * only 1 or 2. @return
 	 */
 	public int hardAI() {
 		System.out.println("Please select the difficulty:");
@@ -339,8 +335,13 @@ public class UserInterface implements Serializable {
 	public void killedNinja() {
 		System.out.println("You have succesfully killed a ninja!");
 	}
-	
-	public void noBullet(){
+
+	/**
+	 * This method is called whenever the player tries to shoot and has no
+	 * bullets. It will display a message telling the player to try again; which
+	 * means the player cannot fire and is required to do something else.
+	 */
+	public void noBullet() {
 		System.out.println("No bullet. Try again.");
 	}
 }

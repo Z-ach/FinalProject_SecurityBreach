@@ -44,12 +44,11 @@ public abstract class LivingBeing implements Serializable {
 	 * 
 	 * @return the position of the {@link LivingBeing}
 	 */
-	// TODO JAVADOCS CHANGE
 	public int getPositionX() {
 		return x;
 	}
 
-	// TODO JAVADOCS
+	
 	public int getPositionY() {
 		return y;
 	}
