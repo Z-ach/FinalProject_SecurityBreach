@@ -42,7 +42,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	static CountDownLatch latch = null;
 
-	JTextArea textArea, stats, legend;
+	JTextArea textArea, stats, instructions;
 
 	int input = -1;
 
@@ -93,8 +93,9 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		super.paintComponent(g);
 
 		paintLegend(g);
-
 		if (grid != null) {
+			if(this.getComponentCount() == 10)
+				this.remove(instructions);
 			g.setColor(Color.BLACK);
 			for (int i = 0; i < 10; i++) {
 				g.drawLine(darknessColSpacer + 70 * i, 0, darknessColSpacer + 70 * i, GUI.HEIGHT);
@@ -282,8 +283,29 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	@Override
 	public void instruction() {
-		// TODO Auto-generated method stub
-
+		
+		instructions = new JTextArea();
+		
+		instructions.setText("");
+		instructions.setBounds(280, 10, 600, 602);
+		instructions.setLineWrap(true);
+		instructions.setVisible(true);
+		instructions.setEditable(false);
+		add(instructions);
+		
+		Font font = new Font(instructions.getFont().getFontName(), Font.TRUETYPE_FONT, 16);
+		instructions.setFont(font);
+		
+		instructions.setText(instructions.getText() + "This game is called Security Breach.\n\n");
+		instructions.setText(instructions.getText() + "You are a spy that has been given a job to retrieve a briefcase located in one"
+				+ " of nine rooms.\n There are 6 ninjas in a dark building, but you only have 1 bullet"
+				+ " in your gun.\n This is a turn-based game.\n You have a flash light that can see 2 spaces"
+				+ " in a desired direction and must be used before movement.\n Three items exist within "
+				+ " the grid to assist you with your mission.\n Invincibility allows you to be invulnerable"
+				+ " to begin stabbed by a ninja.\n Radar allows you to know the exact location of the briefcase."
+				+ " An extra bullet may be found to shoot after the first bullet has been used. A door to a room"
+				+ " is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose"
+				+ " one life. You are given three lives to obtain the briefcase. Goodluck!");
 	}
 
 	@Override
