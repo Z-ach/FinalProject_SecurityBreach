@@ -27,7 +27,15 @@
  */
 package edu.cpp.cs.cs141.prog_final;
 
+import java.awt.Component;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 import edu.cpp.cs.cs141.prog_final.io.LoadGame;
+import edu.cpp.cs.cs141.prog_final.ui.GUI;
+import edu.cpp.cs.cs141.prog_final.ui.TextUserInterface;
+import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This is the main class. It is the first thing that is run in the program, and
@@ -45,20 +53,28 @@ public class Main {
 	 *            the command line arguments to pass in
 	 */
 	public static void main(String[] args) {
-		UserInterface ui = new UserInterface();
-		switch(ui.gameStartPrompt()){
-		case 1:
-			GameEngine game = new GameEngine(ui);
-			
+		UserInterface ui = null;
+		GameEngine game = null;
+		
+		if(args.length > 0 && args[0].equals("-g")){
+			JFrame frame = new JFrame("Security Breach");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
+			frame.setMinimumSize(new Dimension(GUI.WIDTH, GUI.HEIGHT));
+			frame.setLocationRelativeTo(null);
+			ui = new GUI();
+			frame.setResizable(false);
+			frame.add((Component) ui);
+			frame.pack();
+			frame.setVisible(true);
+
+			game = new GameEngine(ui);
 			game.run(false);
-			break;
-		case 2:
-			LoadGame load = new LoadGame("save.dat");
-			load.restoreGame().run(true);
-			break;
-		case 3:
-			System.exit(0);
 		}
+		
+		game = new GameEngine(new TextUserInterface());
+		game.run(false);
+		
 	}
 
 }

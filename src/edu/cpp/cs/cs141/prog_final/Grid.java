@@ -94,6 +94,7 @@ public class Grid implements Serializable {
 				light[row2][col2] = false;
 			}
 		}
+		
 		board[1][1] = 'R';
 		board[1][4] = 'R';
 		board[1][7] = 'R';

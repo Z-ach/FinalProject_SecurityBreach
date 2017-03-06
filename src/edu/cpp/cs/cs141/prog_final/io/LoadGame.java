@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import edu.cpp.cs.cs141.prog_final.GameEngine;
+import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
  * This class will be responsible for restoring a previously saved game state.
@@ -51,6 +52,8 @@ public class LoadGame {
 	private File saveFile;
 	private FileInputStream fis;
 	private ObjectInputStream ois;
+	
+	GameEngine game = null;
 
 	public LoadGame(String fileName) {
 		saveFile = new File(fileName);
@@ -59,7 +62,7 @@ public class LoadGame {
 	}
 
 	public GameEngine restoreGame() {
-		GameEngine game = new GameEngine(null);
+
 		try {
 			fis = new FileInputStream(saveFile);
 			ois = new ObjectInputStream(fis);
