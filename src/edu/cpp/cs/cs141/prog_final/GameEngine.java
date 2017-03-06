@@ -104,7 +104,7 @@ public class GameEngine implements Serializable {
 	 * forth. Therefore, it would allow the player to make decisions and game to
 	 * run at the same time.
 	 */
-	private UserInterface ui;
+	private static UserInterface ui;
 
 	/**
 	 * This field is the player object from the player
@@ -159,10 +159,23 @@ public class GameEngine implements Serializable {
 	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}
 	 */
 	public GameEngine(UserInterface ui) {
-		this.ui = ui;
+		GameEngine.ui = ui;
 		grid = new Grid();
 		rand = new Random();
 
+	}
+
+	private void startGame() {
+		switch (ui.gameStartPrompt()) {
+		case 1:
+			break;
+		case 2:
+			LoadGame load = new LoadGame("save.dat");
+			load.restoreGame().run(true);
+			break;
+		case 3:
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -174,8 +187,12 @@ public class GameEngine implements Serializable {
 	 * be checked in the later method.
 	 */
 	public void run(boolean loading) {
+
+
+
 		if (!loading) {
 			ui.instruction();
+			startGame();
 			hardMode = ui.hardAI() == 2;
 			createBoard();
 		}
@@ -218,7 +235,7 @@ public class GameEngine implements Serializable {
 						if (player.getShield())
 							invinc.useTurn();
 						moveNinja();
-					}else{
+					} else {
 						ui.noBullet();
 					}
 					break;
@@ -226,13 +243,13 @@ public class GameEngine implements Serializable {
 				break;
 			case 2:
 				if (player.getBullets() > 0) {
-						shoot(ui.direction());
-						if (player.getShield())
-							invinc.useTurn();
-						moveNinja();
-					}else{
-						ui.noBullet();
-					}
+					shoot(ui.direction());
+					if (player.getShield())
+						invinc.useTurn();
+					moveNinja();
+				} else {
+					ui.noBullet();
+				}
 				break;
 			case 3:
 				switch (ui.exitOptions()) {
@@ -458,8 +475,7 @@ public class GameEngine implements Serializable {
 		assignInvincibility();
 		assignNinja();
 		restartPlayer(false);
-	}	
-	
+	}
 
 	/**
 	 * This method assigns a briefcase to a room at random. The briefcase is
@@ -721,7 +737,7 @@ public class GameEngine implements Serializable {
 				}
 			return false;
 		}
-		
+
 		being.move(direction);
 		return true;
 	}

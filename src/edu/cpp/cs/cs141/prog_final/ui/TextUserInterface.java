@@ -71,17 +71,23 @@ public class TextUserInterface implements Serializable, UserInterface {
 
 
 	public void instruction() {
-		System.out.print("This game is called Security Breach.\n");
-		System.out.print("-----------------OBJECTIVE-----------------\n");
-		System.out.print("You are a spy that is given a job to retrieve a briefcase located in one\n"
-				+ "of nine rooms. There are 6 ninjas in a dark building, but you only have 1 bullet\n"
-				+ "in your gun. This is a turn-based game. You have a flash light that can see 2 spaces\n"
-				+ "in a desired direction and must be used before movement. Three items exist within\n "
-				+ "the grid to assist you with your mission. Invincibility allows you to be invulnerable\n"
-				+ "to begin stabbed by a ninja. Radar allows you to know the exact location of the briefcase.\n"
-				+ "An extra bullet may be found to shoot after the first bullet has been used. A door to a room\n"
-				+ "is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose\n"
-				+ "one life. You are given three lives to obtain the briefcase. Goodluck!");
+		System.out.println("Welcome to Security Breach.");
+		
+		System.out.println("\nThis is a turn-based game."
+				+ "\n\nYou are a spy tasked with retrieving a briefcase from one of nine rooms."
+				+ "\n\nThe building is pitch black, only the location of rooms are visible."
+				+ "\n\nThere are 6 ninjas searching for you, but you only have 1 bullet."
+				+ "\n\nYou have a flash light that can see 2 spaces in a desired direction."
+				+ "\nIt must be used before movement."
+				+ "\n\nThree items exist within the grid to assist you with your mission."
+				+ "\nInvincibility allows you to become invulnerable to ninja stabs."
+				+ "\nRadar allows you to see the location of the briefcase."
+				+ "\nAn extra bullet may be found after the first bullet has been used."
+				+ "\nIf the bullet is picked up with ammo already in your gun, it's wasted."
+				+ "\n\nRoom entrances are located on the north side of the room."
+				+ "\n\nIf you are stabbed by a ninja, you lose a life." + "\nIf you retrieve the briefcase, you win."
+				+ "\nIf you lose all three lives before obtaining the briefcase, you lose.");
+		System.out.println("\nGood Luck!\n\n");
 	}
 
 				
@@ -89,11 +95,10 @@ public class TextUserInterface implements Serializable, UserInterface {
 
 
 	public int gameStartPrompt() {
-		System.out.println("Welcome to Security Breach!!!");
 		System.out.println("Please choose what you would like to do");
 		System.out.println("1. Start Game");
 		System.out.println("2. Load Game");
-		System.out.println("3. Exit \n");
+		System.out.println("3. Exit");
 
 		int answer = input.nextInt();
 

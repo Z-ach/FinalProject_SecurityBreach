@@ -318,8 +318,12 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 
 	@Override
 	public int gameStartPrompt() {
-		return 0;
+		textArea.setText("Please choose what you would like to do");
+		textArea.setText(textArea.getText() + "\n1. Start Game");
+		textArea.setText(textArea.getText() + "\n2. Load Game");
+		textArea.setText(textArea.getText() + "\n3. Exit \n");
 
+		return takeInput(1, 3, false);
 	}
 
 	public void inputHandle(KeyEvent e) {

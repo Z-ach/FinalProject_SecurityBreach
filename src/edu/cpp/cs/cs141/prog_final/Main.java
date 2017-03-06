@@ -72,21 +72,9 @@ public class Main {
 			game.run(false);
 		}
 		
-		ui = new TextUserInterface();
-		game = new GameEngine(ui);
+		game = new GameEngine(new TextUserInterface());
+		game.run(false);
 		
-		switch(ui.gameStartPrompt()){
-		case 1:
-			game = new GameEngine(ui);
-			game.run(false);
-			break;
-		case 2:
-			LoadGame load = new LoadGame("save.dat");
-			load.restoreGame().run(true);
-			break;
-		case 3:
-			System.exit(0);
-		}
 	}
 
 }
