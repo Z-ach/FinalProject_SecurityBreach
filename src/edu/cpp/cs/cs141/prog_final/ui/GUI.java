@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
 
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -42,7 +43,9 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	static CountDownLatch latch = null;
 
-	JTextArea textArea, stats, instructions;
+	JTextArea textArea, stats;
+
+	JEditorPane instructions;
 
 	int input = -1;
 
@@ -74,7 +77,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		stats.setVisible(true);
 		stats.setEditable(false);
 		add(stats);
-		
+
 		setLegendText();
 
 	}
@@ -94,7 +97,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 		paintLegend(g);
 		if (grid != null) {
-			if(this.getComponentCount() == 10)
+			if (this.getComponentCount() == 10)
 				this.remove(instructions);
 			g.setColor(Color.BLACK);
 			for (int i = 0; i < 10; i++) {
@@ -152,10 +155,10 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	private void paintLegend(Graphics g) {
 		super.paintComponent(g);
-		
-		int legendBeing = (beingRadius*4)/5;
-		int legendPowerup = (powerupRadius*4)/5;
-		
+
+		int legendBeing = (beingRadius * 4) / 5;
+		int legendPowerup = (powerupRadius * 4) / 5;
+
 		int initSpace = 280;
 		int xDist = 40;
 		int spacing = 0;
@@ -163,7 +166,7 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		g.setColor(playerColor);
 		g.fillOval(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
 		spacing++;
-		
+
 		g.setColor(ninjaColor);
 		g.fillOval(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
 		spacing++;
@@ -171,38 +174,38 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		g.setColor(roomColor);
 		g.fillRect(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
 		spacing++;
-		
+
 		g.setColor(briefcaseColor);
 		g.fillRect(xDist, (initSpace + (spacing * (legendBeing + 5))), legendBeing, legendBeing);
-		spacing+=2;
+		spacing += 2;
 
 		g.setColor(shieldColor);
-		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup + 11))), legendPowerup, legendPowerup);
 		spacing++;
 
 		g.setColor(bulletColor);
-		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup + 11))), legendPowerup, legendPowerup);
 		spacing++;
 
 		g.setColor(radarColor);
-		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup+11))), legendPowerup, legendPowerup);
+		g.fillRect(xDist + 8, (initSpace + (spacing * (legendPowerup + 11))), legendPowerup, legendPowerup);
 		spacing++;
 	}
-	
-	private void setLegendText(){
-		
+
+	private void setLegendText() {
+
 		JTextArea legendPlayer, legendNinja, legendRoom, legendBriefcase, legendShield, legendBullet, legendRadar;
-		
-		int legendBeing = (beingRadius*4)/5;
-		legendBeing+=4;
-		int legendPowerup = (powerupRadius*4)/5;
-		legendPowerup+=8;
-		
+
+		int legendBeing = (beingRadius * 4) / 5;
+		legendBeing += 4;
+		int legendPowerup = (powerupRadius * 4) / 5;
+		legendPowerup += 8;
+
 		int x = 120;
 		int y = 292;
 		int w = 135;
 		int h = 25;
-		
+
 		legendPlayer = new JTextArea();
 		legendNinja = new JTextArea();
 		legendRoom = new JTextArea();
@@ -211,66 +214,65 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 		legendBullet = new JTextArea();
 		legendRadar = new JTextArea();
 
-
 		legendPlayer.setText("");
 		legendPlayer.setBounds(x, y, w, h);
 		legendPlayer.setLineWrap(true);
 		legendPlayer.setVisible(true);
 		legendPlayer.setEditable(false);
 		add(legendPlayer);
-		
+
 		legendNinja.setText("");
 		legendNinja.setBounds(x, y + (1 * (legendBeing)), w, h);
 		legendNinja.setLineWrap(true);
 		legendNinja.setVisible(true);
 		legendNinja.setEditable(false);
 		add(legendNinja);
-		
+
 		legendRoom.setText("");
-		legendRoom.setBounds(x, y + (2 * (legendBeing+2)), w, h);
+		legendRoom.setBounds(x, y + (2 * (legendBeing + 2)), w, h);
 		legendRoom.setLineWrap(true);
 		legendRoom.setVisible(true);
 		legendRoom.setEditable(false);
 		add(legendRoom);
-		
+
 		legendBriefcase.setText("");
-		legendBriefcase.setBounds(x, y + (3 * (legendBeing+2)), w, h);
+		legendBriefcase.setBounds(x, y + (3 * (legendBeing + 2)), w, h);
 		legendBriefcase.setLineWrap(true);
 		legendBriefcase.setVisible(true);
 		legendBriefcase.setEditable(false);
 		add(legendBriefcase);
-		
+
 		legendShield.setText("");
 		legendShield.setBounds(x, y + (5 * (legendPowerup + 2)), w, h);
 		legendShield.setLineWrap(true);
 		legendShield.setVisible(true);
 		legendShield.setEditable(false);
 		add(legendShield);
-		
+
 		legendBullet.setText("");
 		legendBullet.setBounds(x, y + (6 * (legendPowerup + 2)), w, h);
 		legendBullet.setLineWrap(true);
 		legendBullet.setVisible(true);
 		legendBullet.setEditable(false);
 		add(legendBullet);
-		
+
 		legendRadar.setText("");
 		legendRadar.setBounds(x, y + (7 * (legendPowerup + 2)), w, h);
 		legendRadar.setLineWrap(true);
 		legendRadar.setVisible(true);
 		legendRadar.setEditable(false);
 		add(legendRadar);
-		
+
 		Font font = new Font(legendPlayer.getFont().getFontName(), Font.BOLD, 18);
-		
+
 		legendPlayer.setFont(font);
 		legendNinja.setFont(font);
-		legendRoom.	setFont(font);
+		legendRoom.setFont(font);
 		legendBriefcase.setFont(font);
 		legendShield.setFont(font);
 		legendBullet.setFont(font);
 		legendRadar.setFont(font);
-		
+
 		legendPlayer.setText("Player");
 		legendNinja.setText("Ninja");
 		legendRoom.setText("Room");
@@ -283,29 +285,38 @@ public class GUI extends JPanel implements UserInterface, ActionListener, Serial
 
 	@Override
 	public void instruction() {
-		
-		instructions = new JTextArea();
-		
+
+		instructions = new JEditorPane();
+
 		instructions.setText("");
 		instructions.setBounds(280, 10, 600, 602);
-		instructions.setLineWrap(true);
 		instructions.setVisible(true);
 		instructions.setEditable(false);
 		add(instructions);
 		
-		Font font = new Font(instructions.getFont().getFontName(), Font.TRUETYPE_FONT, 16);
-		instructions.setFont(font);
 		
-		instructions.setText(instructions.getText() + "This game is called Security Breach.\n\n");
-		instructions.setText(instructions.getText() + "You are a spy that has been given a job to retrieve a briefcase located in one"
-				+ " of nine rooms.\n There are 6 ninjas in a dark building, but you only have 1 bullet"
-				+ " in your gun.\n This is a turn-based game.\n You have a flash light that can see 2 spaces"
-				+ " in a desired direction and must be used before movement.\n Three items exist within "
-				+ " the grid to assist you with your mission.\n Invincibility allows you to be invulnerable"
-				+ " to begin stabbed by a ninja.\n Radar allows you to know the exact location of the briefcase."
-				+ " An extra bullet may be found to shoot after the first bullet has been used. A door to a room"
-				+ " is located on the north side and must be faced to open. If you are stabbed by a ninja, you lose"
-				+ " one life. You are given three lives to obtain the briefcase. Goodluck!");
+		Font title = new Font("Arial", Font.TRUETYPE_FONT, 16);
+		
+		System.out.println(instructions.getFont().getFontName());
+
+		instructions.setFont(title);
+		instructions.setText(instructions.getText() + "Welcome to Security Breach.\n\n");
+		
+		System.out.println(instructions.getFont().getFontName());
+		instructions.setText(instructions.getText() + "\nThis is a turn-based game."
+				+ "\n\nYou are a spy tasked with retrieving a briefcase from one of nine rooms."
+				+ "\n\nThe building is pitch black, only the location of rooms are visible."
+				+ "\n\nThere are 6 ninjas searching for you, but you only have 1 bullet."
+				+ "\n\nYou have a flash light that can see 2 spaces in a desired direction."
+				+ "\nIt must be used before movement."
+				+ "\n\nThree items exist within the grid to assist you with your mission."
+				+ "\nInvincibility allows you to be invulnerable to being stabbed by a ninja."
+				+ "\nRadar allows you to know the exact location of the briefcase."
+				+ "\nAn extra bullet may be found after the first bullet has been used."
+				+ "\n\nRoom entrances are located on the north side of the room."
+				+ "\n\nIf you are stabbed by a ninja, you lose a life." + "\nIf you retrieve the briefcase, you win."
+				+ "\nIf you lose all three lives before obtaining the briefcase, you lose.");
+		instructions.setText(instructions.getText() + "\n\n\nGood Luck!");
 	}
 
 	@Override
