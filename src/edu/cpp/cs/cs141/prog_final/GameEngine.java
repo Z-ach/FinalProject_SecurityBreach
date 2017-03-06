@@ -201,19 +201,25 @@ public class GameEngine implements Serializable {
 		int tempDirection = 0;
 
 		while (player.alive()) {
-			refreshGrid();
+			//refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
 				grid.enableCaseLighting(briefcase);
-			ui.printGrid(grid, player, invinc, hardMode);
+			//ui.printGrid(grid, player, invinc, hardMode);
+			refreshGrid();
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
 			switch (ui.playerOptions(true)) {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
-				ui.printGrid(grid, player, invinc, hardMode);
-				switch (ui.playerOptions(false)) {
+				//ui.printGrid(grid, player, invinc, hardMode);
+				int playerInput = ui.playerOptions(false);
+				while(player.getBullets() == 0 && playerInput == 2){
+					ui.noBullet();
+					playerInput = ui.playerOptions(false);
+				}
+				switch (playerInput) {
 				case 1:
 					while (!move) {
 						tempDirection = ui.direction() - 1;
@@ -593,6 +599,7 @@ public class GameEngine implements Serializable {
 				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
 		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
+		ui.printGrid(grid, player, invinc, hardMode);
 	}
 
 	/**

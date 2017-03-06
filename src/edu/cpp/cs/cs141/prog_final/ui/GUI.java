@@ -65,6 +65,9 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	private Color shieldColor = Color.ORANGE;
 	private Color radarColor = Color.MAGENTA;
 	private Color bulletColor = Color.PINK;
+	
+	boolean saveKeyInput = false;
+	int savedInput = 0;
 
 	static CountDownLatch latch = null;
 
@@ -375,6 +378,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 			textArea.setText(textArea.getText() + "\n\nPress any arrow key to select look.");
 		}
 		textStats();
+		saveKeyInput = true;
 		return takeInput(1, 4, false);
 	}
 
@@ -408,6 +412,14 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	}
 
 	public int takeInput(int lowerBound, int upperBound, boolean keys) {
+		
+		if(savedInput != 0){
+			input = savedInput;
+			savedInput = 0;
+			saveKeyInput = false;
+			return input;
+		}
+		
 		input = -1;
 		while (input < lowerBound || input > upperBound) {
 			latch = new CountDownLatch(1);
@@ -417,6 +429,28 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+
+			
+			if(saveKeyInput){
+				System.out.println("saving key input");
+				switch (input) {
+				case KeyEvent.VK_UP:
+					savedInput = 1;
+					break;
+				case KeyEvent.VK_DOWN:
+					savedInput = 2;
+					break;
+				case KeyEvent.VK_LEFT:
+					savedInput = 3;
+					break;
+				case KeyEvent.VK_RIGHT:
+					savedInput = 4;
+					break;
+				}
+				System.out.println("key input saved as " + savedInput);
+			}
+			
 			if (lowerBound == 0 && upperBound == 0) {
 				return 0;
 			}
@@ -499,7 +533,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		} else {
 			textArea.setText("You have lost the game.\nPress any key to exit.");
 		}
-		// takeInput(0, 0, true);
+		takeInput(0, 0, true);
 	}
 
 	@Override
@@ -513,7 +547,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	}
 
 	public void noBullet() {
-		textArea.setText("No bullet. Try again.");
+		textArea.setText("You have no bullet to fire.\nPlease select another option.");
 	}
 
 }

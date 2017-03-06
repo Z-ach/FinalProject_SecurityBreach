@@ -242,6 +242,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 	}
 
 	public void noBullet() {
-		System.out.println("No bullet. Try again.");
+		System.out.println("You have no bullet to fire. Please select another option.");
 	}
 }
