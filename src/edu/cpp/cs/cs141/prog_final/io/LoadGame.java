@@ -48,18 +48,59 @@ import edu.cpp.cs.cs141.prog_final.GameEngine;
  */
 public class LoadGame {
 
+	/**
+	 * This field represents the file that the game will load from. It is used
+	 * to interact with the file, and is passed in as a parameter for
+	 * {@link #fis}, the FileInputStream.
+	 */
 	private File saveFile;
-	private FileInputStream fis;
-	private ObjectInputStream ois;
-	
-	GameEngine game = null;
 
+	/**
+	 * This field represents the FileInputStream object, and is used to retrieve
+	 * data from the file that is specified in the field's instantiation. In
+	 * this case, it is interacting with {@link #saveFile}.
+	 */
+	private FileInputStream fis;
+
+	/**
+	 * This field represents the ObjectInputStream that is used to retrieve the
+	 * serialized objects stored in the save file. In this instance, it will
+	 * retrieve the {@link edu.cpp.cs.cs141.prog_final.GameEngine} object.
+	 */
+	private ObjectInputStream ois;
+
+	/**
+	 * This field represents the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * object that is trying to be deserialized. It is initially {@code null},
+	 * and will be set to the retrieved game state when it has been read in.
+	 */
+	private GameEngine game = null;
+
+	/**
+	 * This is the constructor for {@link LoadGame}. It takes in the name of a
+	 * file, and creates a {@link java.io.File} with the name specified by the
+	 * parameter. It then calls the {@link #restoreGame()} method.
+	 * 
+	 * @param fileName
+	 *            the name of the file to restore the game from
+	 */
 	public LoadGame(String fileName) {
 		saveFile = new File(fileName);
 
 		restoreGame();
 	}
 
+	/**
+	 * This method attempts to load a saved game state from a file. If the
+	 * object trying to be loaded isn't found, or the File does not exist, the
+	 * exception will be caught and handled with a try catch. After the game has
+	 * been restored, it is stored temporarily in {@link #game}, and then the
+	 * FileInputStream {@link #fis} and the ObjectInputStream {@link #ois} are
+	 * both closed to prevent memory leaks.
+	 * 
+	 * @return the retrieved {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 *         object
+	 */
 	public GameEngine restoreGame() {
 
 		try {
