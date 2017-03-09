@@ -172,7 +172,8 @@ public class Grid implements Serializable {
 	 *            should be off
 	 * @param bCase
 	 *            the briefcase object
-	 * @param player the player object
+	 * @param player
+	 *            the player object
 	 */
 	public void debugMode(boolean enable, Briefcase bCase, Player player) {
 		for (int row = 0; row < DIMENSION; row++) {
