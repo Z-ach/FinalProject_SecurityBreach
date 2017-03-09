@@ -165,6 +165,11 @@ public class GameEngine implements Serializable {
 
 	}
 
+	/**
+	 * This method initiates the game by prompting the user with a game start message from 
+	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}. The switch case allows the 
+	 * user to start the game, load saved game, or exit the game. 
+	 */
 	private void startGame() {
 		switch (ui.gameStartPrompt()) {
 		case 1:
@@ -365,6 +370,15 @@ public class GameEngine implements Serializable {
 		}
 	}
 
+	/**
+	 * This method is for the hard mode of the game. When hard mode is selected, 
+	 * The ninja will check the position of the player first and begin to move 
+	 * towards the spy, unlike easy mode. In easy mode, the ninjas are just spawned
+	 * randomly throughout the 9x9 grid, while Hard mode will try to move towards the spy. 
+	 * @param n
+	 * @param useDist
+	 * @return
+	 */
 	private boolean moveHardNinja(Ninja n, boolean useDist) {
 		boolean move = false;
 
