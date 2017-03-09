@@ -166,9 +166,10 @@ public class GameEngine implements Serializable {
 	}
 
 	/**
-	 * This method initiates the game by prompting the user with a game start message from 
-	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}. The switch case allows the 
-	 * user to start the game, load saved game, or exit the game. 
+	 * This method initiates the game by prompting the user with a game start
+	 * message from {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}.
+	 * The switch case allows the user to start the game, load saved game, or
+	 * exit the game.
 	 */
 	private void startGame() {
 		switch (ui.gameStartPrompt()) {
@@ -193,8 +194,6 @@ public class GameEngine implements Serializable {
 	 */
 	public void run(boolean loading) {
 
-
-
 		if (!loading) {
 			ui.instruction();
 			startGame();
@@ -206,11 +205,9 @@ public class GameEngine implements Serializable {
 		int tempDirection = 0;
 
 		while (player.alive()) {
-			//refreshGrid();
 			grid.debugMode(debugMode, briefcase, player);
 			if (radarFound)
 				grid.enableCaseLighting(briefcase);
-			//ui.printGrid(grid, player, invinc, hardMode);
 			refreshGrid();
 			move = false;
 			player.setShield(player.getShield() && invinc.getTurns() > 0);
@@ -218,9 +215,8 @@ public class GameEngine implements Serializable {
 			case 1:
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
-				//ui.printGrid(grid, player, invinc, hardMode);
 				int playerInput = ui.playerOptions(false);
-				while(player.getBullets() == 0 && playerInput == 2){
+				while (player.getBullets() == 0 && playerInput == 2) {
 					ui.noBullet();
 					playerInput = ui.playerOptions(false);
 				}
@@ -241,40 +237,15 @@ public class GameEngine implements Serializable {
 					moveNinja();
 					break;
 				case 2:
-					if (player.getBullets() > 0) {
-						shoot(ui.direction());
-						if (player.getShield())
-							invinc.useTurn();
-						moveNinja();
-					}else{
-						ui.noBullet();
-					}
+					shootCondition();
 					break;
 				}
 				break;
 			case 2:
-				if (player.getBullets() > 0) {
-					shoot(ui.direction());
-					if (player.getShield())
-						invinc.useTurn();
-					moveNinja();
-				}else{
-					ui.noBullet();
-				}
+				shootCondition();
 				break;
 			case 3:
-				switch (ui.exitOptions()) {
-				case 1:
-					new SaveGame("save.dat", this);
-					break;
-				case 2:
-					LoadGame load = new LoadGame("save.dat");
-					load.restoreGame().run(true);
-					break;
-				case 3:
-					System.exit(0);
-					break;
-				}
+				exitMenu();
 				break;
 			case 4:
 				debugMode = !debugMode;
@@ -284,6 +255,43 @@ public class GameEngine implements Serializable {
 		}
 		ui.endMessage(false);
 		System.exit(0);
+	}
+
+	/**
+	 * This method checks to see if the player is able to shoot. If the player
+	 * has bullets, they will be able to shoot, if not, a message indicating the
+	 * player has no bullets is displayed to the player.
+	 */
+	private void shootCondition() {
+		if (player.getBullets() > 0) {
+			shoot(ui.direction());
+			if (player.getShield())
+				invinc.useTurn();
+			moveNinja();
+		} else {
+			ui.noBullet();
+		}
+	}
+
+	/**
+	 * This method is used to handle the exit menu options. This is used when
+	 * the player selects it as an option within the game. The method will
+	 * switch on input given by the player, indicating their decision. The game
+	 * is then either saved, loaded, or stopped.
+	 */
+	private void exitMenu() {
+		switch (ui.exitOptions()) {
+		case 1:
+			new SaveGame("save.dat", this);
+			break;
+		case 2:
+			LoadGame load = new LoadGame("save.dat");
+			load.restoreGame().run(true);
+			break;
+		case 3:
+			System.exit(0);
+			break;
+		}
 	}
 
 	/**
@@ -364,17 +372,19 @@ public class GameEngine implements Serializable {
 					move = movementCheck(direction, n, false);
 					tries++;
 				}
-				
+
 			}
-				
+
 		}
 	}
 
 	/**
-	 * This method is for the hard mode of the game. When hard mode is selected, 
-	 * The ninja will check the position of the player first and begin to move 
-	 * towards the spy, unlike easy mode. In easy mode, the ninjas are just spawned
-	 * randomly throughout the 9x9 grid, while Hard mode will try to move towards the spy. 
+	 * This method is for the hard mode of the game. When hard mode is selected,
+	 * The ninja will check the position of the player first and begin to move
+	 * towards the spy, unlike easy mode. In easy mode, the ninjas are just
+	 * spawned randomly throughout the 9x9 grid, while Hard mode will try to
+	 * move towards the spy.
+	 * 
 	 * @param n
 	 * @param useDist
 	 * @return
@@ -836,11 +846,11 @@ public class GameEngine implements Serializable {
 	 *         has hit a solid object.
 	 */
 	private boolean shootCheck(int x, int y) {
-		if (grid.getBoard()[x][y] == 'B') {
+		if (x == briefcase.getX() && y == briefcase.getY()) {
 			return false;
 		} else if (grid.getBoard()[x][y] == 'R') {
 			return false;
-		} else if (grid.getBoard()[x][y] == 'N') {
+		} else {
 			for (int i = 0; i < ninjas.length; i++) {
 				if (ninjas[i] != null) {
 					if (ninjas[i].getPositionX() == x && ninjas[i].getPositionY() == y) {

@@ -66,10 +66,14 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	private Color radarColor = Color.MAGENTA;
 	private Color bulletColor = Color.PINK;
 	
+	boolean isShooting = false;
+	
 	boolean saveKeyInput = false;
 	boolean keys = false;
 	int savedInput = 0;
-
+	boolean saveRegInput = false;
+	int regInput = 0;
+	
 	static CountDownLatch latch = null;
 
 	JTextArea textArea, stats;
@@ -382,6 +386,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		textStats();
 		saveKeyInput = true;
 		keys = false;
+		saveRegInput = true;
 		return takeInput(1, 4);
 	}
 
@@ -418,8 +423,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	}
 
 	public int takeInput(int lowerBound, int upperBound) {
-		
-		if(savedInput != 0){
+		if(savedInput != 0  && regInput != 2){
 			input = savedInput;
 			savedInput = 0;
 			saveKeyInput = false;
@@ -436,9 +440,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 			}
 			
 
-			
 			if(saveKeyInput){
-				System.out.println("saving key input");
 				switch (input) {
 				case KeyEvent.VK_UP:
 					savedInput = 1;
@@ -453,12 +455,13 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 					savedInput = 4;
 					break;
 				}
-				System.out.println("key input saved as " + savedInput);
 			}
 			
 			if (lowerBound == 0 && upperBound == 0) {
 				return 0;
 			}
+			
+			
 			if (keys) {
 				switch (input) {
 				case KeyEvent.VK_UP:
@@ -476,12 +479,21 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 				}
 			}
 
-			if (!keys && (input >= 37 && input <= 40))
+			if (!keys && saveKeyInput && (input >= 37 && input <= 40))
 				input = 1;
 
 			if (input > 40)
 				input -= 48;
+			
+			
+			if(saveRegInput){
+				regInput = input;
+				saveRegInput = false;
+			}
+			
 		}
+		
+		
 		textArea.setText("");
 		return input;
 	}
