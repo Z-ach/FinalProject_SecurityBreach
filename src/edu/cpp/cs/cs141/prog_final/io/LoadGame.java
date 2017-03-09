@@ -41,10 +41,9 @@ import java.io.ObjectInputStream;
 import edu.cpp.cs.cs141.prog_final.GameEngine;
 
 /**
- * This class will be responsible for restoring a previously saved game state.
- * The class contains methods that will read an old game state from a file, then
- * parse that information, and generate a board and game state that is identical
- * to the one that is saved in the file.
+ * This class is responsible for restoring a previously saved game state. The
+ * class contains methods that will read an old game state from a file, then
+ * retrieve it, and then the game will be restored.
  */
 public class LoadGame {
 

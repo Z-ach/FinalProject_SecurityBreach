@@ -41,38 +41,62 @@ import java.io.ObjectOutputStream;
 import edu.cpp.cs.cs141.prog_final.GameEngine;
 
 /**
- * This class is designed to save the state of the game to a file. The state of
- * the game will first be parsed so that it can be recorded to a file. The text
- * will then be written to a file in a specific manner so that the file can be
- * loaded and played at a later date.
+ * This class is designed to save the state of the game to a file. It uses
+ * Serialization to achieve this goal. The
+ * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object is passed in as a
+ * parameter of the constructor, and then a FileOutputStream and a
+ * ObjectOutputStream are used to store the data.
  */
 public class SaveGame {
 
+	/**
+	 * This field represents the file that the game will save to. It is used to
+	 * interact with the file, and is passed in as a parameter for {@link #fos},
+	 * the FileOutputStream.
+	 */
 	private File saveFile;
+
+	/**
+	 * This field represents the FileOutputStream object, and is used to store
+	 * data to the file that is specified in the field's instantiation. In this
+	 * case, it is interacting with {@link #saveFile}.
+	 */
 	private FileOutputStream fos;
+
+	/**
+	 * This field represents the ObjectOutputStream that is used to store
+	 * specified objects. In this instance, it will store the
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object.
+	 */
 	private ObjectOutputStream oos;
-	
 
 	/**
 	 * Constructor for {@link SaveGame}. This will make the necessary
-	 * initializations that will be required to save the state of the game.
+	 * initializations that will be required to save the state of the game. This
+	 * attempts to save the current game to a file. If the File does not exist,
+	 * the exception will be caught and handled with a try catch. After the game
+	 * has been saved, the FileOutputStream {@link #fos} and the
+	 * ObjectOutputStream {@link #oos} are both closed to prevent memory leaks.
 	 * 
-	 * @param fileName the name of the file that the game will be saved to
+	 * @param fileName
+	 *            the name of the file that the game will be saved to
+	 * @param game
+	 *            the {@link edu.cpp.cs.cs141.prog_final.GameEngine} object to
+	 *            save
 	 */
 	public SaveGame(String fileName, GameEngine game) {
-		try{
+		try {
 			saveFile = new File(fileName);
-			
+
 			fos = new FileOutputStream(saveFile);
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(game);
-			
+
 			fos.close();
 			oos.close();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
 
 }
