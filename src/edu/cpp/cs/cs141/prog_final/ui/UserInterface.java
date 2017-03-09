@@ -34,73 +34,95 @@ import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 public interface UserInterface {
 
 	/**
-	 * This method represents the {@link #instruction()} of how to play the game
-	 * to the user. The field will explain to the user what keys to use to play
-	 * the game, what the powerups do, and the end objective to find the hidden
-	 * briefcase through describing the setting.
+	 * This method will display how to play the game to the user. The field will
+	 * explain to the user what keys to use to play the game, what the powerups
+	 * do, and the end objective to find the hidden briefcase through describing
+	 * the setting.
 	 */
 	public void instruction();
 
 	/**
-	 * This method represents the {link {@link #gameStartPrompt()} that will
-	 * give the player three options of starting a game, loading a game, or
-	 * exiting the game.
+	 * This method displays the prompts that will give the player three options
+	 * of starting a game, loading a game, or exiting the game.
 	 */
 	public int gameStartPrompt();
 
 	/**
-	 * This method represents the {@link #playerOptions()} prints out the
-	 * player's options of looking, shooting, and debugging. These options will
-	 * be displayed
+	 * This method prints out the player's options of looking, shooting, and
+	 * debugging. These options will be displayed
+	 * 
+	 * @param looking
+	 *            whether the player is looking on this turn, {@code true} for
+	 *            yes, {@code false} for no
 	 */
 	public int playerOptions(boolean looking);
 
 	/**
-	 * This method represents {@link #direction()}, which is the movement option
-	 * for the player. The user will press the corresponding number (1,2,3,4) to
-	 * move the player around the grid.
+	 * This method handles directions, which is used in the movement option and
+	 * the look option. The user will press the corresponding number (1,2,3,4)
+	 * to specify direction.
+	 * 
+	 * @return the direction specified by the player. {@code 1} for up,
+	 *         {@code 2} for down, {@code 3} for left, {@code 4} for right
 	 */
 	public int direction();
 
 	/**
-	 * This method represents the {@link #exitOptions()} that will allow for the
-	 * player to either save the game or exit. These options will be available
-	 * to the player throughout the game.
+	 * This method will display the exit options that will allow the player to
+	 * either save the game or exit. These options will be available to the
+	 * player throughout the game.
 	 */
 	public int exitOptions();
 
 	/**
-	 * This method is called in the beginning of the game right after the "start
-	 * game" option is chosen. It allows the player to choose which mode the
-	 * player wishes to play in. When returning hard mode, it will call a method
-	 * which moves the ninjas differently compared to easy mode. It will return
-	 * only 1 or 2. @return
+	 * This method is called in the beginning of the game right after the
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run(boolean)} is called. It
+	 * allows the player to choose which mode the player wishes to play in. When
+	 * returning hard mode, it will call a method which moves the ninjas
+	 * differently compared to easy mode.
+	 * 
+	 * @return the int value that represents the player's choice. {@code 1} for
+	 *         easy, {@code 2} for hard
 	 */
 	public int hardAI();
 
 	/**
-	 * This method will {@link takeInput()} from the player through asking the
-	 * player to enter their desired options of looking, shooting, debugging,
-	 * saving the game, loading a game, or exiting.
+	 * This method will take input from the player. It will ask the player to
+	 * enter their input for a specified prompt, and will keep running until a
+	 * valid answer is provided.
+	 * 
+	 * @param lowBound
+	 *            the lowest number the player can pick
+	 * @param highBound
+	 *            the highest number the player can pick
+	 * @return the int value of the player's choice
 	 */
-	public int takeInput(int lowBound, int highBound, boolean keys);
+	public int takeInput(int lowBound, int highBound);
 
 	/**
-	 * This method represents the {@link #printGrid()} which serves as the base
-	 * view of the game that will hold each of the objects. The player must
-	 * navigate through the grid in order to play.
+	 * This method prints the grid, which serves as the base view of the game.
+	 * The player must navigate through the grid in order to play.
 	 * 
-	 * This method {@link #displayInfo()} represents the status of lives that
-	 * the user has and notifies the user if any power ups are being used during
-	 * the player's turn.
+	 * @param grid
+	 *            the {@link edu.cpp.cs.cs141.prog_final.Grid} object
+	 * @param player
+	 *            the {@link edu.cpp.cs.cs141.prog_final.beings.Player} object
+	 * @param shield
+	 *            the {@link edu.cpp.cs.cs141.prog_final.items.Invincibility}
+	 *            object
+	 * @param hardMode
+	 *            whether or not the game is in hard mode. {@code true} for hard
+	 *            mode, {@code false} for easy mode
 	 */
 	public void printGrid(Grid grid, Player player, Invincibility shield, boolean hardMode);
 
 	/**
-	 * This method represents the {@link #errorCheck()} to display an error
-	 * message when the user attempts to move in directions that are outside the
-	 * grid space, or when the player tries to move into a room from the wrong
-	 * direction
+	 * This method displays an error message when the user attempts to move in
+	 * directions that are outside the grid space, or when the player tries to
+	 * move into a room from the wrong direction
+	 * 
+	 * @param room
+	 *            whether or not the movement is into a room.
 	 */
 	public void errorCheck(boolean room);
 
@@ -113,17 +135,18 @@ public interface UserInterface {
 	public void noCase();
 
 	/**
-	 * This method is {@code true} if the character has found the briefcase and
-	 * the message telling the character has won. If {@code false}, the system
-	 * tells the user that the game is over.
+	 * This method notifies the player if the character has found the briefcase
+	 * or has died, and prints a corresponding message.
+	 * 
+	 * @param win
+	 *            whether or not the player has won
 	 */
 	public void endMessage(boolean win);
 
 	/**
-	 * The method represents when the character will {@link #loseLife()} when
-	 * they are stabbed by a ninja. The system will tell the character that they
-	 * have lost a life and have respawned to their initial placement on the
-	 * grid.
+	 * The method notifies the player when they are stabbed by a ninja. The
+	 * system will tell the character that they have lost a life and have
+	 * respawned to their initial placement on the grid.
 	 */
 	public void loseLife();
 

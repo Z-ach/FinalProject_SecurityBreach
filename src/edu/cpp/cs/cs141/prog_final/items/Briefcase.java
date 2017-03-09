@@ -44,10 +44,6 @@ public class Briefcase extends Item implements Serializable{
 
 	private static final long serialVersionUID = -4985573056273702191L;
 
-	/**
-	 * This constructor will show the actual position of the briefcase in the
-	 * array.
-	 */
 	public Briefcase(int x, int y) {
 		super(x, y);
 	}

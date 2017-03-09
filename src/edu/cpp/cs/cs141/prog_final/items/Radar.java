@@ -41,11 +41,6 @@ public class Radar extends Item implements Serializable{
 
 	private static final long serialVersionUID = -9216081667937767619L;
 
-	/**
-	 * This constructor will represent the actual position of the radar drop in
-	 * the array.
-	 */
-
 	public Radar(int x, int y) {
 		super(x, y);
 	}

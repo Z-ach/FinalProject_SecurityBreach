@@ -67,6 +67,7 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 	private Color bulletColor = Color.PINK;
 	
 	boolean saveKeyInput = false;
+	boolean keys = false;
 	int savedInput = 0;
 
 	static CountDownLatch latch = null;
@@ -351,7 +352,8 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		textArea.setText(textArea.getText() + "\n2. Load Game");
 		textArea.setText(textArea.getText() + "\n3. Exit \n");
 
-		return takeInput(1, 3, false);
+		keys = false;
+		return takeInput(1, 3);
 	}
 
 	public void inputHandle(KeyEvent e) {
@@ -379,7 +381,8 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		}
 		textStats();
 		saveKeyInput = true;
-		return takeInput(1, 4, false);
+		keys = false;
+		return takeInput(1, 4);
 	}
 
 	@Override
@@ -392,7 +395,8 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		textArea.setText(textArea.getText() + "\n3: LEFT");
 		textArea.setText(textArea.getText() + "\n4: RIGHT");
 		textStats();
-		return takeInput(1, 4, true);
+		keys = true;
+		return takeInput(1, 4);
 	}
 
 	@Override
@@ -400,7 +404,8 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		textArea.setText("1: SAVE GAME");
 		textArea.setText(textArea.getText() + "\n2. LOAD GAME");
 		textArea.setText(textArea.getText() + "\n3: EXIT");
-		return takeInput(1, 3, false);
+		keys = false;
+		return takeInput(1, 3);
 	}
 
 	@Override
@@ -408,10 +413,11 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		textArea.setText("Please select the difficulty:");
 		textArea.setText(textArea.getText() + "\n1: EASY MODE");
 		textArea.setText(textArea.getText() + "\n2: HARD MODE");
-		return takeInput(1, 2, false);
+		keys = false;
+		return takeInput(1, 2);
 	}
 
-	public int takeInput(int lowerBound, int upperBound, boolean keys) {
+	public int takeInput(int lowerBound, int upperBound) {
 		
 		if(savedInput != 0){
 			input = savedInput;
@@ -426,7 +432,6 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 			try {
 				latch.await();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -533,7 +538,8 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 		} else {
 			textArea.setText("You have lost the game.\nPress any key to exit.");
 		}
-		takeInput(0, 0, true);
+		keys = true;
+		takeInput(0, 0);
 	}
 
 	@Override

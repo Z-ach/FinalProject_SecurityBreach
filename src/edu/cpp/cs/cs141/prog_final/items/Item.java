@@ -54,9 +54,13 @@ public abstract class Item implements Serializable {
 	 */
 	private boolean used;
 
+
 	/**
-	 * This constructor will show the actual position of any of the items used
-	 * in the game. It will be located on a (x,y) coordinate on the 9x9 grid.
+	 * This is the constructor for the {@link Item} class. It is a superclass, and this documentation applies to the constructors of
+	 * all of the subclasses to {@link Item}. Every {@link Item} stores its own x and y coordinates, and those values are set and stored here.
+	 * 
+	 * @param x the row that the {@link Item} is stored in
+	 * @param y the column that the {@link Item} is stored in
 	 */
 	public Item(int x, int y) {
 		used = false;
