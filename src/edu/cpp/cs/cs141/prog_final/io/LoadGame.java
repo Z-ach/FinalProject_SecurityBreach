@@ -85,8 +85,16 @@ public class LoadGame {
 	 */
 	public LoadGame(String fileName) {
 		saveFile = new File(fileName);
+	}
 
-		restoreGame();
+	/**
+	 * This method checks to ensure that the file trying to be loaded from
+	 * exists.
+	 * 
+	 * @return whether or not the file to load from exists
+	 */
+	public boolean fileFound() {
+		return saveFile.exists();
 	}
 
 	/**

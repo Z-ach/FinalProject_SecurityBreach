@@ -351,7 +351,12 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 
 	@Override
 	public int gameStartPrompt() {
-		textArea.setText("Please choose what you would like to do");
+		if(textArea.getText().equals("")){
+			textArea.setText("Please choose what you would like to do");
+		}else{
+			textArea.setText(textArea.getText() + "\n\nPlease choose what you would like to do");
+		}
+
 		textArea.setText(textArea.getText() + "\n1. Start Game");
 		textArea.setText(textArea.getText() + "\n2. Load Game");
 		textArea.setText(textArea.getText() + "\n3. Exit \n");
@@ -566,6 +571,11 @@ public class GUI extends JPanel implements UserInterface, Serializable {
 
 	public void noBullet() {
 		textArea.setText("You have no bullet to fire.\nPlease select another option.");
+	}
+
+	@Override
+	public void noSaveFile() {
+		textArea.setText("There was no save file found.\nPlease save a game first.");
 	}
 
 }

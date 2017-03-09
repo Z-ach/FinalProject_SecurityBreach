@@ -56,7 +56,7 @@ public interface UserInterface {
 	 * @param looking
 	 *            whether the player is looking on this turn, {@code true} for
 	 *            yes, {@code false} for no
-	 * @return the int value representing the player's choice           
+	 * @return the int value representing the player's choice
 	 * 
 	 */
 	public int playerOptions(boolean looking);
@@ -76,7 +76,7 @@ public interface UserInterface {
 	 * either save the game or exit. These options will be available to the
 	 * player throughout the game.
 	 * 
-	 * @return the int value representing the player's choice  
+	 * @return the int value representing the player's choice
 	 */
 	public int exitOptions();
 
@@ -169,5 +169,11 @@ public interface UserInterface {
 	 * means the player cannot fire and is required to do something else.
 	 */
 	public void noBullet();
+
+	/**
+	 * This method prompts the user with the information that they have not
+	 * saved any file, and there can therefore be nothing to load from
+	 */
+	public void noSaveFile();
 
 }

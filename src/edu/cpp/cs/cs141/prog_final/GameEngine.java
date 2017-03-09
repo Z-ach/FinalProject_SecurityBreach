@@ -181,7 +181,12 @@ public class GameEngine implements Serializable {
 			break;
 		case 2:
 			LoadGame load = new LoadGame("save.dat");
-			load.restoreGame().run(true);
+			if(load.fileFound())
+				load.restoreGame().run(true);
+			else{
+				ui.noSaveFile();
+				startGame();
+			}
 			break;
 		case 3:
 			System.exit(0);
@@ -292,7 +297,10 @@ public class GameEngine implements Serializable {
 			break;
 		case 2:
 			LoadGame load = new LoadGame("save.dat");
-			load.restoreGame().run(true);
+			if(load.fileFound())
+				load.restoreGame().run(true);
+			else
+				ui.noSaveFile();
 			break;
 		case 3:
 			System.exit(0);
