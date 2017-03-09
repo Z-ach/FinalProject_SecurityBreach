@@ -37,8 +37,12 @@ import edu.cpp.cs.cs141.prog_final.ui.TextUserInterface;
 import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
- * This is the main class. It is the first thing that is run in the program, and
- * the only thing it is designed to do in this code is start the game engine.
+ * This is the main class. The job of this class is to determine which type of
+ * {@link edu.cpp.cs.cs141.prog_final.ui.UserInterface} to create. It will
+ * create a {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface} if there
+ * are no command line arguments, and will create a
+ * {@link edu.cpp.cs.cs141.prog_final.ui.GUI} if the arguments in the command
+ * line are correct
  */
 public class Main {
 
@@ -46,16 +50,18 @@ public class Main {
 	 * This method creates an instance of the
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object and uses it to
 	 * start the program by calling the method
-	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run()}.
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run()}. The UserInterface
+	 * that is created will be passed into the constructor of the GameEngine.
 	 * 
 	 * @param args
-	 *            the command line arguments to pass in
+	 *            the command line arguments to pass in. Will determine whether
+	 *            a GUI is created, or a Text UI.
 	 */
 	public static void main(String[] args) {
 		UserInterface ui = null;
 		GameEngine game = null;
-		
-		if(args.length > 0 && args[0].equals("-g")){
+
+		if (args.length > 0 && args[0].equals("-g")) {
 			JFrame frame = new JFrame("Security Breach");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(GUI.WIDTH, GUI.HEIGHT);
@@ -70,10 +76,10 @@ public class Main {
 			game = new GameEngine(ui);
 			game.run(false);
 		}
-		
+
 		game = new GameEngine(new TextUserInterface());
 		game.run(false);
-		
+
 	}
 
 }
