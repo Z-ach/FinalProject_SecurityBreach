@@ -35,7 +35,8 @@ import edu.cpp.cs.cs141.prog_final.items.Briefcase;
 /**
  * This class represents the building in which the game is played. The building
  * is represented as a two dimensional array which is stored in {@link #board}.
- * The grid holds all the objects and position of those objects within the game.
+ * The grid holds all the positions of all objects within the game, as well as
+ * the lighting.
  */
 public class Grid implements Serializable {
 
@@ -48,21 +49,17 @@ public class Grid implements Serializable {
 	public final int DIMENSION = 9;
 
 	/**
-	 * This is the second 9x9 2D array that represents the debugged grid. There
-	 * will be a method that prints both the objects onto the board and the
-	 * light board will be shown when the player enters debug mode. It differs
-	 * from the normal grid because a blank light grid will display where the
-	 * briefcase is and the normal grid will not.
+	 * This is the 2D array that represents the lighting of the grid. The grid
+	 * is filled with boolean values, either {@code true}, which represents an
+	 * illuminated spot, or {@code false}, which represents a dark spot.
 	 */
 	private boolean[][] light;
-	/**
-	 * This field represents the building that the player starts in. This is a
-	 * two dimensional array that holds objects, and will hold
-	 * {@link edu.cpp.cs.cs141.prog_final.beings.LivingBeing}s and
-	 * {@link edu.cpp.cs.cs141.prog_final.items.Item}s. The board will hold the
-	 * position of all entities in the game.
-	 */
 
+	/**
+	 * This is the 2D array that represents the current positions of everything
+	 * in the game. These positions are represented through characters, hence
+	 * the 2D char array.
+	 */
 	private char[][] board;
 
 	/**
@@ -94,7 +91,7 @@ public class Grid implements Serializable {
 				light[row2][col2] = false;
 			}
 		}
-		
+
 		board[1][1] = 'R';
 		board[1][4] = 'R';
 		board[1][7] = 'R';
@@ -175,6 +172,7 @@ public class Grid implements Serializable {
 	 *            should be off
 	 * @param bCase
 	 *            the briefcase object
+	 * @param player the player object
 	 */
 	public void debugMode(boolean enable, Briefcase bCase, Player player) {
 		for (int row = 0; row < DIMENSION; row++) {
@@ -248,23 +246,21 @@ public class Grid implements Serializable {
 	}
 
 	/**
-	 * This method assigns objects to certain sections on the grid so that they
-	 * may be used my the {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * This method assigns chars to certain locations on the grid
 	 * 
 	 * @param x
 	 *            the row to assign it to
 	 * @param y
 	 *            the column to assign it to
-	 * @param object
+	 * @param character
 	 *            the character representation of the object being assigned
 	 */
-	public void assign(int x, int y, char object) {
-		board[x][y] = object;
+	public void assign(int x, int y, char character) {
+		board[x][y] = character;
 	}
 
 	/**
-	 * gets the current state of a block on the grid and returns it to the
-	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}
+	 * gets the current state of the grid with regards to lighting
 	 * 
 	 * @return the board state with regards to lighting
 	 */
