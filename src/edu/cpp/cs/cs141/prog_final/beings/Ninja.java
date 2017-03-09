@@ -35,8 +35,8 @@ import java.io.Serializable;
  * constructor that spawns and creates a ninja based on a location on the grid.
  * It inherits properties from the living being super class.
  */
-public class Ninja extends LivingBeing implements Serializable{
-	
+public class Ninja extends LivingBeing implements Serializable {
+
 	private static final long serialVersionUID = -9162275870812989861L;
 
 	/**
@@ -45,8 +45,10 @@ public class Ninja extends LivingBeing implements Serializable{
 	 * parameter of the position and created the ninja on that position on the
 	 * grid. The constructor essentially spawns the ninja when it is called on.
 	 * 
-	 * @param position
-	 *            the position on the grid to create the ninja.
+	 * @param x
+	 *            the x position on the grid to create the {@link LivingBeing}
+	 * @param y
+	 *            the y position on the grid to create the {@link LivingBeing}
 	 */
 	public Ninja(int x, int y) {
 		super(x, y);

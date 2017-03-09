@@ -68,8 +68,10 @@ public class Player extends LivingBeing implements Serializable {
 	 * parameter of the position and created the player on that position on the
 	 * grid. The constructor essentially spawns the player when it is called on.
 	 * 
-	 * @param position
-	 *            the location of where to spawn the player
+	 * @param x
+	 *            the x position on the grid to create the {@link LivingBeing}
+	 * @param y
+	 *            the y position on the grid to create the {@link LivingBeing}
 	 */
 	public Player(int x, int y) {
 		super(x, y);
@@ -100,6 +102,8 @@ public class Player extends LivingBeing implements Serializable {
 	 * the players gun back to the User Interface class and displays it for the
 	 * player. Also used to determine whether or not the player can take a shot,
 	 * if there are no bullets a shot cannot be taken.
+	 * 
+	 * @return the number of bullets the player has
 	 */
 	public int getBullets() {
 		return bullet;

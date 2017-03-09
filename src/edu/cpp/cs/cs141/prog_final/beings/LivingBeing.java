@@ -58,8 +58,10 @@ public abstract class LivingBeing implements Serializable {
 	 * on that position on the grid. The constructor essentially spawns the
 	 * living being when it is called on.
 	 * 
-	 * @param position
-	 *            the position on the grid to create the {@link LivingBeing}
+	 * @param x
+	 *            the x position on the grid to create the {@link LivingBeing}
+	 * @param y
+	 *            the y position on the grid to create the {@link LivingBeing}
 	 */
 	public LivingBeing(int x, int y) {
 		this.x = x;
@@ -89,7 +91,9 @@ public abstract class LivingBeing implements Serializable {
 	/**
 	 * Setter for x coordinate, or row
 	 * 
-	 * @pararm x the int value of the x position, or row, of the {@link LivingBeing}
+	 * @param x
+	 *            the int value of the x position, or row, of the
+	 *            {@link LivingBeing}
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -98,7 +102,9 @@ public abstract class LivingBeing implements Serializable {
 	/**
 	 * Setter for y coordinate, or column
 	 * 
-	 * @pararm y the int value of the y position, or column, of the {@link LivingBeing}
+	 * @param y
+	 *            the int value of the y position, or column, of the
+	 *            {@link LivingBeing}
 	 */
 	public void setY(int y) {
 		this.y = y;

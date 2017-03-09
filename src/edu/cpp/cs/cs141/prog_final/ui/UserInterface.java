@@ -44,6 +44,8 @@ public interface UserInterface {
 	/**
 	 * This method displays the prompts that will give the player three options
 	 * of starting a game, loading a game, or exiting the game.
+	 * 
+	 * @return the int value representing the player's choice
 	 */
 	public int gameStartPrompt();
 
@@ -54,6 +56,8 @@ public interface UserInterface {
 	 * @param looking
 	 *            whether the player is looking on this turn, {@code true} for
 	 *            yes, {@code false} for no
+	 * @return the int value representing the player's choice           
+	 * 
 	 */
 	public int playerOptions(boolean looking);
 
@@ -71,6 +75,8 @@ public interface UserInterface {
 	 * This method will display the exit options that will allow the player to
 	 * either save the game or exit. These options will be available to the
 	 * player throughout the game.
+	 * 
+	 * @return the int value representing the player's choice  
 	 */
 	public int exitOptions();
 
@@ -152,8 +158,8 @@ public interface UserInterface {
 
 	/**
 	 * This method will display a kill message to the user when the user shoots
-	 * the bullet and kills the ninja. This method will be passed into the Game
-	 * Engine under {@link #shootCheck()}
+	 * the bullet and kills the ninja. This method will be called from the Game
+	 * Engine
 	 */
 	public void killedNinja();
 

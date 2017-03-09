@@ -73,7 +73,9 @@ public abstract class Item implements Serializable {
 	 * value of used for an item is true, the object that is representing that
 	 * class will be turned to null. This method is also inherited by the
 	 * subclasses so that they can be checked. It returns the value of the
-	 * used. @return
+	 * used.
+	 * 
+	 * @return {@code true} if the item has been used, {@code false} if not
 	 */
 	public boolean isUsed() {
 		return used;
@@ -91,7 +93,9 @@ public abstract class Item implements Serializable {
 	/**
 	 * This is used to check the position of the items. More specifically, this
 	 * method is inherited by the subclasses which are classified as items. It
-	 * returns the column that the item is located. @return
+	 * returns the column that the item is located. 
+	 * 
+	 * @return the x position of the {@link Item} in the grid
 	 */
 	public int getX() {
 		return x;
@@ -99,10 +103,12 @@ public abstract class Item implements Serializable {
 
 	/**
 	 * This method is similar to the method getX(), however, is used to retrieve
-	 * the row that the item is located on. @return Together with the method which
+	 * the column that the item is located on. Together with the method which
 	 * returns the column, it is used to check if the player is on the item. If
 	 * the position of the player and the position of the item match, the
 	 * effects of the items will implemented in the game engine.
+	 * 
+	 * @return the y position of the {@link Item} on the grid
 	 */
 	public int getY() {
 		return y;

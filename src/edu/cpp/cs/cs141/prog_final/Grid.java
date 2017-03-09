@@ -64,7 +64,7 @@ public class Grid implements Serializable {
 
 	/**
 	 * Constructor for the {@link Grid} class. This will generate the board by
-	 * calling {@link Grid#generateBoard()}. The board will then be accessed by
+	 * calling {@link #generateBoards()}. The board will then be accessed by
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine}.
 	 */
 	public Grid() {

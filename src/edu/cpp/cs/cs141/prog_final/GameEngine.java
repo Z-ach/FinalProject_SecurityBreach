@@ -61,8 +61,8 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This field creates a radar item from the Radar class
-	 * {@link edu.cs.cs141.prog_final.items.Radar} that will grant the player
-	 * with the location of the briefcase.
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Radar} that will grant the
+	 * player with the location of the briefcase.
 	 */
 	private Radar radar;
 
@@ -98,21 +98,21 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This is the field will be instantiated in the constructor of the game
-	 * engine. It is an array of the class ninja. {@link edu.cpp.cs.cs141.Ninja}
-	 * The purpose of this is to allow the engine and user interface to
-	 * communicate. Communicating in this case means passing methods back and
-	 * forth. Therefore, it would allow the player to make decisions and game to
-	 * run at the same time.
+	 * engine. It is an array of the class ninja.
+	 * {@link edu.cpp.cs.cs141.prog_final.beings.Ninja} The purpose of this is
+	 * to allow the engine and user interface to communicate. Communicating in
+	 * this case means passing methods back and forth. Therefore, it would allow
+	 * the player to make decisions and game to run at the same time.
 	 */
 	private static UserInterface ui;
 
 	/**
 	 * This field is the player object from the player
-	 * {@link edu.cpp.cs.cs141.Player} class. This means the player is being
-	 * held in the grid, moves based on the input from the User interface but is
-	 * operated in the engine. Just like the ninja class, the player class is
-	 * moved in the engine but the movement is based on what is inputted in the
-	 * user interface when the method movePlayer is called.
+	 * {@link edu.cpp.cs.cs141.prog_final.beings.Player} class. This means the
+	 * player is being held in the grid, moves based on the input from the User
+	 * interface but is operated in the engine. Just like the ninja class, the
+	 * player class is moved in the engine but the movement is based on what is
+	 * inputted in the user interface when the method movePlayer is called.
 	 */
 	private Player player;
 
@@ -157,6 +157,10 @@ public class GameEngine implements Serializable {
 	 * Main method calls this, it creates a new object to represent the engine,
 	 * the game would be able to run based on the user input taken from
 	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}
+	 * 
+	 * @param ui
+	 *            the instance of the UserInterface that will be used to
+	 *            interact with the player
 	 */
 	public GameEngine(UserInterface ui) {
 		GameEngine.ui = ui;
@@ -186,11 +190,13 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This method runs the game. It will have a loop with a condition of a
-	 * boolean value to check if the game is able to continue. It will be in a
-	 * while loop, and in the beginning of the game, the boolean value from the
-	 * method {@link #continueGame()} will be set at {@code false} and return
-	 * {@code false}. While the condition will be set here for the loop, it will
-	 * be checked in the later method.
+	 * boolean value to check if the game is able to continue. While the
+	 * conditions have not been met, it will continue to run the game. The game
+	 * will run until the player has either lost the game or found the
+	 * briefcase, which is the win condition.
+	 * 
+	 * @param loading
+	 *            whether or not the game is being loaded
 	 */
 	public void run(boolean loading) {
 
@@ -306,10 +312,13 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This method resets the player's position and will place them back into
-	 * the spot where the player began. Which is the 9th row and the first
+	 * the spot where the player began. Which is the last row and the first
 	 * column. This method will be called when the player dies or when a new
 	 * game is desired. If a saved game is not loaded, clicking start in the
 	 * start menu will also call this method.
+	 * 
+	 * @param loseLife
+	 *            whether or not the player should lose a life
 	 */
 	private void restartPlayer(boolean loseLife) {
 		if (player == null)
@@ -367,7 +376,7 @@ public class GameEngine implements Serializable {
 					move = moveHardNinja(n, false);
 				}
 
-				while (!move && tries < 15) {
+				while (!move && tries < 20) {
 					direction = rand.nextInt(4);
 					move = movementCheck(direction, n, false);
 					tries++;
@@ -386,8 +395,11 @@ public class GameEngine implements Serializable {
 	 * move towards the spy.
 	 * 
 	 * @param n
+	 *            the ninja that is trying to move
 	 * @param useDist
-	 * @return
+	 *            whether or not the movement should use the closest distance
+	 *            (either x or y) to move
+	 * @return whether or not the move was succesful
 	 */
 	private boolean moveHardNinja(Ninja n, boolean useDist) {
 		boolean move = false;
@@ -467,13 +479,7 @@ public class GameEngine implements Serializable {
 	/**
 	 * This method works similarly to the isValidMove method because it is used
 	 * to check if that spot that the player is standing on is occupied with an
-	 * item. It will either return a null value if the that spot in the array is
-	 * occupied with something other than an item. However, if the spot is
-	 * filled with an item, it will return the item name and apply to the
-	 * player.
-	 * 
-	 * @return the {@link edu.cpp.cs.cs141.prog_final.items.Item} on the grid
-	 *         space where the player is. {@code null} if none.
+	 * item.
 	 */
 	private void checkForItem() {
 		switch (grid.getBoard()[player.getPositionX()][player.getPositionY()]) {
@@ -721,6 +727,8 @@ public class GameEngine implements Serializable {
 	 *            the direction the being wants to move
 	 * @param being
 	 *            the being trying to move to check conditions on
+	 * @param isPlayer
+	 *            whether or not the move being considered is for a player
 	 * @return {@code true} if the move is valid, {@code false} if invalid
 	 */
 	private boolean movementCheck(int direction, LivingBeing being, boolean isPlayer) {

@@ -57,6 +57,8 @@ public class Invincibility extends Item implements Serializable {
 	 * This method is used to print out the turns the shield has left. It will
 	 * only be printed when the shield is used. Other than that, a message will
 	 * tell the player that the shield has not been found yet.
+	 * 
+	 * @return the number of turns left for the power up
 	 */
 	public int getTurns() {
 		return turns;

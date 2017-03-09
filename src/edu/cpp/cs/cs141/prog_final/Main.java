@@ -50,8 +50,9 @@ public class Main {
 	 * This method creates an instance of the
 	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine} object and uses it to
 	 * start the program by calling the method
-	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run()}. The UserInterface
-	 * that is created will be passed into the constructor of the GameEngine.
+	 * {@link edu.cpp.cs.cs141.prog_final.GameEngine#run(boolean)}. The
+	 * UserInterface that is created will be passed into the constructor of the
+	 * GameEngine.
 	 * 
 	 * @param args
 	 *            the command line arguments to pass in. Will determine whether
