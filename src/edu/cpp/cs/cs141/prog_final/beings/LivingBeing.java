@@ -38,16 +38,18 @@ import java.io.Serializable;
 public abstract class LivingBeing implements Serializable {
 
 	private static final long serialVersionUID = 8087892258705652646L;
-	
+
 	/**
-	 * This field represents an array of integers that represent the spy's
-	 * location in the building. The 0th index in the array represents the row,
-	 * and the 1st index in the array represents the column. This will be
-	 * initially set by the constructors of the subclasses, and then will be
-	 * managed in this class.
+	 * This field represents the {@link LivingBeing}'s current row coordinate in
+	 * the grid.
 	 */
-	protected int x, y;
-	
+	protected int x;
+
+	/**
+	 * This field represents the {@link LivingBeing}'s current column coordinate
+	 * in the grid.
+	 */
+	protected int y;
 
 	/**
 	 * This is the constructor for the {@link LivingBeing} abstract class. It's
@@ -69,22 +71,36 @@ public abstract class LivingBeing implements Serializable {
 	 * living being back to the User Interface class so that it can display the
 	 * information to the user
 	 * 
-	 * @return the position of the {@link LivingBeing}
+	 * @return the x position, or row, of the {@link LivingBeing}
 	 */
 	public int getPositionX() {
 		return x;
 	}
 
-	
+	/**
+	 * Getter for y coordinate, or column
+	 * 
+	 * @return the y position, or column, of the {@link LivingBeing}
+	 */
 	public int getPositionY() {
 		return y;
 	}
-	
-	public void setX(int x){
+
+	/**
+	 * Setter for x coordinate, or row
+	 * 
+	 * @pararm x the int value of the x position, or row, of the {@link LivingBeing}
+	 */
+	public void setX(int x) {
 		this.x = x;
 	}
-	
-	public void setY(int y){
+
+	/**
+	 * Setter for y coordinate, or column
+	 * 
+	 * @pararm y the int value of the y position, or column, of the {@link LivingBeing}
+	 */
+	public void setY(int y) {
 		this.y = y;
 	}
 
@@ -99,7 +115,7 @@ public abstract class LivingBeing implements Serializable {
 	 *            being moves right
 	 */
 	public void move(int direction) {
-		switch(direction){
+		switch (direction) {
 		case 0:
 			x--;
 			break;

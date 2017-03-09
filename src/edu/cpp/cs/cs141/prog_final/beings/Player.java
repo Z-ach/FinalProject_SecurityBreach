@@ -119,6 +119,8 @@ public class Player extends LivingBeing implements Serializable {
 	 * This is the getLives method. It returns the number of lives left that the
 	 * player has back to the User Interface class and displays it for the
 	 * player. Also used in {@link edu.cpp.cs.cs141.prog_final.GameEngine}.
+	 * 
+	 * @return the number of lives the player has
 	 */
 	public int getLives() {
 		return lives;
