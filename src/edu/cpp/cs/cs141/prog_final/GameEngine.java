@@ -61,28 +61,28 @@ public class GameEngine implements Serializable {
 	private Random rand;
 
 	/**
-	 * This field creates a radar item from the Radar class
+	 * This field represents a radar item from the Radar class
 	 * {@link edu.cpp.cs.cs141.prog_final.items.Radar} that will grant the
 	 * player with the location of the briefcase.
 	 */
 	private Radar radar;
 
 	/**
-	 * This field creates an invincibility item from the Invincibility class
-	 * {@link edu.cpp.cs.cs141.prog_final.items.Invincibility} that will grant
+	 * This field represents an invincibility item from the Invincibility class
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Invincibility} and will grant
 	 * the player a shield for five turns.
 	 */
 	private Invincibility invinc;
 
 	/**
-	 * This field creates a bullet from the Bullet class
-	 * {@link edu.cpp.cs.cs141.prog_final.items.Bullet} that will give the
+	 * This field represents a bullet from the Bullet class
+	 * {@link edu.cpp.cs.cs141.prog_final.items.Bullet} and will be used to give the
 	 * player a bullet if he or she does not have one.
 	 */
 	private Bullet bullet;
 
 	/**
-	 * This field initializes a grid from the Grid.java class
+	 * This field represents a grid from the Grid.java class
 	 * {@link edu.cpp.cs.cs141.prog_final.Grid} and calls the new object grid.
 	 * This is used to create the board, and interact with it.
 	 */
@@ -97,12 +97,9 @@ public class GameEngine implements Serializable {
 	private Ninja[] ninjas;
 
 	/**
-	 * This is the field will be instantiated in the constructor of the game
-	 * engine. It is an array of the class ninja.
-	 * {@link edu.cpp.cs.cs141.prog_final.beings.Ninja} The purpose of this is
-	 * to allow the engine and user interface to communicate. Communicating in
-	 * this case means passing methods back and forth. Therefore, it would allow
-	 * the player to make decisions and game to run at the same time.
+	 * This field will be instantiated in the constructor of the game
+	 * engine. The purpose of this is
+	 * to allow the engine to communicate with the user interface.
 	 */
 	private static UserInterface ui;
 
@@ -151,10 +148,9 @@ public class GameEngine implements Serializable {
 	private Briefcase briefcase;
 
 	/**
-	 * This is the constructor for the game engine class and it instantiates all
-	 * the fields, which are the objects from other class. It only creates the
+	 * This is the constructor for the game engine class and it instantiates grid and random. It only creates the
 	 * instances of the new objects but does not use them. Therefore, when the
-	 * Main method calls this, it creates a new object to represent the engine,
+	 * Main method calls this,
 	 * the game would be able to run based on the user input taken from
 	 * {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}
 	 * 
@@ -171,8 +167,8 @@ public class GameEngine implements Serializable {
 
 	/**
 	 * This method initiates the game by prompting the user with a game start
-	 * message from {@link edu.cpp.cs.cs141.prog_final.ui.TextUserInterface}.
-	 * The switch case allows the user to start the game, load saved game, or
+	 * message from the UI.
+	 * The switch case allows the user to start the game, load a saved game, or
 	 * exit the game.
 	 */
 	private void startGame() {
@@ -351,9 +347,9 @@ public class GameEngine implements Serializable {
 	}
 
 	/**
-	 * This method moves the ninja but this movement is not based off of the
+	 * This method moves the ninja. This movement is not based off of the
 	 * player's input. This method is used to move all 6 of the ninjas right
-	 * after the player is settled in a spot. It will incorporate the random
+	 * after the player has taken their turn. It will incorporate the random
 	 * number generator that will randomize the movement of each ninja.
 	 */
 	private void moveNinja() {
@@ -594,9 +590,9 @@ public class GameEngine implements Serializable {
 	}
 
 	/**
-	 * This method will place the Radar item drop on a random position on the
+	 * This method will place the Radar item at a random position on the
 	 * grid. Before the item is placed there, this method checks if there is an
-	 * existing item(s), player or room before it places the Radar item down. If
+	 * existing item(s), player or room. If
 	 * it is an empty space, it will place the item on that specific (x,y)
 	 * coordinate.
 	 */
@@ -728,8 +724,6 @@ public class GameEngine implements Serializable {
 	 * /** This method returns a boolean value and checks if the move the player
 	 * wants is a valid move. For example, when the player is in the first
 	 * column, this method would prevent the player from moving further left.
-	 * Also, this method is called after every other method of movePlayer to
-	 * check if the move is valid.
 	 *
 	 * @param direction
 	 *            the direction the being wants to move
