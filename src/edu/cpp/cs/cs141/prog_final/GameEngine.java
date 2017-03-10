@@ -212,56 +212,56 @@ public class GameEngine implements Serializable {
 		int tempDirection = 0;
 
 		while (player.alive()) {
-			grid.debugMode(debugMode, briefcase, player);
+			grid.debugMode(debugMode, briefcase, player); //if debug mode is on, this will update the grid to be light
 			if (radarFound)
-				grid.enableCaseLighting(briefcase);
-			refreshGrid();
+				grid.enableCaseLighting(briefcase); //if the radar has been found, light up the briefcase
+			refreshGrid(); //update the grid so all movements are reflected
 			move = false;
-			player.setShield(player.getShield() && invinc.getTurns() > 0);
+			player.setShield(player.getShield() && invinc.getTurns() > 0); //if player has shield and turns left, turn on shield
 			switch (ui.playerOptions(true)) {
-			case 1:
+			case 1: //player selects look
 				grid.look(player.getPositionX(), player.getPositionY(), ui.direction() - 1);
 				refreshGrid();
 				int playerInput = ui.playerOptions(false);
-				while (player.getBullets() == 0 && playerInput == 2) {
+				while (player.getBullets() == 0 && playerInput == 2) { //make sure player has bullets before going to case 2 in switch
 					ui.noBullet();
 					playerInput = ui.playerOptions(false);
 				}
 				switch (playerInput) {
-				case 1:
-					while (!move) {
-						tempDirection = ui.direction() - 1;
+				case 1: //player wants to move
+					while (!move) { //while no valid move has been made
+						tempDirection = ui.direction() - 1; //take in a temp direction to check
 						if (tempDirection == 1 && roomCheck() && roomCheckRequirement(tempDirection))
-							winGame();
-						move = movementCheck(tempDirection, player, true);
+							winGame(); //if player is moving down and briefcase is in that room, player wins
+						move = movementCheck(tempDirection, player, true); // check to see if proposed move is valid. move if it is
 						if (player.getShield())
-							invinc.useTurn();
-						checkForNinja();
+							invinc.useTurn(); //if the player's shield is active, reduce turns left by 1
+						checkForNinja(); //check to see if ninjas have collided with player
 						if (!move)
-							ui.errorCheck(false);
+							ui.errorCheck(false); //if move didn't work, player needs to try again, prompt them to
 					}
-					checkForItem();
-					moveNinja();
+					checkForItem(); //check to see if the player stepped on an item
+					moveNinja(); //move the ninjas
 					break;
-				case 2:
-					shootCondition();
+				case 2: //player wants to shoot
+					shootCondition(); //make sure player can shoot, then shoot
 					break;
 				}
 				break;
-			case 2:
-				shootCondition();
+			case 2: //player wants to shoot
+				shootCondition(); //make sure player can shoot, then shoot
 				break;
 			case 3:
-				exitMenu();
+				exitMenu(); //options for exit menu, handle input of response to options
 				break;
 			case 4:
-				debugMode = !debugMode;
+				debugMode = !debugMode; //toggle the debug mode
 				break;
 			}
-			checkForNinja();
+			checkForNinja(); //check again to see if ninjas and player are on same spot
 		}
-		ui.endMessage(false);
-		System.exit(0);
+		ui.endMessage(false); //game is over, player has lost, while loop only runs while player is alive
+		System.exit(0); //exit the game
 	}
 
 	/**
@@ -412,7 +412,7 @@ public class GameEngine implements Serializable {
 		int yDist = Math.abs(player.getPositionY() - n.getPositionY());
 
 		if (useDist) {
-			if (xDist >= yDist) {
+			if (xDist >= yDist) { 
 				if (n.getPositionX() > player.getPositionX()) {
 					move = movementCheck(0, n, false);
 				}
@@ -511,12 +511,12 @@ public class GameEngine implements Serializable {
 	 * @see #assignInvincibility()
 	 */
 	private void createBoard() {
-		assignBriefcase();
-		assignRadar();
-		assignBullet();
-		assignInvincibility();
-		assignNinja();
-		restartPlayer(false);
+		assignBriefcase(); //create and assign briefcase
+		assignRadar(); //create and assign radar
+		assignBullet(); //create and assign bullet
+		assignInvincibility(); //create and assign invinvibility
+		assignNinja(); //create and assign ninja
+		restartPlayer(false); //spawn player
 	}
 
 	/**
@@ -619,7 +619,7 @@ public class GameEngine implements Serializable {
 	 * printed to the grid.
 	 */
 	private void refreshGrid() {
-		grid.eraseGrid();
+		grid.eraseGrid(); //wipe the current grid state
 		if (radarFound)
 			grid.enableCaseLighting(briefcase);
 		if (!bullet.isUsed())
@@ -632,8 +632,8 @@ public class GameEngine implements Serializable {
 			if (ninjas[i] != null)
 				grid.assign(ninjas[i].getPositionX(), ninjas[i].getPositionY(), 'N');
 		}
-		grid.assign(player.getPositionX(), player.getPositionY(), 'P');
-		ui.printGrid(grid, player, invinc, hardMode);
+		grid.assign(player.getPositionX(), player.getPositionY(), 'P'); //reassign the player
+		ui.printGrid(grid, player, invinc, hardMode); //reprint the grid
 	}
 
 	/**
@@ -721,7 +721,7 @@ public class GameEngine implements Serializable {
 	}
 
 	/**
-	 * /** This method returns a boolean value and checks if the move the player
+	 * This method returns a boolean value and checks if the move the player
 	 * wants is a valid move. For example, when the player is in the first
 	 * column, this method would prevent the player from moving further left.
 	 *
@@ -738,7 +738,7 @@ public class GameEngine implements Serializable {
 		int x = being.getPositionX();
 		int y = being.getPositionY();
 
-		switch (direction) {
+		switch (direction) { //switch to get the attempted movement's x and y
 		case 0:
 			x--;
 			break;
@@ -754,18 +754,18 @@ public class GameEngine implements Serializable {
 		}
 
 		if (player.getShield() && (!isPlayer) && x == player.getPositionX() && y == player.getPositionY()) {
-			return false;
+			return false; //if a ninja is moving and the player has a shield, don't move here
 		}
 
 		if (x < 0 || x > 8 || y < 0 || y > 8) {
-			return false;
+			return false; //if trying to move out of the grid, don't move
 		}
 
 		if (!isPlayer) {
 			for (Ninja n : ninjas) {
 				if (n != null) {
 					if (n.getPositionX() == x & n.getPositionY() == y) {
-						return false;
+						return false; //if there's a ninja here don't move
 					}
 				}
 			}
@@ -781,8 +781,8 @@ public class GameEngine implements Serializable {
 			return false;
 		}
 
-		being.move(direction);
-		return true;
+		being.move(direction); //move the being in the direction specified if this code is reached
+		return true; //move succeeded
 	}
 
 	/**
@@ -810,16 +810,14 @@ public class GameEngine implements Serializable {
 		int y = player.getPositionY();
 		boolean continueCheck = true;
 		if (player.getBullets() != 0) {
-			player.shoot();
+			player.shoot(); //drop the player's bullet count by 1
 			switch (direction) {
 			case 1:
-
 				while (x > 0 && continueCheck) {
 					--x;
 					continueCheck = shootCheck(x, y);
 				}
 				break;
-
 			case 2:
 				while (x < 8 && continueCheck) {
 					++x;
@@ -857,21 +855,21 @@ public class GameEngine implements Serializable {
 	 */
 	private boolean shootCheck(int x, int y) {
 		if (x == briefcase.getX() && y == briefcase.getY()) {
-			return false;
+			return false; //stop the bullet if it hits a briefcase
 		} else if (grid.getBoard()[x][y] == 'R') {
-			return false;
+			return false; //stop the bullet if it hits a room
 		} else {
 			for (int i = 0; i < ninjas.length; i++) {
 				if (ninjas[i] != null) {
 					if (ninjas[i].getPositionX() == x && ninjas[i].getPositionY() == y) {
 						ninjas[i] = null;
-						ui.killedNinja();
-						return false;
+						ui.killedNinja(); //kill a ninja if the bullet hits it
+						return false; //stop the bullet after a ninja is hit
 					}
 				}
 			}
 		}
-		return true;
+		return true; //nothing was hit, keep going
 	}
 
 	/**
