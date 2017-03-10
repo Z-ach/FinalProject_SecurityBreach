@@ -154,7 +154,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 
 
 	public void printGrid(Grid grid, Player player, Invincibility shield, boolean hardMode) {
-		//prints out [X] for all 71 rooms. (exclude spawn spot and nine rooms with potential briefcase)
+		//prints out [X] for all 72/81 rooms. (exclude nine rooms with potential briefcase)
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (grid.getLight()[i][j])
