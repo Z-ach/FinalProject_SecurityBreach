@@ -42,10 +42,11 @@ import edu.cpp.cs.cs141.prog_final.items.Radar;
 import edu.cpp.cs.cs141.prog_final.ui.UserInterface;
 
 /**
- * This class runs the game based on what the player inputs. It incorporates the
- * Random generator utility to randomize the movement of the six ninjas. It
- * keeps track of the instances of the game with methods to check for items,
- * run, or restart the game.
+ * This class is the brain of the game. Most logic will be processed through
+ * here, and it manages all of the entities in the game. The GameEngine will
+ * interact with the Grid to update it so that the representation of the game
+ * state is always accurate. The GameEngine interacts with the UserInterface to
+ * communicate with the player.
  */
 public class GameEngine implements Serializable {
 
@@ -83,16 +84,15 @@ public class GameEngine implements Serializable {
 	/**
 	 * This field initializes a grid from the Grid.java class
 	 * {@link edu.cpp.cs.cs141.prog_final.Grid} and calls the new object grid.
-	 * This is used to call create the board from calling the method that makes
-	 * the 9 by 9 grid of objects.
+	 * This is used to create the board, and interact with it.
 	 */
 	private Grid grid;
 
 	/**
-	 * This field ninjas which will hold the ninjas and randomly distribute them
-	 * onto the grid from here. It would make more sense for the engine to have
-	 * this field because it would use the random generator to distribute the
-	 * ninjas instead of distributing them in the grid and calling it.
+	 * This field holds an array of
+	 * {@link edu.cpp.cs.cs141.prog_final.beings.Ninja}s. The ninjas will be
+	 * accessed using this array, and all interaction will be done through this
+	 * field.
 	 */
 	private Ninja[] ninjas;
 
@@ -181,9 +181,9 @@ public class GameEngine implements Serializable {
 			break;
 		case 2:
 			LoadGame load = new LoadGame("save.dat");
-			if(load.fileFound())
+			if (load.fileFound())
 				load.restoreGame().run(true);
-			else{
+			else {
 				ui.noSaveFile();
 				startGame();
 			}
@@ -297,7 +297,7 @@ public class GameEngine implements Serializable {
 			break;
 		case 2:
 			LoadGame load = new LoadGame("save.dat");
-			if(load.fileFound())
+			if (load.fileFound())
 				load.restoreGame().run(true);
 			else
 				ui.noSaveFile();
