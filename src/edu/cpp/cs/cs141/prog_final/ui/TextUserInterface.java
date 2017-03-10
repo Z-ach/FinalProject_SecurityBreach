@@ -134,29 +134,6 @@ public class TextUserInterface implements Serializable, UserInterface {
 		return takeInput(1, 2);
 	}
 	
-	public void update(){
-		
-	}
-
-
-	public int takeInput(int lowerBound, int upperBound, boolean keys) {
-		int validInput = -1;
-		boolean valid = false;
-		while (validInput == -1) {
-			if (input.hasNextInt()) {
-				validInput = input.nextInt();
-				valid = true;
-			}
-			if (validInput < lowerBound || validInput > upperBound) {
-				System.out.println("Input is not a valid number!");
-				if (!valid)
-					input.next();
-				validInput = -1;
-			}
-		}
-		return validInput;
-	}
-	
 	public int takeInput(int lowerBound, int upperBound) {
 		int validInput = -1;
 		boolean valid = false;
@@ -177,6 +154,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 
 
 	public void printGrid(Grid grid, Player player, Invincibility shield, boolean hardMode) {
+		//prints out [X] for all 71 rooms. (exclude spawn spot and nine rooms with potential briefcase)
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (grid.getLight()[i][j])
@@ -184,6 +162,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 				else
 					System.out.print("[ X ]");
 			}
+			//prints out the difficulty, number of lives, number of bullets and shield(if applicable) to the player
 			if (i == 1) {
 				System.out.print("\tGame Difficulty: ");
 				if (hardMode)
@@ -208,6 +187,7 @@ public class TextUserInterface implements Serializable, UserInterface {
 	}
 
 	public void errorCheck(boolean room) {
+		
 		if (room == false) {
 			System.out
 					.println("The direction you want to move is blocked. \n" + "Please select a different direction.");
