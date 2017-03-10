@@ -31,6 +31,15 @@ import edu.cpp.cs.cs141.prog_final.Grid;
 import edu.cpp.cs.cs141.prog_final.beings.Player;
 import edu.cpp.cs.cs141.prog_final.items.Invincibility;
 
+/**
+ * The UserInterface is an interface that will be implemented by every class
+ * that will directly interact with the player. It contains all the methods that
+ * are needed and that will be used. Because the GameEngine specifies this type
+ * rather than a specific type of UserInterface, the only methods it will be
+ * allowed to use are in here. Therefore everything useful must be in here, and
+ * anything outside of it will not be able to be called directly from the game
+ * engine.
+ */
 public interface UserInterface {
 
 	/**
